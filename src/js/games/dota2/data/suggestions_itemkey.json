@@ -1,0 +1,18 @@
+[
+	"Model",
+	"Effect",
+	"ItemQuality",
+	"ItemCost",
+	"ItemKillable",
+	"ItemSellable",
+	"ItemPurchasable",
+	"ItemDroppable",
+	"ItemShareability",
+	"SideShop",
+	"SecretShop",
+	"ItemStackable",
+	"ItemPermanent",
+	"ItemDisassembleRule",
+	"ItemRecipe",
+	"ItemResult"
+]
