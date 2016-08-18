@@ -50,6 +50,7 @@ windowEvents.on('selectItem', function(e) {
 
 	//if no new item was supplied jsut end here (content has been cleared)
 	if(!e) {
+		fileManager.setCurrentRoot(null);
 		return;
 	}
 
@@ -71,6 +72,7 @@ windowEvents.on('selectItem', function(e) {
 	}
 
 	e.select();
+
 });
 
 windowEvents.on('reloadTree', function(e) {

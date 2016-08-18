@@ -42,5 +42,6 @@
 	"States",
 	"Properties",
 	"ApplyModifier",
-	"ActOnTargets"
+	"ActOnTargets",
+	"AbilitySpecial"
 ]

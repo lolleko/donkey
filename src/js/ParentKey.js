@@ -207,11 +207,11 @@ class ParentKey extends ContentNode {
 				values: values,
 				minChars: 2
 			});
-			keyInput = this._autocomplete.element.input;
-			keyInput.value = this._key;
-			keyInput.classList.add('KeyInput');
-			keyInput.classList.add('ParentKeyInput');
-			keyInput.addEventListener('input', this, false);
+			keyInput = this._autocomplete.element;
+			keyInput.input.value = this._key;
+			keyInput.input.classList.add('KeyInput');
+			keyInput.input.classList.add('ParentKeyInput');
+			keyInput.input.addEventListener('input', this, false);
 		}
 		// Don't waste resources if we don't actually need autocompletion
 		else {
@@ -231,7 +231,6 @@ class ParentKey extends ContentNode {
 		inner.classList.add('ParentKeyInner');
 		container.appendChild(inner);
 
-
 		header.addEventListener('dragover', this, false);
 		header.addEventListener('dragenter', this, false);
 		header.addEventListener('dragleave', this, false);
@@ -241,8 +240,6 @@ class ParentKey extends ContentNode {
 		this._element = container;
 		this._element.keyInput = keyInput;
 
-		//update input size
-		//this.updateInputWidth();
 	}
 
 	handleEvent(e) {
@@ -254,26 +251,6 @@ class ParentKey extends ContentNode {
 
 	onInput(e) {
 		this.changeKey(this._key, e.target.value);
-		//this.updateInputWidth();
-	}
-
-	inputTextWidth() {
-		var hhm = document.createElement('div');
-		hhm.style.position = "absolute";
-		hhm.style.float = "left";
-		hhm.style.whiteSpace = "nowrap";
-		hhm.style.visibility = "hidden";
-		hhm.classList.add('ParentKeyInput');
-		hhm.innerHTML = this._key;
-		document.body.appendChild(hhm);
-		//add input padding and border TODO make dynamic
-		var width = hhm.clientWidth + 10;
-		document.body.removeChild(hhm);
-		return width;
-	}
-
-	updateInputWidth() {
-		this._element.keyInput.style.width = this.inputTextWidth() + "px";
 	}
 }
 

@@ -26,7 +26,7 @@ function _symtostr(line, i, token) {
     var opening = i + 1,
         closing = opening;
 
-    ci = line.indexOf(token, opening);
+    var ci = line.indexOf(token, opening);
     while (ci !== -1) {
         if (line.substring(ci - 1, ci) !== "\\") {
             closing = ci;
@@ -35,7 +35,7 @@ function _symtostr(line, i, token) {
         ci = line.indexOf(token, ci + 1);
     }
 
-    finalstr = line.substring(opening, closing);
+    var finalstr = line.substring(opening, closing);
     return [finalstr, i + finalstr.length + 1];
 }
 
@@ -99,7 +99,7 @@ function _parse(stream, ptr) {
         }
         else if (c !== SPACE && c !== TAB) {
             var _string = (c === STRING ? _symtostr : _unquotedtostr)(stream, i);
-            string = _string[0];
+            var string = _string[0];
             i = _string[1];
 
             if (lasttok === STRING && next_is_value) {
@@ -160,8 +160,8 @@ function _dump(obj, indent, mult) {
 
 exports.parse = function parse(string) {
     var _parsed = _parse(string);
-    res = _parsed[0];
-    ptr = _parsed[1];
+    var res = _parsed[0];
+    var ptr = _parsed[1];
     return res;
 };
 

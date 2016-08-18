@@ -1,5 +1,6 @@
 const windowEvents = require('./windowEvents');
 const fileManager = require('./fileManager');
+const FileRoot = require('./FileRoot');
 const vdf = require('./vdf');
 const fs = require('fs');
 
@@ -18,8 +19,7 @@ class VDFFile {
 			superRootName = key;
 		}
 		this._nav = document.querySelector('.NavInner');
-		const FileRoot = require('./FileRoot');
-		this._fileRoot = new FileRoot(superRootName, this._name, superRoot, this, this._nav);
+		this._fileRoot = new FileRoot(superRootName, this._name, superRoot, null, this._nav);
 	}
 
 	get data() {

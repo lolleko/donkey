@@ -46,11 +46,13 @@ exports.fileToJSON = function(file) {
 exports.closeFile = function(file) {
 	openFiles[file].close();
 	openFiles[file] = null;
+	console.log(global);
 };
 
 exports.deleteFile = function(file) {
-	vdfFile = openFiles[file];
+	var vdfFile = openFiles[file];
 	vdfFile.delete();
+	openFiles[file] = null;
 };
 
 exports.editFile = function(fileName) {
@@ -90,6 +92,10 @@ exports.getContent = function(file) {
 
 exports.setModified = function(file, state) {
 	openFiles[file].modified = state || true;
+};
+
+exports.getModified = function(file, state) {
+	return openFiles[file].modified || false;
 };
 
 exports.openFile = function(directory) {

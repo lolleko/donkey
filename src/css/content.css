@@ -25,9 +25,9 @@
 }
 
 .ParentKeyInput {
-	font-weight: 500;
 	font-size: 1.05em !important;
 	max-width: 100% !important;
+	font-weight: 600;
 }
 
 .ParentKeyDrag {

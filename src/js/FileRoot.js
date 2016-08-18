@@ -82,7 +82,7 @@ class FileRoot extends FileNode{
 
 		var warning;
 
-		if (this._parent.modified) {
+		if (fileManager.getModified(this._fileName)) {
 			warning = dialog.showMessageBox(remote.getCurrentWindow(), {
 				type : 'warning',
 				buttons : ['Save & Close', 'Close', 'Cancel'],
@@ -99,13 +99,13 @@ class FileRoot extends FileNode{
 		//if no warning was created or warnign was ignored
 		if (warning == -1 || warning == 1) {
 			this._element.parentNode.removeChild(this._element);
-			fileManager.removeFile(this._fileName);
+			fileManager.closeFile(this._fileName);
 		}
 		//save & close
 		else if (warning === 0) {
-			this._parent.write();
+			fileManager.writeFile(this._fileName);
 			this._element.parentNode.removeChild(this._element);
-			fileManager.removeFile(this._fileName);
+			fileManager.closeFile(this._fileName);
 		}
 		//cancel
 		else if (warning == 2) {
@@ -299,7 +299,7 @@ class FileRoot extends FileNode{
 			//check if target is filename
 		} else if (e.target == this._element.close) {
 			this.removeSelf();
-		} else if (e.target.parentNode == this._element.header.inner || e.target == this._element.header) {
+		} else if (e.target.parentNode == this._element.header.inner || e.target == this._element.header || e.target.parentNode == this._element.header) {
 			var file = fileManager.getFile(this._fileName);
 			var warning = -1;
 			if (file.stats.size > 250000) {

@@ -99,7 +99,7 @@ exports.initialize = function() {
 			menu: abilityMenu,
 			parentKeySuggestions: abilityParentKeySuggestions,
 			keySuggestions: abilityKeySuggestions,
-			defaultValueClass: 'Dota2Value',
+			//defaultValueClass: 'Dota2Value',
 		},
 		'npc_abilities_override.txt': {
 			icon: 'octicon-flame',
@@ -611,23 +611,5 @@ exports.initialize = function() {
 	}];
 
 	specialKeys.registerKeyMenu('Dota2', abilitySpecialMenu, 'AbilitySpecial');
-
-	const variableMenu = [{
-		label: 'Remove Variable',
-		click(menuItem, currentWindow) {
-			var index = parseInt(menuItem._pair.key) - 1;
-			menuItem._pair.parent.remove(menuItem._pair.parent.getByIndex(index));
-		}
-	}];
-
-	for (var i = 1; i < 64; i++) {
-		var name;
-		if (i < 10) {
-			name = '0' + i;
-		} else {
-			name = '' + i;
-		}
-		specialKeys.registerKeyMenu('Dota2', variableMenu, name);
-	}
 
 };

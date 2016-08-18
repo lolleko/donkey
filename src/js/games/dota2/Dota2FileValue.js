@@ -71,7 +71,12 @@ class Dota2FileValue extends FileValue {
 
 		//append everything from root to game/dota_addons/addon_name/
 		for (i = 0; i <= gameDirIndex + 2; i++) {
-			customGameRoot += path.sep + pathArr[i];
+			if (i != 0) {
+				customGameRoot += path.sep + pathArr[i];
+			} else {
+				customGameRoot += pathArr[i];
+			}
+
 		}
 
 		//add last segments

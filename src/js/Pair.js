@@ -13,8 +13,8 @@ class Pair {
 		this._isContent = false;
 		this._isNav = false;
 
-		document.addEventListener('keyup', this, false);
-		document.addEventListener('keydown', this, false);
+		//document.addEventListener('keyup', this, false);
+		//document.addEventListener('keydown', this, false);
 	}
 
 	handleEvent(e) {
