@@ -1,0 +1,26 @@
+{
+  "name": "donkey",
+  "productName": "Donkey",
+  "version": "1.0.0",
+  "author": {
+    "name": "Lolleko",
+    "email": "lolle@dotashelter.com"
+  },
+  "description": "Light weight Key-Value Editor for Vales KV1 format.",
+  "homepage": "https://github.com/lolle/donkey",
+  "main": "./src/main-process/main.js",
+  "license": "MIT",
+  "repository": "https://github.com/lolleko/donkey",
+  "dependencies": {
+    "pathwatcher": "^6.7.1"
+  },
+  "standard": {
+    "ignore": [],
+    "globals": [
+      "HTMLElement",
+      "donkey",
+      "Event",
+      "MutationObserver"
+    ]
+  }
+}
