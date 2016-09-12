@@ -7,7 +7,7 @@
 	"01"
 	{
 		"var_type"                "FIELD_INTEGER"
-		"VARNAME"                 "SOMETHING"
+		"VAR_NAME"                 "VALUES(S)"
 	}
 }
 

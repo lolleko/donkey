@@ -1,0 +1,1007 @@
+{
+    "name": "Dota2",
+    "categories": {
+        "Dota2UnitFile": {
+            "specialKeys": {
+                "MovementCapabilities": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "DOTA_UNIT_CAP_NO_ATTACK",
+                            "DOTA_UNIT_CAP_MELEE_ATTACK",
+                            "DOTA_UNIT_CAP_RANGED_ATTACK"
+                        ]
+                    }
+                },
+                "TeamName": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "DOTA_TEAM_GOODGUYS",
+                            "DOTA_TEAM_BADGUYS",
+                            "DOTA_TEAM_NEUTRALS",
+                            "DOTA_TEAM_NOTEAM",
+                            "DOTA_TEAM_CUSTOM_1",
+                            "DOTA_TEAM_CUSTOM_2",
+                            "DOTA_TEAM_CUSTOM_3",
+                            "DOTA_TEAM_CUSTOM_4",
+                            "DOTA_TEAM_CUSTOM_5",
+                            "DOTA_TEAM_CUSTOM_6",
+                            "DOTA_TEAM_CUSTOM_7",
+                            "DOTA_TEAM_CUSTOM_8",
+                            "DOTA_TEAM_FIRST",
+                            "DOTA_TEAM_CUSTOM_MIN",
+                            "DOTA_TEAM_CUSTOM_COUNT",
+                            "DOTA_TEAM_CUSTOM_MAX",
+                            "DOTA_TEAM_COUNT"
+                        ]
+                    }
+                },
+                "BoundsHullName": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "DOTA_HULL_SIZE_SMALL",
+                            "DOTA_HULL_SIZE_REGULAR",
+                            "DOTA_HULL_SIZE_SIEGE",
+                            "DOTA_HULL_SIZE_HERO",
+                            "DOTA_HULL_SIZE_HUGE",
+                            "DOTA_HULL_SIZE_BUILDING",
+                            "DOTA_HULL_SIZE_FILLER",
+                            "DOTA_HULL_SIZE_BARRACKS",
+                            "DOTA_HULL_SIZE_TOWER"
+                        ]
+                    }
+                },
+                "CombatClassAttack": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "DOTA_COMBAT_CLASS_ATTACK_BASIC",
+                            "DOTA_COMBAT_CLASS_ATTACK_PIERCE",
+                            "DOTA_COMBAT_CLASS_ATTACK_SIEGE",
+                            "DOTA_COMBAT_CLASS_ATTACK_LIGHT",
+                            "DOTA_COMBAT_CLASS_ATTACK_HERO"
+                        ]
+                    }
+                },
+                "CombatClassDefend": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "DOTA_COMBAT_CLASS_DEFEND_SOFT",
+                            "DOTA_COMBAT_CLASS_DEFEND_WEAK",
+                            "DOTA_COMBAT_CLASS_DEFEND_BASIC",
+                            "DOTA_COMBAT_CLASS_DEFEND_STRONG",
+                            "DOTA_COMBAT_CLASS_DEFEND_STRUCTURE",
+                            "DOTA_COMBAT_CLASS_DEFEND_HERO"
+                        ]
+                    }
+                },
+                "ConsideredHero": {
+                    "valueElement": "checkbox-value"
+                },
+                "UseNeutralCreepBehavior": {
+                    "valueElement": "checkbox-value"
+                },
+                "HasInventory": {
+                    "valueElement": "checkbox-value"
+                },
+                "IsSummoned": {
+                    "valueElement": "checkbox-value"
+                },
+                "CanBeDominated": {
+                    "valueElement": "checkbox-value"
+                },
+                "IsAncient": {
+                    "valueElement": "checkbox-value"
+                },
+                "AutoAttacksByDefault": {
+                    "valueElement": "checkbox-value"
+                },
+                "ShouldDoFlyHeightVisual": {
+                    "valueElement": "checkbox-value"
+                },
+                "WakesNeutrals": {
+                    "valueElement": "checkbox-value"
+                },
+                "ProvidesVision": {
+                    "valueElement": "checkbox-value"
+                }
+            }
+        },
+        "Dota2AbilityFile": {
+            "icon": "octicon-flame",
+            "menu": "Dota2AbilityFileMenu",
+            "valueClass": "Dota2AbilityAutocomplete",
+            "keySuggestions": [
+                "BaseClass",
+                "AbilityBehavior",
+                "AbilityTextureName",
+                "AbilityUnitTargetTeam",
+                "AbilityUnitTargetType",
+                "AbilityUnitTargetFlags",
+                "AbilityUnitDamageType",
+                "AbilityType",
+                "MaxLevel",
+                "RequiredLevel",
+                "LevelsBetweenUpgrades",
+                "AbilityCastPoint",
+                "AbilityCastAnimation",
+                "AnimationPlaybackRate",
+                "AnimationIgnoresModelScale",
+                "AbilityDamage",
+                "AbilityManaCost",
+                "AbilityCooldown",
+                "AbilityCastRange",
+                "AbilityCastRangeBuffer",
+                "AbilityChannelTime",
+                "AbilityChannelledManaCostPerSecond",
+                "AbilityDuration",
+                "MODIFIER_STATE_ATTACK_IMMUNE",
+                "MODIFIER_STATE_BLIND",
+                "MODIFIER_STATE_BLOCK_DISABLED",
+                "MODIFIER_STATE_CANNOT_MISS",
+                "MODIFIER_STATE_COMMAND_RESTRICTED",
+                "MODIFIER_STATE_DISARMED",
+                "MODIFIER_STATE_DOMINATED",
+                "MODIFIER_STATE_EVADE_DISABLED",
+                "MODIFIER_STATE_FLYING",
+                "MODIFIER_STATE_FROZEN",
+                "MODIFIER_STATE_HEXED",
+                "MODIFIER_STATE_INVISIBLE",
+                "MODIFIER_STATE_INVULNERABLE",
+                "MODIFIER_STATE_LOW_ATTACK_PRIORITY",
+                "MODIFIER_STATE_MAGIC_IMMUNE",
+                "MODIFIER_STATE_MUTED",
+                "MODIFIER_STATE_NIGHTMARED",
+                "MODIFIER_STATE_NO_HEALTH_BAR",
+                "MODIFIER_STATE_NO_TEAM_MOVE_TO",
+                "MODIFIER_STATE_NO_TEAM_SELECT",
+                "MODIFIER_STATE_NOT_ON_MINIMAP",
+                "MODIFIER_STATE_NOT_ON_MINIMAP_FOR_ENEMIES",
+                "MODIFIER_STATE_NO_UNIT_COLLISION",
+                "MODIFIER_STATE_OUT_OF_GAME",
+                "MODIFIER_STATE_PASSIVES_DISABLED",
+                "MODIFIER_STATE_PROVIDES_VISION",
+                "MODIFIER_STATE_ROOTED",
+                "MODIFIER_STATE_SILENCED",
+                "MODIFIER_STATE_SOFT_DISARMED",
+                "MODIFIER_STATE_SPECIALLY_DENIABLE",
+                "MODIFIER_STATE_STUNNED",
+                "MODIFIER_STATE_UNSELECTABLE",
+                "MODIFIER_STATE_FAKE_ALLY",
+                "MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY",
+                "MODIFIER_STATE_TRUESIGHT_IMMUNE",
+                "MODIFIER_STATE_LAST",
+                "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE",
+                "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE_POST_CRIT",
+                "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE",
+                "MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL",
+                "MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_MAGICAL",
+                "MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_COMPOSITE",
+                "MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PURE",
+                "MODIFIER_PROPERTY_PROCATTACK_FEEDBACK",
+                "MODIFIER_PROPERTY_POST_ATTACK",
+                "MODIFIER_PROPERTY_INVISIBILITY_LEVEL",
+                "MODIFIER_PROPERTY_PERSISTENT_INVISIBILITY",
+                "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT",
+                "MODIFIER_PROPERTY_MOVESPEED_BASE_OVERRIDE",
+                "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE",
+                "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE_UNIQUE",
+                "MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE",
+                "MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE",
+                "MODIFIER_PROPERTY_MOVESPEED_LIMIT",
+                "MODIFIER_PROPERTY_MOVESPEED_MAX",
+                "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT",
+                "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT_POWER_TREADS",
+                "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT_SECONDARY",
+                "MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT",
+                "MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE",
+                "MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE_ILLUSION",
+                "MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE",
+                "MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE",
+                "MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE",
+                "MODIFIER_PROPERTY_INCOMING_SPELL_DAMAGE_CONSTANT",
+                "MODIFIER_PROPERTY_EVASION_CONSTANT",
+                "MODIFIER_PROPERTY_AVOID_CONSTANT",
+                "MODIFIER_PROPERTY_AVOID_SPELL",
+                "MODIFIER_PROPERTY_MISS_PERCENTAGE",
+                "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS",
+                "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS_ILLUSIONS",
+                "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS_UNIQUE",
+                "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS_UNIQUE_ACTIVE",
+                "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS",
+                "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_ITEM_UNIQUE",
+                "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_DECREPIFY_UNIQUE",
+                "MODIFIER_PROPERTY_BASE_MANA_REGEN",
+                "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT",
+                "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT_UNIQUE",
+                "MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE",
+                "MODIFIER_PROPERTY_MANA_REGEN_TOTAL_PERCENTAGE",
+                "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT",
+                "MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE",
+                "MODIFIER_PROPERTY_HEALTH_BONUS",
+                "MODIFIER_PROPERTY_MANA_BONUS",
+                "MODIFIER_PROPERTY_EXTRA_STRENGTH_BONUS",
+                "MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS",
+                "MODIFIER_PROPERTY_EXTRA_MANA_BONUS",
+                "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS",
+                "MODIFIER_PROPERTY_STATS_AGILITY_BONUS",
+                "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS",
+                "MODIFIER_PROPERTY_ATTACK_RANGE_BONUS",
+                "MODIFIER_PROPERTY_REINCARNATION",
+                "MODIFIER_PROPERTY_RESPAWNTIME",
+                "MODIFIER_PROPERTY_DEATHGOLDCOST",
+                "MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE",
+                "MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK",
+                "MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK_UNAVOIDABLE_PRE_ARMOR",
+                "MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK",
+                "MODIFIER_PROPERTY_OVERRIDE_ANIMATION",
+                "MODIFIER_PROPERTY_OVERRIDE_ANIMATION_WEIGHT",
+                "MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE",
+                "MODIFIER_PROPERTY_ABSORB_SPELL",
+                "MODIFIER_PROPERTY_DISABLE_AUTOATTACK",
+                "MODIFIER_PROPERTY_BONUS_DAY_VISION",
+                "MODIFIER_PROPERTY_BONUS_NIGHT_VISION",
+                "MODIFIER_PROPERTY_BONUS_VISION_PERCENTAGE",
+                "MODIFIER_PROPERTY_MIN_HEALTH",
+                "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL",
+                "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL",
+                "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE",
+                "MODIFIER_PROPERTY_IS_ILLUSION",
+                "MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE",
+                "MODIFIER_PROPERTY_DISABLE_HEALING",
+                "MODIFIER_PROPERTY_TOOLTIP",
+                "MODIFIER_PROPERTY_MODEL_CHANGE",
+                "MODIFIER_PROPERTY_MODEL_SCALE",
+                "MODIFIER_PROPERTY_IS_SCEPTER",
+                "MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS",
+                "MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND",
+                "MODIFIER_PROPERTY_LIFETIME_FRACTION",
+                "MODIFIER_PROPERTY_PROVIDES_FOW_POSITION",
+                "MODIFIER_PROPERTY_COOLDOWN_REDUCTION_CONSTANT",
+                "MODIFIER_PROPERTY_FORCE_DRAW_MINIMAP",
+                "var_type"
+            ],
+            "parentKeySuggestions": [
+                "OnAbilityEndChannel",
+                "OnAbilityPhaseStart",
+                "OnAbilityStart",
+                "OnAttack",
+                "OnAttackAllied",
+                "OnAttackFailed",
+                "OnChannelFinish",
+                "OnChannelInterrupted",
+                "OnChannelSucceeded",
+                "OnCreated",
+                "OnEquip",
+                "OnHealReceived",
+                "OnHealthGained",
+                "OnHeroKilled",
+                "OnManaGained",
+                "OnOrder",
+                "OnOwnerDied",
+                "OnOwnerSpawned",
+                "OnProjectileDodge",
+                "OnProjectileFinish",
+                "OnProjectileHitUnit",
+                "OnRespawn",
+                "OnSpellStart",
+                "OnSpentMana",
+                "OnStateChanged",
+                "OnTeleported",
+                "OnTeleporting",
+                "OnToggleOff",
+                "OnToggleOn",
+                "OnUnitMoved",
+                "OnUpgrade",
+                "precache",
+                "TrackingProjectile",
+                "LinearProjectile",
+                "Knockback",
+                "DelayedAction",
+                "RunScript",
+                "Damage",
+                "FireEffect",
+                "Modifiers",
+                "States",
+                "Properties",
+                "ApplyModifier",
+                "ActOnTargets",
+                "AbilitySpecial"
+            ],
+            "specialKeys": {
+                "AbilitySpecial": {
+                    "menu": "Dota2AbilitySpecialEditorMenu"
+                },
+                "var_type": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "FIELD_INTEGER",
+                            "FIELD_FLOAT"
+                        ]
+                    }
+                },
+                "AbilityType": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "DOTA_ABILITY_TYPE_BASIC",
+                            "DOTA_ABILITY_TYPE_ULTIMATE",
+                            "DOTA_ABILITY_TYPE_ATTRIBUTES",
+                            "DOTA_ABILITY_TYPE_HIDDEN"
+                        ]
+                    }
+                },
+                "AbilityUnitDamageType": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "DAMAGE_TYPE_MAGICAL",
+                            "DAMAGE_TYPE_PHYSICAL",
+                            "DAMAGE_TYPE_PURE"
+                        ]
+                    }
+                },
+                "Target": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "CASTER",
+                            "TARGET",
+                            "ATTACKER",
+                            "UNIT",
+                            "POINT",
+                            "PROJECTILE"
+                        ]
+                    }
+                },
+                "Center": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "CASTER",
+                            "TARGET",
+                            "ATTACKER",
+                            "UNIT",
+                            "POINT",
+                            "PROJECTILE"
+                        ]
+                    }
+                },
+                "MODIFIER_STATE_ATTACK_IMMUNE": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "MODIFIER_STATE_VALUE_NO_ACTION",
+                            "MODIFIER_STATE_VALUE_ENABLED",
+                            "MODIFIER_STATE_VALUE_DISABLED"
+                        ]
+                    }
+                },
+                "MODIFIER_STATE_BLIND": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "MODIFIER_STATE_VALUE_NO_ACTION",
+                            "MODIFIER_STATE_VALUE_ENABLED",
+                            "MODIFIER_STATE_VALUE_DISABLED"
+                        ]
+                    }
+                },
+                "MODIFIER_STATE_BLOCK_DISABLED": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "MODIFIER_STATE_VALUE_NO_ACTION",
+                            "MODIFIER_STATE_VALUE_ENABLED",
+                            "MODIFIER_STATE_VALUE_DISABLED"
+                        ]
+                    }
+                },
+                "MODIFIER_STATE_CANNOT_MISS": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "MODIFIER_STATE_VALUE_NO_ACTION",
+                            "MODIFIER_STATE_VALUE_ENABLED",
+                            "MODIFIER_STATE_VALUE_DISABLED"
+                        ]
+                    }
+                },
+                "MODIFIER_STATE_COMMAND_RESTRICTED": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "MODIFIER_STATE_VALUE_NO_ACTION",
+                            "MODIFIER_STATE_VALUE_ENABLED",
+                            "MODIFIER_STATE_VALUE_DISABLED"
+                        ]
+                    }
+                },
+                "MODIFIER_STATE_DISARMED": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "MODIFIER_STATE_VALUE_NO_ACTION",
+                            "MODIFIER_STATE_VALUE_ENABLED",
+                            "MODIFIER_STATE_VALUE_DISABLED"
+                        ]
+                    }
+                },
+                "MODIFIER_STATE_DOMINATED": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "MODIFIER_STATE_VALUE_NO_ACTION",
+                            "MODIFIER_STATE_VALUE_ENABLED",
+                            "MODIFIER_STATE_VALUE_DISABLED"
+                        ]
+                    }
+                },
+                "MODIFIER_STATE_EVADE_DISABLED": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "MODIFIER_STATE_VALUE_NO_ACTION",
+                            "MODIFIER_STATE_VALUE_ENABLED",
+                            "MODIFIER_STATE_VALUE_DISABLED"
+                        ]
+                    }
+                },
+                "MODIFIER_STATE_FLYING": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "MODIFIER_STATE_VALUE_NO_ACTION",
+                            "MODIFIER_STATE_VALUE_ENABLED",
+                            "MODIFIER_STATE_VALUE_DISABLED"
+                        ]
+                    }
+                },
+                "MODIFIER_STATE_FROZEN": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "MODIFIER_STATE_VALUE_NO_ACTION",
+                            "MODIFIER_STATE_VALUE_ENABLED",
+                            "MODIFIER_STATE_VALUE_DISABLED"
+                        ]
+                    }
+                },
+                "MODIFIER_STATE_HEXED": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "MODIFIER_STATE_VALUE_NO_ACTION",
+                            "MODIFIER_STATE_VALUE_ENABLED",
+                            "MODIFIER_STATE_VALUE_DISABLED"
+                        ]
+                    }
+                },
+                "MODIFIER_STATE_INVISIBLE": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "MODIFIER_STATE_VALUE_NO_ACTION",
+                            "MODIFIER_STATE_VALUE_ENABLED",
+                            "MODIFIER_STATE_VALUE_DISABLED"
+                        ]
+                    }
+                },
+                "MODIFIER_STATE_INVULNERABLE": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "MODIFIER_STATE_VALUE_NO_ACTION",
+                            "MODIFIER_STATE_VALUE_ENABLED",
+                            "MODIFIER_STATE_VALUE_DISABLED"
+                        ]
+                    }
+                },
+                "MODIFIER_STATE_LOW_ATTACK_PRIORITY": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "MODIFIER_STATE_VALUE_NO_ACTION",
+                            "MODIFIER_STATE_VALUE_ENABLED",
+                            "MODIFIER_STATE_VALUE_DISABLED"
+                        ]
+                    }
+                },
+                "MODIFIER_STATE_MAGIC_IMMUNE": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "MODIFIER_STATE_VALUE_NO_ACTION",
+                            "MODIFIER_STATE_VALUE_ENABLED",
+                            "MODIFIER_STATE_VALUE_DISABLED"
+                        ]
+                    }
+                },
+                "MODIFIER_STATE_MUTED": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "MODIFIER_STATE_VALUE_NO_ACTION",
+                            "MODIFIER_STATE_VALUE_ENABLED",
+                            "MODIFIER_STATE_VALUE_DISABLED"
+                        ]
+                    }
+                },
+                "MODIFIER_STATE_NIGHTMARED": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "MODIFIER_STATE_VALUE_NO_ACTION",
+                            "MODIFIER_STATE_VALUE_ENABLED",
+                            "MODIFIER_STATE_VALUE_DISABLED"
+                        ]
+                    }
+                },
+                "MODIFIER_STATE_NO_HEALTH_BAR": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "MODIFIER_STATE_VALUE_NO_ACTION",
+                            "MODIFIER_STATE_VALUE_ENABLED",
+                            "MODIFIER_STATE_VALUE_DISABLED"
+                        ]
+                    }
+                },
+                "MODIFIER_STATE_NO_TEAM_MOVE_TO": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "MODIFIER_STATE_VALUE_NO_ACTION",
+                            "MODIFIER_STATE_VALUE_ENABLED",
+                            "MODIFIER_STATE_VALUE_DISABLED"
+                        ]
+                    }
+                },
+                "MODIFIER_STATE_NO_TEAM_SELECT": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "MODIFIER_STATE_VALUE_NO_ACTION",
+                            "MODIFIER_STATE_VALUE_ENABLED",
+                            "MODIFIER_STATE_VALUE_DISABLED"
+                        ]
+                    }
+                },
+                "MODIFIER_STATE_NOT_ON_MINIMAP": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "MODIFIER_STATE_VALUE_NO_ACTION",
+                            "MODIFIER_STATE_VALUE_ENABLED",
+                            "MODIFIER_STATE_VALUE_DISABLED"
+                        ]
+                    }
+                },
+                "MODIFIER_STATE_NOT_ON_MINIMAP_FOR_ENEMIES": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "MODIFIER_STATE_VALUE_NO_ACTION",
+                            "MODIFIER_STATE_VALUE_ENABLED",
+                            "MODIFIER_STATE_VALUE_DISABLED"
+                        ]
+                    }
+                },
+                "MODIFIER_STATE_NO_UNIT_COLLISION": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "MODIFIER_STATE_VALUE_NO_ACTION",
+                            "MODIFIER_STATE_VALUE_ENABLED",
+                            "MODIFIER_STATE_VALUE_DISABLED"
+                        ]
+                    }
+                },
+                "MODIFIER_STATE_OUT_OF_GAME": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "MODIFIER_STATE_VALUE_NO_ACTION",
+                            "MODIFIER_STATE_VALUE_ENABLED",
+                            "MODIFIER_STATE_VALUE_DISABLED"
+                        ]
+                    }
+                },
+                "MODIFIER_STATE_PASSIVES_DISABLED": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "MODIFIER_STATE_VALUE_NO_ACTION",
+                            "MODIFIER_STATE_VALUE_ENABLED",
+                            "MODIFIER_STATE_VALUE_DISABLED"
+                        ]
+                    }
+                },
+                "MODIFIER_STATE_PROVIDES_VISION": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "MODIFIER_STATE_VALUE_NO_ACTION",
+                            "MODIFIER_STATE_VALUE_ENABLED",
+                            "MODIFIER_STATE_VALUE_DISABLED"
+                        ]
+                    }
+                },
+                "MODIFIER_STATE_ROOTED": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "MODIFIER_STATE_VALUE_NO_ACTION",
+                            "MODIFIER_STATE_VALUE_ENABLED",
+                            "MODIFIER_STATE_VALUE_DISABLED"
+                        ]
+                    }
+                },
+                "MODIFIER_STATE_SILENCED": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "MODIFIER_STATE_VALUE_NO_ACTION",
+                            "MODIFIER_STATE_VALUE_ENABLED",
+                            "MODIFIER_STATE_VALUE_DISABLED"
+                        ]
+                    }
+                },
+                "MODIFIER_STATE_SOFT_DISARMED": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "MODIFIER_STATE_VALUE_NO_ACTION",
+                            "MODIFIER_STATE_VALUE_ENABLED",
+                            "MODIFIER_STATE_VALUE_DISABLED"
+                        ]
+                    }
+                },
+                "MODIFIER_STATE_SPECIALLY_DENIABLE": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "MODIFIER_STATE_VALUE_NO_ACTION",
+                            "MODIFIER_STATE_VALUE_ENABLED",
+                            "MODIFIER_STATE_VALUE_DISABLED"
+                        ]
+                    }
+                },
+                "MODIFIER_STATE_STUNNED": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "MODIFIER_STATE_VALUE_NO_ACTION",
+                            "MODIFIER_STATE_VALUE_ENABLED",
+                            "MODIFIER_STATE_VALUE_DISABLED"
+                        ]
+                    }
+                },
+                "MODIFIER_STATE_UNSELECTABLE": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "MODIFIER_STATE_VALUE_NO_ACTION",
+                            "MODIFIER_STATE_VALUE_ENABLED",
+                            "MODIFIER_STATE_VALUE_DISABLED"
+                        ]
+                    }
+                },
+                "MODIFIER_STATE_FAKE_ALLY": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "MODIFIER_STATE_VALUE_NO_ACTION",
+                            "MODIFIER_STATE_VALUE_ENABLED",
+                            "MODIFIER_STATE_VALUE_DISABLED"
+                        ]
+                    }
+                },
+                "MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "MODIFIER_STATE_VALUE_NO_ACTION",
+                            "MODIFIER_STATE_VALUE_ENABLED",
+                            "MODIFIER_STATE_VALUE_DISABLED"
+                        ]
+                    }
+                },
+                "MODIFIER_STATE_TRUESIGHT_IMMUNE": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "MODIFIER_STATE_VALUE_NO_ACTION",
+                            "MODIFIER_STATE_VALUE_ENABLED",
+                            "MODIFIER_STATE_VALUE_DISABLED"
+                        ]
+                    }
+                },
+                "MODIFIER_STATE_LAST": {
+                    "valueElement": "select-value",
+                    "options": {
+                        "values": [
+                            "MODIFIER_STATE_VALUE_NO_ACTION",
+                            "MODIFIER_STATE_VALUE_ENABLED",
+                            "MODIFIER_STATE_VALUE_DISABLED"
+                        ]
+                    }
+                },
+                "AbilityUnitTargetTeam": {
+                    "valueElement": "flag-selector-value",
+                    "options": {
+                        "values": [
+                            "DOTA_UNIT_TARGET_TEAM_BOTH",
+                            "DOTA_UNIT_TARGET_TEAM_ENEMY",
+                            "DOTA_UNIT_TARGET_TEAM_FRIENDLY",
+                            "DOTA_UNIT_TARGET_TEAM_NONE",
+                            "DOTA_UNIT_TARGET_TEAM_CUSTOM"
+                        ]
+                    }
+                },
+                "Aura_Teams": {
+                    "valueElement": "flag-selector-value",
+                    "options": {
+                        "values": [
+                            "DOTA_UNIT_TARGET_TEAM_BOTH",
+                            "DOTA_UNIT_TARGET_TEAM_ENEMY",
+                            "DOTA_UNIT_TARGET_TEAM_FRIENDLY",
+                            "DOTA_UNIT_TARGET_TEAM_NONE",
+                            "DOTA_UNIT_TARGET_TEAM_CUSTOM"
+                        ]
+                    }
+                },
+                "Teams": {
+                    "valueElement": "flag-selector-value",
+                    "options": {
+                        "values": [
+                            "DOTA_UNIT_TARGET_TEAM_BOTH",
+                            "DOTA_UNIT_TARGET_TEAM_ENEMY",
+                            "DOTA_UNIT_TARGET_TEAM_FRIENDLY",
+                            "DOTA_UNIT_TARGET_TEAM_NONE",
+                            "DOTA_UNIT_TARGET_TEAM_CUSTOM"
+                        ]
+                    }
+                },
+                "AbilityUnitTargetType": {
+                    "valueElement": "flag-selector-value",
+                    "options": {
+                        "values": [
+                            "DOTA_UNIT_TARGET_ALL",
+                            "DOTA_UNIT_TARGET_HERO",
+                            "DOTA_UNIT_TARGET_BASIC",
+                            "DOTA_UNIT_TARGET_CREEP",
+                            "DOTA_UNIT_TARGET_TREE",
+                            "DOTA_UNIT_TARGET_BUILDING",
+                            "DOTA_UNIT_TARGET_COURIER",
+                            "DOTA_UNIT_TARGET_MECHANICAL",
+                            "DOTA_UNIT_TARGET_NONE",
+                            "DOTA_UNIT_TARGET_OTHER",
+                            "DOTA_UNIT_TARGET_CUSTOM"
+                        ]
+                    }
+                },
+                "TargetTypes": {
+                    "valueElement": "flag-selector-value",
+                    "options": {
+                        "values": [
+                            "DOTA_UNIT_TARGET_ALL",
+                            "DOTA_UNIT_TARGET_HERO",
+                            "DOTA_UNIT_TARGET_BASIC",
+                            "DOTA_UNIT_TARGET_CREEP",
+                            "DOTA_UNIT_TARGET_TREE",
+                            "DOTA_UNIT_TARGET_BUILDING",
+                            "DOTA_UNIT_TARGET_COURIER",
+                            "DOTA_UNIT_TARGET_MECHANICAL",
+                            "DOTA_UNIT_TARGET_NONE",
+                            "DOTA_UNIT_TARGET_OTHER",
+                            "DOTA_UNIT_TARGET_CUSTOM"
+                        ]
+                    }
+                },
+                "Aura_Types": {
+                    "valueElement": "flag-selector-value",
+                    "options": {
+                        "values": [
+                            "DOTA_UNIT_TARGET_ALL",
+                            "DOTA_UNIT_TARGET_HERO",
+                            "DOTA_UNIT_TARGET_BASIC",
+                            "DOTA_UNIT_TARGET_CREEP",
+                            "DOTA_UNIT_TARGET_TREE",
+                            "DOTA_UNIT_TARGET_BUILDING",
+                            "DOTA_UNIT_TARGET_COURIER",
+                            "DOTA_UNIT_TARGET_MECHANICAL",
+                            "DOTA_UNIT_TARGET_NONE",
+                            "DOTA_UNIT_TARGET_OTHER",
+                            "DOTA_UNIT_TARGET_CUSTOM"
+                        ]
+                    }
+                },
+                "AbilityUnitTargetFlags": {
+                    "valueElement": "flag-selector-value",
+                    "options": {
+                        "values": [
+                            "DOTA_UNIT_TARGET_FLAG_NONE",
+                            "DOTA_UNIT_TARGET_FLAG_DEAD",
+                            "DOTA_UNIT_TARGET_FLAG_MELEE_ONLY",
+                            "DOTA_UNIT_TARGET_FLAG_RANGED_ONLY",
+                            "DOTA_UNIT_TARGET_FLAG_MANA_ONLY",
+                            "DOTA_UNIT_TARGET_FLAG_CHECK_DISABLE_HELP",
+                            "DOTA_UNIT_TARGET_FLAG_NO_INVIS",
+                            "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES",
+                            "DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES",
+                            "DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE",
+                            "DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE",
+                            "DOTA_UNIT_TARGET_FLAG_INVULNERABLE",
+                            "DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS",
+                            "DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO",
+                            "DOTA_UNIT_TARGET_FLAG_NOT_DOMINATED",
+                            "DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS",
+                            "DOTA_UNIT_TARGET_FLAG_NOT_NIGHTMARED",
+                            "DOTA_UNIT_TARGET_FLAG_NOT_SUMMONED",
+                            "DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD",
+                            "DOTA_UNIT_TARGET_FLAG_PLAYER_CONTROLLED",
+                            "DOTA_UNIT_TARGET_FLAG_PREFER_ENEMIES"
+                        ]
+                    }
+                },
+                "Flags": {
+                    "valueElement": "flag-selector-value",
+                    "options": {
+                        "values": [
+                            "DOTA_UNIT_TARGET_FLAG_NONE",
+                            "DOTA_UNIT_TARGET_FLAG_DEAD",
+                            "DOTA_UNIT_TARGET_FLAG_MELEE_ONLY",
+                            "DOTA_UNIT_TARGET_FLAG_RANGED_ONLY",
+                            "DOTA_UNIT_TARGET_FLAG_MANA_ONLY",
+                            "DOTA_UNIT_TARGET_FLAG_CHECK_DISABLE_HELP",
+                            "DOTA_UNIT_TARGET_FLAG_NO_INVIS",
+                            "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES",
+                            "DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES",
+                            "DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE",
+                            "DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE",
+                            "DOTA_UNIT_TARGET_FLAG_INVULNERABLE",
+                            "DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS",
+                            "DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO",
+                            "DOTA_UNIT_TARGET_FLAG_NOT_DOMINATED",
+                            "DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS",
+                            "DOTA_UNIT_TARGET_FLAG_NOT_NIGHTMARED",
+                            "DOTA_UNIT_TARGET_FLAG_NOT_SUMMONED",
+                            "DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD",
+                            "DOTA_UNIT_TARGET_FLAG_PLAYER_CONTROLLED",
+                            "DOTA_UNIT_TARGET_FLAG_PREFER_ENEMIES"
+                        ]
+                    }
+                },
+                "ExcludeFlags": {
+                    "valueElement": "flag-selector-value",
+                    "options": {
+                        "values": [
+                            "DOTA_UNIT_TARGET_FLAG_NONE",
+                            "DOTA_UNIT_TARGET_FLAG_DEAD",
+                            "DOTA_UNIT_TARGET_FLAG_MELEE_ONLY",
+                            "DOTA_UNIT_TARGET_FLAG_RANGED_ONLY",
+                            "DOTA_UNIT_TARGET_FLAG_MANA_ONLY",
+                            "DOTA_UNIT_TARGET_FLAG_CHECK_DISABLE_HELP",
+                            "DOTA_UNIT_TARGET_FLAG_NO_INVIS",
+                            "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES",
+                            "DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES",
+                            "DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE",
+                            "DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE",
+                            "DOTA_UNIT_TARGET_FLAG_INVULNERABLE",
+                            "DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS",
+                            "DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO",
+                            "DOTA_UNIT_TARGET_FLAG_NOT_DOMINATED",
+                            "DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS",
+                            "DOTA_UNIT_TARGET_FLAG_NOT_NIGHTMARED",
+                            "DOTA_UNIT_TARGET_FLAG_NOT_SUMMONED",
+                            "DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD",
+                            "DOTA_UNIT_TARGET_FLAG_PLAYER_CONTROLLED",
+                            "DOTA_UNIT_TARGET_FLAG_PREFER_ENEMIES"
+                        ]
+                    }
+                },
+                "Arua_Flags": {
+                    "valueElement": "flag-selector-value",
+                    "options": {
+                        "values": [
+                            "DOTA_UNIT_TARGET_FLAG_NONE",
+                            "DOTA_UNIT_TARGET_FLAG_DEAD",
+                            "DOTA_UNIT_TARGET_FLAG_MELEE_ONLY",
+                            "DOTA_UNIT_TARGET_FLAG_RANGED_ONLY",
+                            "DOTA_UNIT_TARGET_FLAG_MANA_ONLY",
+                            "DOTA_UNIT_TARGET_FLAG_CHECK_DISABLE_HELP",
+                            "DOTA_UNIT_TARGET_FLAG_NO_INVIS",
+                            "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES",
+                            "DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES",
+                            "DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE",
+                            "DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE",
+                            "DOTA_UNIT_TARGET_FLAG_INVULNERABLE",
+                            "DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS",
+                            "DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO",
+                            "DOTA_UNIT_TARGET_FLAG_NOT_DOMINATED",
+                            "DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS",
+                            "DOTA_UNIT_TARGET_FLAG_NOT_NIGHTMARED",
+                            "DOTA_UNIT_TARGET_FLAG_NOT_SUMMONED",
+                            "DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD",
+                            "DOTA_UNIT_TARGET_FLAG_PLAYER_CONTROLLED",
+                            "DOTA_UNIT_TARGET_FLAG_PREFER_ENEMIES"
+                        ]
+                    }
+                },
+                "AbilityBehavior": {
+                    "valueElement": "flag-selector-value",
+                    "options": {
+                        "values": [
+                            "DOTA_ABILITY_BEHAVIOR_NO_TARGET",
+                            "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET",
+                            "DOTA_ABILITY_BEHAVIOR_POINT",
+                            "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+                            "DOTA_ABILITY_BEHAVIOR_CHANNELLED",
+                            "DOTA_ABILITY_BEHAVIOR_TOGGLE",
+                            "DOTA_ABILITY_BEHAVIOR_AURA",
+                            "DOTA_ABILITY_BEHAVIOR_AUTOCAST",
+                            "DOTA_ABILITY_BEHAVIOR_HIDDEN",
+                            "DOTA_ABILITY_BEHAVIOR_AOE",
+                            "DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE",
+                            "DOTA_ABILITY_BEHAVIOR_ITEM",
+                            "DOTA_ABILITY_BEHAVIOR_DIRECTIONAL",
+                            "DOTA_ABILITY_BEHAVIOR_IMMEDIATE",
+                            "DOTA_ABILITY_BEHAVIOR_NOASSIST",
+                            "DOTA_ABILITY_BEHAVIOR_ATTACK",
+                            "DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES",
+                            "DOTA_ABILITY_BEHAVIOR_UNRESTRICTED",
+                            "DOTA_ABILITY_BEHAVIOR_DONT_ALERT_TARGET",
+                            "DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT",
+                            "DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK",
+                            "DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN",
+                            "DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+                            "DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE",
+                            "DOTA_ABILITY_BEHAVIOR_RUNE_TARGET",
+                            "DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL",
+                            "DOTA_ABILITY_BEHAVIOR_OPTIONAL_UNIT_TARGET",
+                            "DOTA_ABILITY_BEHAVIOR_OPTIONAL_NO_TARGET"
+                        ]
+                    }
+                },
+                "HasFrontalCone": {
+                    "valueElement": "checkbox-value"
+                },
+                "IsFixedDistance": {
+                    "valueElement": "checkbox-value"
+                },
+                "ShouldStun": {
+                    "valueElement": "checkbox-value"
+                },
+                "DeleteOnHit": {
+                    "valueElement": "checkbox-value"
+                },
+                "CastFilterRejectCaster": {
+                    "valueElement": "checkbox-value"
+                },
+                "Passive": {
+                    "valueElement": "checkbox-value"
+                },
+                "IsHidden": {
+                    "valueElement": "checkbox-value"
+                },
+                "IsDebuff": {
+                    "valueElement": "checkbox-value"
+                },
+                "IsPurgable": {
+                    "valueElement": "checkbox-value"
+                },
+                "IsBuff": {
+                    "valueElement": "checkbox-value"
+                },
+                "Aura_ApplyToCaster": {
+                    "valueElement": "checkbox-value"
+                }
+            }
+        }
+    }
+}
