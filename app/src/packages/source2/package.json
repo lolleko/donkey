@@ -1,0 +1,11 @@
+{
+    "name": "Source2 Hammer",
+    "version": "1.0.0",
+    "author": {
+        "name": "Lolleko",
+        "email": "lolle@dotashelter.com"
+    },
+    "themeMain": "main.css",
+    "description": "Source2 Hammer Theme.",
+    "homepage": "https://github.com/lolle/donkey"
+}

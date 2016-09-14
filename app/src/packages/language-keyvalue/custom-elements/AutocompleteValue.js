@@ -1,10 +1,8 @@
-const BaseValue = require('./BaseValue')
-
 /**
  * Simple autocomplete value,
  * that can be used to show suggestion while inputing a value
  */
-class AutocompleteValue extends BaseValue {
+class AutocompleteValue extends window.donkey.basevalue {
 
   createdCallback () {
     var input = document.createElement('autocomplete-input')

@@ -1,0 +1,11 @@
+{
+    "name": "Material Dark",
+    "version": "1.0.0",
+    "author": {
+        "name": "Lolleko",
+        "email": "lolle@dotashelter.com"
+    },
+    "themeMain": "main.css",
+    "description": "Dark Material Theme",
+    "homepage": "https://github.com/lolle/donkey"
+}

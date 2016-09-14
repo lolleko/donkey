@@ -1,0 +1,11 @@
+{
+    "name": "language-keyvalue",
+    "version": "1.0.0",
+    "author": {
+        "name": "Lolleko",
+        "email": "lolle@dotashelter.com"
+    },
+    "langMain": "lang.json",
+    "description": "Default language for valves kv format.",
+    "homepage": "https://github.com/lolle/donkey"
+}

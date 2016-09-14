@@ -37,9 +37,15 @@ class Editor extends HTMLElement {
   }
 
   build () {
-    var data = donkey.files.readData(this.path)
-    this.innerHTML = ''
-    this.appendChild(donkey.files.dataToNode(data))
+    // if path no longer exists we have been deleted
+    if (!donkey.files.pathExists(this.path) && !this.modified) {
+      donkey.nav.removeTab(this.path)
+    } else {
+      var data = donkey.files.readData(this.path)
+      this.data = data
+      this.innerHTML = ''
+      this.appendChild(donkey.files.dataToNode(data))
+    }
   }
 
   findHighlightable (element) {

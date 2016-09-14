@@ -1000,6 +1000,9 @@
                 },
                 "Aura_ApplyToCaster": {
                     "valueElement": "checkbox-value"
+                },
+                "ScriptFile": {
+                  "valueElement": "file-value"
                 }
             }
         }

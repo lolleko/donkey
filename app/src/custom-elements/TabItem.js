@@ -1,5 +1,4 @@
 const kvpath = require('./../kvpath')
-const InputDialog = require('./../InputDialog')
 
 class TabItem extends HTMLElement {
 
@@ -60,28 +59,28 @@ class TabItem extends HTMLElement {
 
   close () {
     if (this.modified) {
-      var shouldSave = InputDialog.showCloseWarning(kvpath.basename(this.path))
+      var shouldSave = donkey.dialog.showCloseWarning(kvpath.basename(this.path))
       switch (shouldSave) {
         case 'save':
           this.editor.save()
+          break
         case 'dontsave':
-          this.editor.close()
-          donkey.nav.removeTab(this.path)
-          this.parentNode.removeChild(this)
           break
         case 'canel':
           return
       }
+
+      this.editor.close()
+      this.parentNode.removeChild(this)
     } else {
       this.editor.close()
-      donkey.nav.removeTab(this.path)
       this.parentNode.removeChild(this)
     }
   }
 
   onClick (e) {
     if (e.target === this.closeBtn) {
-      this.close()
+      donkey.nav.closeTab(this.path)
     } else {
       donkey.nav.selectTab(this.path)
     }

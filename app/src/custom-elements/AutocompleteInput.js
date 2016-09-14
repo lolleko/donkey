@@ -154,6 +154,12 @@ class AutocompleteInput extends HTMLElement {
         'cancelable': true
       })
       this.input.dispatchEvent(inputEvent)
+
+      if (this.suggestions.length <= 1) {
+        this.close({
+          reason: 'nomatches'
+        })
+      }
     }
   }
 
@@ -177,7 +183,7 @@ class AutocompleteInput extends HTMLElement {
           .slice(0, me.maxItems)
 
         this.suggestions.forEach(function (text, index) {
-          if (value === text.value) {
+          if (value === text) {
             var match = me.suggestions.splice(index, 1)
             me.suggestions.unshift(match[0])
           }

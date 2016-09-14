@@ -1,5 +1,3 @@
-const fs = require('fs')
-const path = require('path')
 const Menu = require('electron').remote.Menu
 const vdf = require('./vdf')
 
@@ -9,35 +7,6 @@ class LanguageManager {
     this.menus = {}
     this.categories = {}
     this.templates = {}
-  }
-
-  loadLanguages () {
-    var langDirs = fs.readdirSync(path.join(__dirname, '/lang'))
-    for (var i = 0; i < langDirs.length; i++) {
-      var langDir = path.join(__dirname, 'lang', langDirs[i])
-      var data = JSON.parse(fs.readFileSync(path.join(langDir, 'lang.json')), 'utf8')
-      this.add(data.name, data)
-
-      var menus = []
-      try {
-        menus = fs.readdirSync(path.join(langDir, '/menus'))
-      } catch (e) {
-        console.log('No menus found in ' + langDir + '.')
-      }
-      for (var j = 0; j < menus.length; j++) {
-        require(path.join(langDir, '/menus', menus[j]))
-      }
-
-      var templates = []
-      try {
-        templates = fs.readdirSync(path.join(langDir, '/templates'))
-      } catch (e) {
-        console.log('No templates found in ' + langDir + '.')
-      }
-      for (j = 0; j < templates.length; j++) {
-        this.registerTemplate(templates[j].replace(path.extname(templates[j]), ''), fs.readFileSync(path.join(langDir, '/templates', templates[j]), 'utf8'))
-      }
-    }
   }
 
   setActiveCategory (category) {

@@ -1,4 +1,3 @@
-const InputDialog = require('./InputDialog')
 const kvpath = require('./kvpath')
 
 class NavigationManager {
@@ -63,11 +62,11 @@ class NavigationManager {
       }
       placeholder = kvOnly + kvpath.sep
     }
-    InputDialog.show(title, detail, placeholder, (value) => {
+    donkey.dialog.showInputDialog(title, detail, placeholder, (value) => {
       if (value) {
         var result = kvpath.join(filepath, value)
         if (donkey.files.pathExists(result)) {
-          if (!InputDialog.showSimpleWarning('Path already exists. Do you want to overwrite the existing data?', 'You are overwriting:\n ' + result)) {
+          if (!donkey.dialog.showSimpleWarning('Path already exists. Do you want to overwrite the existing data?', 'You are overwriting:\n ' + result)) {
             return
           }
         }
@@ -81,7 +80,7 @@ class NavigationManager {
   }
 
   removeDataDialog (kvPath) {
-    if (InputDialog.showSimpleWarning('Are you sure you want to delete the selected item?', 'You are deleting:\n ' + kvPath)) {
+    if (donkey.dialog.showSimpleWarning('Are you sure you want to delete the selected item?', 'You are deleting:\n ' + kvPath)) {
       donkey.files.unlinkData(kvPath)
     }
   }
@@ -95,11 +94,11 @@ class NavigationManager {
     if (kvOnly) {
       kvOnly = kvpath.sep + kvOnly
     }
-    InputDialog.show(title, detail, kvOnly, (value) => {
+    donkey.dialog.showInputDialog(title, detail, kvOnly, (value) => {
       if (value) {
         var result = kvpath.join(filepath, value)
         if (donkey.files.pathExists(result)) {
-          if (!InputDialog.showSimpleWarning('Path already exists. Do you want to overwrite the existing data?', 'You are overwriting:\n ' + result)) {
+          if (!donkey.dialog.showSimpleWarning('Path already exists. Do you want to overwrite the existing data?', 'You are overwriting:\n ' + result)) {
             return
           }
         }
@@ -167,6 +166,7 @@ class NavigationManager {
     if (this.openTabs[path] === this.activeTab) {
       this.activeTab = null
     }
+    this.openTabs[path].close()
     delete this.openTabs[path]
   }
 }

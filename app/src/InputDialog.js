@@ -1,6 +1,3 @@
-const remote = require('electron').remote
-const dialog = remote.dialog
-
 class InputDialog {
   constructor (title, detail, placeholder, callback) {
     this.callback = callback
@@ -76,42 +73,6 @@ class InputDialog {
 
   static show (title, detail, placeholder, callback) {
     this.instance = new InputDialog(title, detail, placeholder, callback)
-  }
-
-  static showSimpleWarning (message, detail, cancelByDefault) {
-    var result = dialog.showMessageBox(remote.getCurrentWindow(), {
-      type: 'warning',
-      buttons: cancelByDefault ? ['Cancel', 'Continue'] : ['Continue', 'Cancel'],
-      defaultId: 0,
-      cancelId: cancelByDefault ? 0 : 1,
-      title: 'Warning!',
-      message: message,
-      detail: detail
-    })
-
-    return result === (cancelByDefault ? 1 : 0)
-  }
-
-  static showCloseWarning (itemName) {
-    var result = dialog.showMessageBox(remote.getCurrentWindow(), {
-      type: 'question',
-      buttons: ['Save', 'Cancel', "Don't Save"],
-      defaultId: 0,
-      cancelId: 1,
-      title: 'Warning',
-      message: "'" + itemName + "' has changes, do you want to save them?",
-      detail: 'Your changes will be lost if you close this item without saving.'
-    })
-
-    switch (result) {
-      case 2:
-        return 'dontsave'
-      case 1:
-        return 'cancel'
-      case 0:
-        return 'save'
-      default:
-    }
   }
 }
 

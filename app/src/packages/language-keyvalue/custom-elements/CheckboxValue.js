@@ -1,6 +1,4 @@
-const BaseValue = require('./BaseValue')
-
-class CheckBoxValue extends BaseValue {
+class CheckBoxValue extends donkey.basevalue {
   createdCallback () {
     this.classList.add('checkbox-value')
 

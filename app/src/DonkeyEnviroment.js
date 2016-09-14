@@ -5,6 +5,8 @@ const ConfigManager = require('./ConfigManager')
 const KeymapManager = require('./KeymapManager')
 const CommandRegistry = require('./CommandRegistry')
 const ThemeManager = require('./ThemeManager')
+const PackageManager = require('./PackageManager')
+const Dialog = require('./Dialog')
 
 class DonkeyEnviroment {
   constructor () {
@@ -16,10 +18,14 @@ class DonkeyEnviroment {
     this.config = new ConfigManager()
     this.files = new FileManager()
     this.lang = new LanguageManager()
+    this.dialog = new Dialog()
     this.nav = new NavigationManager()
     this.keys = new KeymapManager()
     this.commands = new CommandRegistry()
     this.themes = new ThemeManager()
+
+    // load packages
+    this.packages = new PackageManager()
   }
 }
 

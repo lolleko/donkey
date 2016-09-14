@@ -1,6 +1,4 @@
-const BaseValue = require('./BaseValue')
-
-class SelectValue extends BaseValue {
+class SelectValue extends donkey.basevalue {
 
   createdCallback () {
     this.classList.add('dropdown-container')
@@ -19,7 +17,6 @@ class SelectValue extends BaseValue {
 
     var expand = document.createElement('span')
     expand.classList.add('octicon')
-    expand.classList.add('octicon-chevron-down')
     expand.classList.add('select-value-expander')
     expand.classList.add('dropdown-expand')
 

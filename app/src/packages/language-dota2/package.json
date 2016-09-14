@@ -1,0 +1,11 @@
+{
+    "name": "language-dota2",
+    "version": "1.0.0",
+    "author": {
+        "name": "Lolleko",
+        "email": "lolle@dotashelter.com"
+    },
+    "langMain": "lang.json",
+    "description": "Language Definitions for dota 2 kv",
+    "homepage": "https://github.com/lolle/donkey"
+}

@@ -1,6 +1,4 @@
-const BaseValue = require('./BaseValue')
-
-class FlagSelectorValue extends BaseValue {
+class FlagSelectorValue extends donkey.basevalue {
 
   createdCallback () {
     this.classList.add('dropdown-container')
@@ -16,7 +14,6 @@ class FlagSelectorValue extends BaseValue {
 
     var expand = document.createElement('span')
     expand.classList.add('octicon')
-    expand.classList.add('octicon-chevron-down')
     expand.classList.add('flag-selector-value-expand')
     expand.classList.add('dropdown-expand')
 

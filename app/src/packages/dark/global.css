@@ -8,7 +8,7 @@ input {
     outline: none;
     border: none;
     font-size: 1em;
-    padding: 2px;
+    padding: 3px;
     border: solid 1px transparent;
 		border-radius: 2px;
     text-align: start;
@@ -71,5 +71,5 @@ input[type="checkbox"]:focus {
   border-color: var(--color-card) !important;
 }
 key-value {
-  padding-right: 4px;
+  padding-right: 8px;
 }

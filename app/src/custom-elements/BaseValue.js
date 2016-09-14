@@ -54,3 +54,4 @@ class BaseValue extends HTMLElement {
 }
 
 module.exports = document.registerElement('base-value', BaseValue)
+donkey.basevalue = module.exports

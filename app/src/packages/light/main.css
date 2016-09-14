@@ -1,0 +1,6 @@
+@import url("variables.css");
+/*
+  We can only do this because this is a defaut theme this way of inheriting styles is not recommended.
+  TODO change this package accordingly when moving to package manager
+ */
+@import url("../dark/global.css")
