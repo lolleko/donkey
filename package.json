@@ -18,7 +18,8 @@
         "mac": {}
     },
     "scripts": {
-        "dist": "build -mwl --x64",
+        "dist": "build",
+        "release": "build",
         "test": "standard",
         "postinstall": "echo 'Installing app dependencies!' && npm --prefix ./app install ./app && node rebuild.js",
         "start": "electron ./app"
