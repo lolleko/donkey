@@ -10,10 +10,23 @@ const Dialog = require('./Dialog')
 
 class DonkeyEnviroment {
   constructor () {
-    // make class available during setup
-    // Be aware that if you use the donkey global in setup,
+    // make instance available during setup
+    // REMINDER: if the donkey global is used in setup
     // not all modules are loaded.
     window.donkey = this
+
+    // utils
+    this.kvpath = require('./kvpath')
+    this.vdf = require('./vdf')
+    this.valueElements = {}
+    this.valueElements.base = require('./value-elements/BaseValue')
+    this.basevalue = this.valueElements.base
+    this.valueElements.autocomplete = require('./value-elements/AutocompleteValue')
+    this.valueElements.checkbox = require('./value-elements/CheckBoxValue')
+    this.valueElements.file = require('./value-elements/FileValue')
+    this.valueElements.openfile = require('./value-elements/OpenFileValue')
+    this.valueElements.flagselector = require('./value-elements/FlagSelectorValue')
+    this.valueElements.select = require('./value-elements/SelectValue')
 
     this.config = new ConfigManager()
     this.files = new FileManager()

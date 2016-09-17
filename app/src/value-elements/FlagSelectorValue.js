@@ -15,6 +15,7 @@ class FlagSelectorValue extends donkey.basevalue {
     var expand = document.createElement('span')
     expand.classList.add('octicon')
     expand.classList.add('flag-selector-value-expand')
+    expand.classList.add('input-button')
     expand.classList.add('dropdown-expand')
 
     expand.addEventListener('click', this, false)
@@ -42,7 +43,11 @@ class FlagSelectorValue extends donkey.basevalue {
   set value (value) {
     if (value !== this.input.value) {
       this.input.value = value
-      this.rebuildFlags()
+      if (this.preventNextFlagRebuild) {
+        this.preventNextFlagRebuild = false
+      } else {
+        this.rebuildFlags()
+      }
     }
     this.dataset.value = value
   }
@@ -106,6 +111,7 @@ class FlagSelectorValue extends donkey.basevalue {
         result = this.selected[i]
       }
     }
+    this.preventNextFlagRebuild = true
     this.value = result
     this.input.focus()
   }

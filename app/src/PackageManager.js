@@ -28,8 +28,6 @@ class PackageManager {
     }
 
     this.load()
-
-    console.log(this);
   }
 
   get packagesDir () {

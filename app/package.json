@@ -1,7 +1,7 @@
 {
   "name": "donkey",
   "productName": "Donkey",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "author": {
     "name": "Lolleko",
     "email": "lolle@dotashelter.com"
@@ -19,8 +19,7 @@
     "globals": [
       "HTMLElement",
       "donkey",
-      "Event",
-      "MutationObserver"
+      "Event"
     ]
   }
 }

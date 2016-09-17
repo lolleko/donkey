@@ -133,7 +133,6 @@ class NavigationManager {
         that.openTabs[navItem.dataset.path] = tabItem
         that.openTabs[navItem.dataset.path].show()
         that.activeTab = that.openTabs[navItem.dataset.path]
-        donkey.editor = that.activeTab.editor
       } else {
         that.selectTab(navItem.dataset.path)
       }
@@ -160,13 +159,13 @@ class NavigationManager {
   closeTab (path) {
     var tab = this.openTabs[path] || this.activeTab
     tab.close()
+    this.removeTab(path)
   }
 
   removeTab (path) {
     if (this.openTabs[path] === this.activeTab) {
       this.activeTab = null
     }
-    this.openTabs[path].close()
     delete this.openTabs[path]
   }
 }

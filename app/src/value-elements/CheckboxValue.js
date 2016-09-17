@@ -63,5 +63,4 @@ class CheckBoxValue extends donkey.basevalue {
   }
 
 }
-
 module.exports = document.registerElement('checkbox-value', CheckBoxValue)

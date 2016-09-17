@@ -235,11 +235,15 @@ autocomplete-input {
 .dropdown-input {
     padding-right: 20px;
 }
-.dropdown-expand {
+.input-button {
     position: absolute;
     top: 0.2em;
     right: 0em;
     display: inline-block;
+}
+.value-with-button {
+  position: relative;
+  padding-right: 22px;
 }
 .dropdown-expand::before {
   content: "\f0a3";
@@ -271,17 +275,6 @@ autocomplete-input {
 .checkbox-value-label {
     display: inline-block;
     width: 100%;
-}
-.file-value {
-  position: relative;
-  padding-right: 22px;
-}
-.file-value-button {
-  position: absolute;
-  top: 0.2em;
-  right: 0em;
-  display: inline-block;
-  cursor: pointer;
 }
 .file-value-button::before {
   content: "\f016";

@@ -183,7 +183,7 @@ class FileManager {
 
   _nodeToData (element) {
     var map = new Map()
-    var children = element.children
+    var children = element.subKVElements
     for (var i = 0; i < children.length; i++) {
       var node = children[i]
       if (node.localName === 'key-value') {

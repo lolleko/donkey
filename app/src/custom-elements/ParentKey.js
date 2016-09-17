@@ -7,6 +7,10 @@ class ParentKey extends HTMLElement {
       // remove input if exists (after ciopy paste)
       this.removeChild(this.firstChild)
     }
+    if (this.firstChild && (this.firstChild.tagName === 'DIV')) {
+      // remove inner if exists (after ciopy paste)
+      this.removeChild(this.firstChild)
+    }
     var input
     if (donkey.lang.hasParentKeySuggestions()) {
       input = document.createElement('autocomplete-input')
@@ -21,6 +25,11 @@ class ParentKey extends HTMLElement {
     this.input = input
     this.keyElement = this
     this.insertBefore(input, this.firstChild)
+
+    var inner = document.createElement('div')
+    inner.classList.add('parent-key-inner')
+    this.appendChild(inner)
+    this.inner = inner
   }
 
   attachedCallback () {
@@ -30,12 +39,12 @@ class ParentKey extends HTMLElement {
           var keyValue = document.createElement('key-value')
           keyValue.key = key
           keyValue.value = value
-          this.appendChild(keyValue)
+          this.inner.appendChild(keyValue)
         } else {
           var parentKey = document.createElement('parent-key')
           parentKey.key = key
           parentKey.data = value
-          this.appendChild(parentKey)
+          this.inner.appendChild(parentKey)
         }
       }
 
@@ -52,6 +61,10 @@ class ParentKey extends HTMLElement {
 
   get key () {
     return this.dataset.key
+  }
+
+  get subKVElements () {
+    return this.inner.children
   }
 
   insert (element) {

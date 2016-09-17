@@ -7,6 +7,7 @@ class Editor extends HTMLElement {
     this.selection = []
     this.undoStack = []
     this.redoStack = []
+    donkey.editor = this
   }
 
   get isEditor () {
@@ -19,6 +20,10 @@ class Editor extends HTMLElement {
 
   set modified (value) {
     this.tabItem.modified = value
+  }
+
+  get subKVElements () {
+    return this.children
   }
 
   insert (element) {

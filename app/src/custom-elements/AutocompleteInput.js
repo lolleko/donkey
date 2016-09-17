@@ -7,12 +7,13 @@
  * MODIFIED by https://github.com/lolleko
  *
  * This class creates an input that features a autocomplete list.
- * The possible ussgestions can be set via the values property.
- * It is possible to use an array aswell as an function taht returns an array.
+ * The possible suggestions can be set via the values property.
+ * It is possible to use an array aswell as an function that returns an array.
  *
  * NOTE: TL;DR Can be used as a normal input element.
  *       It's hacked to behave like an input element,
- *       it acutally isn't since extending HTMLInputElement causes weird issues.
+ *       it acutally isn't since extending,
+ *       HTMLInputElement directly is not possible right now (Chrome53).
  *       It only supports the setting of the value attribute.
  *       All input related events will be fired.
  *       TODO: Should be reimplemented once
@@ -32,6 +33,7 @@ class AutocompleteInput extends HTMLElement {
 
     var input = document.createElement('input')
     input.classList.add('autocomplete-input-fake')
+    input.classList.add('dropdown-input')
     input.addEventListener('input', this, false)
     input.addEventListener('blur', this, false)
     input.addEventListener('keydown', this, false)
