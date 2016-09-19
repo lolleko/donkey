@@ -66,8 +66,13 @@ class KVFile {
     var that = this
     fs.rename(this.path, newPath, (err) => {
       if (err) throw err
-      that.path = newPath
     })
+    that.path = newPath
+    this.name = path.basename(newPath)
+  }
+
+  updateCategory () {
+    this.category = donkey.lang.detectCategory(this.data)
   }
 
 }

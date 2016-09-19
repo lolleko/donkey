@@ -22,6 +22,19 @@ class Dialog {
     return result === (cancelByDefault ? 1 : 0)
   }
 
+  showSimpleError (message, detail) {
+    var result = dialog.showMessageBox(remote.getCurrentWindow(), {
+      type: 'error',
+      buttons: ['Continue'],
+      defaultId: 0,
+      title: 'Error!',
+      message: message,
+      detail: detail
+    })
+
+    return result
+  }
+
   showSimpleMessage (message, detail) {
     var result = dialog.showMessageBox(remote.getCurrentWindow(), {
       type: 'warning',

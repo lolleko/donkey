@@ -38,6 +38,7 @@ class NavItem extends HTMLElement {
 
     var name = document.createElement('span')
     name.innerText = kvpath.basename(this.dataset.path)
+    this.name = kvpath.basename(this.dataset.path)
 
     header.appendChild(name)
 
@@ -73,20 +74,45 @@ class NavItem extends HTMLElement {
     return size
   }
 
+  search (searchString) {
+    var oneFound = false
+    if (this.name.includes(searchString)) {
+      oneFound = true
+    }
+    for (var i = 0; i < this.inner.children.length; i++) {
+      var child = this.inner.children[i]
+      if (child.search(searchString)) {
+        oneFound = true
+      }
+    }
+    if (!oneFound) {
+      this.style.display = 'none'
+      this.collapse()
+    } else {
+      this.style.display = ''
+      this.expand()
+    }
+    return oneFound
+  }
+
   expand () {
-    this.inner.style.display = 'block'
-    this.expander.classList.remove('octicon-chevron-right')
-    this.expander.classList.add('octicon-chevron-down')
-    this.classList.add('nav-item-expanded')
-    this.expanded = true
+    if (this.expander) {
+      this.inner.style.display = 'block'
+      this.expander.classList.remove('octicon-chevron-right')
+      this.expander.classList.add('octicon-chevron-down')
+      this.classList.add('nav-item-expanded')
+      this.expanded = true
+    }
   }
 
   collapse () {
-    this.inner.style.display = 'none'
-    this.expander.classList.remove('octicon-chevron-down')
-    this.expander.classList.add('octicon-chevron-right')
-    this.classList.remove('nav-item-expanded')
-    this.expanded = false
+    if (this.expander) {
+      this.inner.style.display = 'none'
+      this.expander.classList.remove('octicon-chevron-down')
+      this.expander.classList.add('octicon-chevron-right')
+      this.classList.remove('nav-item-expanded')
+      this.expanded = false
+    }
   }
 
   open () {
@@ -104,7 +130,7 @@ class NavItem extends HTMLElement {
     }
     // warning ignored or no warning fired
     if (warning === 1 || warning === -1) {
-      donkey.nav.addTab(this)
+      donkey.nav.addTab(this.dataset.path)
     }
   }
 

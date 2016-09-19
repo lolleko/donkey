@@ -40,6 +40,16 @@ const template = [{
       })
     }
   }, {
+    label: 'Open Directory...',
+    accelerator: 'CmdOrCtrl+O',
+    click: (menuItem, currentWindow) => {
+      dialog.showOpenDialog(currentWindow, {
+        properties: ['openDirectory']
+      }, function (files) {
+        if (files) currentWindow.webContents.send('command:open-directory', files)
+      })
+    }
+  }, {
     type: 'separator'
   }, {
     label: 'Save',

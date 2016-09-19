@@ -20,7 +20,22 @@ class LanguageManager {
       results[categoryName] = this._detectCategory(map, category, 0)
     }
 
-    var maxKey = Object.keys(results).reduce(function (a, b) { return results[a] > results[b] ? a : b })
+    var maxKey = Object.keys(results).reduce((a, b) => {
+      if (results[a] === results[b]) {
+        var aCat = this.categories[a]
+        var bCat = this.categories[b]
+        if (aCat.parentKeySuggestions && aCat.keySuggestions && bCat.parentKeySuggestions && bCat.keySuggestions) {
+          var aSize = aCat.parentKeySuggestions.length + aCat.keySuggestions.length
+          var bSize = bCat.parentKeySuggestions.length + bCat.keySuggestions.length
+          return bSize < aSize ? b : a
+        }
+      }
+      if (results[a] > results[b]) {
+        return a
+      } else {
+        return b
+      }
+    })
 
     if (results[maxKey] === 0) {
       return 'KeyValue'
@@ -60,17 +75,17 @@ class LanguageManager {
         category.specialKeys = {}
       }
 
+      this.categories[categoryName] = category
+
       if (category.category) {
-        this.categories[categoryName] = this.merge(category, lang.categories[category.category], lang)
-      } else {
-        this.categories[categoryName] = category
+        this.categories[categoryName] = this.merge(category, lang.categories[category.category])
       }
     }
   }
 
-  merge (a, b, lang) {
-    if (lang && b.category) {
-      b = this.merge(b, lang.categories[b.category], lang)
+  merge (a, b) {
+    if (b.category) {
+      b = this.merge(b, this.categories[b.category])
     }
 
     var result = {}

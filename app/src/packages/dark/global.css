@@ -12,6 +12,8 @@ input {
     border: solid 1px transparent;
 		border-radius: 2px;
     text-align: start;
+    outline-offset: 0;
+    -webkit-appearance: none;
 }
 input:focus {
     border: 1px solid var(--color-accent);
@@ -72,4 +74,16 @@ input[type="checkbox"]:focus {
 }
 key-value {
   padding-right: 8px;
+}
+.new-data-dialog {
+  background-color: var(--color-card-bg);
+  color: var(--color-card);
+}
+.new-data-dialog-input, .search-input {
+  border: none;
+  border-bottom: 2px solid var(--color-card);
+}
+.new-data-dialog-input:focus, .search-input:focus {
+  border: none;
+  border-bottom: 2px solid var(--color-accent);
 }

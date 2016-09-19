@@ -44,7 +44,7 @@ class Editor extends HTMLElement {
   build () {
     // if path no longer exists we have been deleted
     if (!donkey.files.pathExists(this.path) && !this.modified) {
-      donkey.nav.removeTab(this.path)
+      donkey.nav.closeTab(this.path)
     } else {
       var data = donkey.files.readData(this.path)
       this.data = data

@@ -3,6 +3,12 @@ const Dota2FileValue = require('./Dota2FileValue')
 
 class Dota2AbilityTextureValue extends Dota2FileValue {
 
+  attachedCallback () {
+    super.attachedCallback()
+    this.options.context = 'game'
+    this.options.defaultPath = 'resource/flash3/images'
+  }
+
   modfifyResultPath (filePath) {
     var filePathArr = filePath.split(path.sep)
     if (filePathArr[filePathArr.length - 2] === 'items') {
@@ -11,7 +17,7 @@ class Dota2AbilityTextureValue extends Dota2FileValue {
       return path.basename(filePath, path.extname(filePath))
     }
     // show raning that name could not be automatically set
-    donkey.dialog.showSimpleMessage('There was an issue setting the texturename. Please make sure the generated name is correct.', 'This happend because you selected a file not contained in \'resource/spellicons\' or \'resource/items\'.')
+    donkey.dialog.showSimpleMessage('There was an issue setting the texturename. Please make sure the generated name is correct.', "This happend because you selected a file not contained in 'resource/spellicons' or 'resource/items'.")
     return path.basename(filePath, path.extname(filePath))
   }
 }

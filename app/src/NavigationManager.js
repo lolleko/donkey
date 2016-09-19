@@ -1,9 +1,14 @@
 const kvpath = require('./kvpath')
+const path = require('path')
 
 class NavigationManager {
   constructor () {
-    this.nav = document.querySelector('.nav')
+    this.nav = document.querySelector('.nav-inner')
     this.tabBar = document.querySelector('.tab-bar')
+    this.searchInput = document.querySelector('.search-input')
+    this.searchInput.addEventListener('input', (e) => {
+      this.search(e.target.value)
+    })
     this.openTabs = {}
     this.activeTab
   }
@@ -12,7 +17,15 @@ class NavigationManager {
     var navItem = document.createElement('nav-item')
     navItem.dataset.path = file.path
     navItem.data = file.data
-    this.nav.appendChild(navItem)
+    var pointer = this.nav.firstElementChild
+    while (pointer && pointer.name < file.name) {
+      pointer = pointer.nextElementSibling
+    }
+    if (!pointer) {
+      this.nav.appendChild(navItem)
+    } else {
+      this.nav.insertBefore(navItem, pointer)
+    }
   }
 
   rebuildTreeView () {
@@ -24,6 +37,7 @@ class NavigationManager {
     this.nav.innerHTML = ''
     var openFiles = donkey.files.getOpen()
     for (var file in openFiles) {
+      openFiles[file].updateCategory()
       this.addFile(openFiles[file])
     }
     for (i = 0; i < expandedPaths.length; i++) {
@@ -32,12 +46,41 @@ class NavigationManager {
         navItem.expand()
       }
     }
-
     for (var tabPath in this.openTabs) {
       var tab = this.openTabs[tabPath]
       if (!tab.modified) {
         tab.editor.build()
       }
+    }
+  }
+
+  search (searchString) {
+    if (searchString.length === 1 && !this.expandedPathsBeforeSearch) {
+      var expandedNodes = document.querySelectorAll('.nav-item-expanded')
+      var expandedPaths = []
+      for (var i = 0; i < expandedNodes.length; i++) {
+        expandedPaths.push(expandedNodes[i].dataset.path)
+      }
+      this.expandedPathsBeforeSearch = expandedPaths
+    }
+
+    for (var j = 0; j < this.nav.children.length; j++) {
+      var item = this.nav.children[j]
+      item.search(searchString)
+    }
+
+    if (searchString === '') {
+      var navItems = document.querySelectorAll('.nav-item')
+      for (j = 0; j < navItems.length; j++) {
+        navItems[j].collapse()
+      }
+      for (j = 0; j < this.expandedPathsBeforeSearch.length; j++) {
+        var navItem = this.getNavItemByPath(this.expandedPathsBeforeSearch[j])
+        if (navItem) {
+          navItem.expand()
+        }
+      }
+      this.expandedPathsBeforeSearch = null
     }
   }
 
@@ -88,53 +131,76 @@ class NavigationManager {
   renameDataDialog (kvPath) {
     var filepath = kvpath.filepath(kvPath)
     var kvOnly = kvpath.stripfile(kvPath)
-    var data = new Map()
-    var title = 'Enter new path for data, use "//" as seperator.'
-    var detail = filepath
+    var title, detail
     if (kvOnly) {
       kvOnly = kvpath.sep + kvOnly
-    }
-    donkey.dialog.showInputDialog(title, detail, kvOnly, (value) => {
-      if (value) {
-        var result = kvpath.join(filepath, value)
-        if (donkey.files.pathExists(result)) {
-          if (!donkey.dialog.showSimpleWarning('Path already exists. Do you want to overwrite the existing data?', 'You are overwriting:\n ' + result)) {
-            return
+      title = 'Enter new path for data, use "//" as seperator.'
+      detail = filepath
+      donkey.dialog.showInputDialog(title, detail, kvOnly, (value) => {
+        if (value) {
+          var result = kvpath.join(filepath, value)
+          if (donkey.files.pathExists(result)) {
+            if (!donkey.dialog.showSimpleWarning('Path already exists. Do you want to overwrite the existing data?', 'You are overwriting:\n ' + result)) {
+              return
+            }
+          }
+          donkey.files.renameData(kvPath, result)
+          var navItem = this.getNavItemByPath(result)
+          if (navItem) {
+            navItem.open()
           }
         }
-        donkey.files.writeData(result, data)
-        var navItem = this.getNavItemByPath(result)
-        if (navItem) {
-          navItem.open()
+      })
+    } else {
+      title = 'Enter new name for file'
+      detail = path.join(filepath, '..') + path.sep
+      kvOnly = path.basename(filepath)
+      donkey.dialog.showInputDialog(title, detail, kvOnly, (value) => {
+        if (value) {
+          var result = path.join(detail, value)
+          if (donkey.files.fileExists(result)) {
+            if (!donkey.dialog.showSimpleWarning('Path already exists. Do you want to overwrite the existing data?', 'You are overwriting:\n ' + result)) {
+              return
+            }
+          }
+          donkey.files.rename(filepath, result)
         }
-        donkey.files.unlinkData(kvPath)
+      })
+    }
+  }
+
+  closeDialog (kvPath) {
+    if (kvpath.isFile(kvPath)) {
+      if (donkey.dialog.showSimpleWarning('Are you sure you want to Close the selected file?', 'You are closing:\n ' + kvPath)) {
+        donkey.files.close(kvPath)
       }
-    })
+    } else {
+      this.closeTab(kvPath)
+    }
   }
 
   getNavItemByPath (kvPath) {
     return document.querySelector('nav-item[data-path="' + kvPath + '"]')
   }
 
-  addTab (navItem) {
+  addTab (kvPath) {
     var that = this
     setTimeout(function () {
-      if (!that.openTabs[navItem.dataset.path]) {
-        donkey.files.setActive(navItem.dataset.path)
+      if (!that.openTabs[kvPath]) {
+        donkey.files.setActive(kvPath)
         var tabItem = document.createElement('tab-item')
 
-        tabItem.path = navItem.dataset.path
+        tabItem.path = kvPath
         that.tabBar.appendChild(tabItem)
 
         for (var tabPath in that.openTabs) {
           that.openTabs[tabPath].hide()
         }
-
-        that.openTabs[navItem.dataset.path] = tabItem
-        that.openTabs[navItem.dataset.path].show()
-        that.activeTab = that.openTabs[navItem.dataset.path]
+        that.openTabs[kvPath] = tabItem
+        that.openTabs[kvPath].show()
+        that.activeTab = that.openTabs[kvPath]
       } else {
-        that.selectTab(navItem.dataset.path)
+        that.selectTab(kvPath)
       }
     }, 0)
   }
@@ -157,9 +223,11 @@ class NavigationManager {
   }
 
   closeTab (path) {
-    var tab = this.openTabs[path] || this.activeTab
-    tab.close()
-    this.removeTab(path)
+    var tab = path ? this.openTabs[path] : this.activeTab
+    if (tab) {
+      tab.close()
+      this.removeTab(path)
+    }
   }
 
   removeTab (path) {

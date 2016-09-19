@@ -7,6 +7,8 @@ class AddKeyValueCommand extends UndoableCommand {
     if (!element) {
       if (donkey.editor && donkey.editor.activeElement) {
         this.element = donkey.editor.activeElement
+      } else if (donkey.editor) {
+        this.element = donkey.editor
       }
     } else {
       this.element = element

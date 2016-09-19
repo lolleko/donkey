@@ -38,6 +38,7 @@ class InputDialog {
   remove () {
     this.element.parentNode.removeChild(this.element)
     document.removeEventListener('click', this)
+    document.removeEventListener('contextmenu', this)
     document.removeEventListener('keydown', this)
     this.element = null
     this.instance = null
@@ -49,6 +50,9 @@ class InputDialog {
         this.onKeyDown(e)
         break
       case 'click':
+        this.onClick(e)
+        break
+      case 'contextmenu':
         this.onClick(e)
         break
     }

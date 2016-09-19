@@ -41,3 +41,7 @@ exports.stripfile = (kvpath) => {
 exports.toArray = (kvpath) => {
   return kvpath.split(this.sep).filter(v => v !== '')
 }
+
+exports.isFile = (kvpath) => {
+  return this.toArray(kvpath).length === 1
+}

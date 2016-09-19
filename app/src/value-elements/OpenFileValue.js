@@ -5,8 +5,9 @@ class OpenFileValue extends donkey.basevalue {
     this.classList.add('open-file-value')
     this.classList.add('value-with-button')
 
-    var input = document.createElement('input')
-    input.classList.add('value-input')
+    var input = document.createElement('autocomplete-input')
+    // TODO webcomponents v1 fix
+    input.input.classList.add('value-input')
 
     input.addEventListener('input', this, false)
 

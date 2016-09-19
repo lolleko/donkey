@@ -4,6 +4,8 @@
 
 const KVFile = require('./KVFile')
 const kvpath = require('./kvpath')
+const fs = require('fs')
+const path = require('path')
 const vdf = require('./vdf')
 
 class FileManager {
@@ -28,11 +30,33 @@ class FileManager {
    * @return {KVFile} the created file.
    */
   add (path) {
-    path = kvpath.filepath(path)
-    var kvFile = new KVFile(path)
-    this.openFiles[path] = kvFile
-    donkey.nav.addFile(kvFile)
-    return kvFile
+    if (this.fileExists(path)) {
+      path = kvpath.filepath(path)
+      if (this.openFiles[path]) {
+        return this.openFiles[path]
+      }
+      var kvFile = new KVFile(path)
+      this.openFiles[path] = kvFile
+      donkey.nav.addFile(kvFile)
+      return kvFile
+    }
+    return null
+  }
+  /**
+   * Add all files from a directory to the this.openFiles.
+   * @param {string} dirPath the path of the file.
+   * @return {KVFile} the created file.
+   */
+  addDir (dirPath) {
+    if (this.dirExists(dirPath)) {
+      var files = fs.readdirSync(dirPath)
+      for (var index in files) {
+        var file = files[index]
+        if (!this.isSystemFile(file)) {
+          this.add(path.join(dirPath, file))
+        }
+      }
+    }
   }
 
   /**
@@ -42,7 +66,20 @@ class FileManager {
   close (path) {
     path = kvpath.filepath(path)
     this.openFiles[path].close()
-    this.openFiles[path] = null
+    delete this.openFiles[path]
+    donkey.nav.rebuildTreeView()
+  }
+
+  /**
+   * Delete and close the file
+   * @param {string} path the path of the file.
+   */
+  unlink (path) {
+    path = kvpath.filepath(path)
+    this.openFiles[path].close()
+    this.openFiles[path].unlink()
+    delete this.openFiles[path]
+    donkey.nav.rebuildTreeView()
   }
 
   /**
@@ -54,8 +91,9 @@ class FileManager {
     oldPath = kvpath.filepath(oldPath)
     var temp = this.openFiles[oldPath]
     temp.rename(newPath)
-    this.openFiles[oldPath] = null
+    delete this.openFiles[oldPath]
     this.openFiles[newPath] = temp
+    donkey.nav.rebuildTreeView()
   }
 
   /**
@@ -76,6 +114,9 @@ class FileManager {
   writeData (kvPath, data) {
     var pathArr = kvpath.toArray(kvPath)
     var kvFile = this.openFiles[pathArr[0]]
+    if (!kvFile) {
+      kvFile = this.add(pathArr[0])
+    }
     var pointer = kvFile.data
 
     if (pathArr.length === 1) {
@@ -106,6 +147,7 @@ class FileManager {
         pointer.set(basename, data)
       }
     }
+    kvFile.write()
     donkey.nav.rebuildTreeView()
   }
 
@@ -148,6 +190,10 @@ class FileManager {
   unlinkData (kvPath) {
     var pathArr = kvpath.toArray(kvPath)
     var kvFile = this.openFiles[pathArr[0]]
+    if (pathArr.length === 1) {
+      this.unlink(pathArr[0])
+      donkey.nav.rebuildTreeView()
+    }
     var pointer = kvFile.data
 
     for (var i = 1; i < pathArr.length - 1; i++) {
@@ -222,7 +268,10 @@ class FileManager {
     return vdf.dump(this.nodeToData(node))
   }
 
-  renameData (kvPathOld, newName) {}
+  renameData (kvPathOld, newPath) {
+    this.writeData(newPath, this.readData(kvPathOld))
+    this.unlinkData(kvPathOld)
+  }
 
   /**
    * Check if data exists at the given kvpath.
@@ -232,6 +281,11 @@ class FileManager {
   pathExists (kvPath) {
     var pathArr = kvpath.toArray(kvPath)
     var kvFile = this.openFiles[pathArr[0]]
+    if (pathArr.length === 1 && kvFile) {
+      return true
+    } else if (!kvFile) {
+      return false
+    }
     var pointer = kvFile.data
 
     for (var i = 1; i < pathArr.length; i++) {
@@ -292,6 +346,31 @@ class FileManager {
    */
   getActiveName () {
     return kvpath.filename(this.activeFile)
+  }
+
+  /**
+   *
+   */
+  fileExists (path) {
+    try {
+      fs.statSync(path).isFile()
+    } catch (e) {
+      return false
+    }
+    return true
+  }
+
+  dirExists (path) {
+    try {
+      fs.statSync(path).isDirectory()
+    } catch (e) {
+      return false
+    }
+    return true
+  }
+
+  isSystemFile (path) {
+    return path[0] === '.'
   }
 }
 

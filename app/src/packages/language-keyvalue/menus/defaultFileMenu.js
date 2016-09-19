@@ -25,6 +25,15 @@ const defaultFileMenu = [
     click (menuItem, currentWindow) {
       donkey.nav.renameDataDialog(menuItem.target.dataset.path)
     }
+  },
+  {
+    type: 'separator'
+  },
+  {
+    label: 'Close',
+    click (menuItem, currentWindow) {
+      donkey.nav.closeDialog(menuItem.target.dataset.path)
+    }
   }
 ]
 
