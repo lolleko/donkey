@@ -41,7 +41,7 @@ const template = [{
     }
   }, {
     label: 'Open Directory...',
-    accelerator: 'CmdOrCtrl+O',
+    accelerator: 'CmdOrCtrl+Shift+O',
     click: (menuItem, currentWindow) => {
       dialog.showOpenDialog(currentWindow, {
         properties: ['openDirectory']
@@ -65,6 +65,10 @@ const template = [{
     click: (menuItem, currentWindow) => {
       currentWindow.webContents.send('command:close-tab')
     }
+  }, {
+    label: 'Close Window',
+    accelerator: 'CmdOrCtrl+Shift+W',
+    role: 'close'
   }]
 }, {
   label: 'Edit',
@@ -120,27 +124,39 @@ const template = [{
     }
   }, {
     label: 'Cut KV Element',
-    accelerator: 'CmdOrCtrl+Shift+X',
+    accelerator: 'CmdOrCtrl+Alt+X',
     click: (menuItem, currentWindow) => {
       currentWindow.webContents.send('command:specialcut')
     }
   }, {
     label: 'Copy KV Element',
-    accelerator: 'CmdOrCtrl+Shift+C',
+    accelerator: 'CmdOrCtrl+Alt+C',
     click: (menuItem, currentWindow) => {
       currentWindow.webContents.send('command:specialcopy')
     }
   }, {
     label: 'Paste KV Element',
-    accelerator: 'CmdOrCtrl+Shift+V',
+    accelerator: 'CmdOrCtrl+Alt+V',
     click: (menuItem, currentWindow) => {
       currentWindow.webContents.send('command:specialpaste')
     }
   }, {
     label: 'Delete KV Element',
-    accelerator: 'CmdOrCtrl+Shift+D',
+    accelerator: 'CmdOrCtrl+Alt+D',
     click: (menuItem, currentWindow) => {
       currentWindow.webContents.send('command:specialdelete')
+    }
+  }, {
+    label: 'Move Up KV Element',
+    accelerator: 'CmdOrCtrl+Up',
+    click: (menuItem, currentWindow) => {
+      currentWindow.webContents.send('command:moveup')
+    }
+  }, {
+    label: 'Move Down KV Element',
+    accelerator: 'CmdOrCtrl+Down',
+    click: (menuItem, currentWindow) => {
+      currentWindow.webContents.send('command:movedown')
     }
   }]
 }, {
@@ -161,6 +177,20 @@ const template = [{
         currentWindow.webContents.toggleDevTools()
       }
     }
+  }, {
+    type: 'separator'
+  }, {
+    label: 'Increase Font Size',
+    accelerator: 'CmdOrCtrl+=',
+    click: (menuItem, currentWindow) => {
+      currentWindow.webContents.send('command:zoomin')
+    }
+  }, {
+    label: 'Decrease Font Size',
+    accelerator: 'CmdOrCtrl+-',
+    click: (menuItem, currentWindow) => {
+      currentWindow.webContents.send('command:zoomout')
+    }
   }]
 }, {
   label: 'Find',
@@ -173,10 +203,6 @@ const template = [{
 }, {
   role: 'window',
   submenu: [{
-    label: 'Close',
-    accelerator: 'CmdOrCtrl+W',
-    role: 'close'
-  }, {
     label: 'Minimize',
     accelerator: 'CmdOrCtrl+M',
     role: 'minimize'

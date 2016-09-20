@@ -78,7 +78,19 @@ class KeyValue extends HTMLElement {
   }
 
   moveUp () {
-    this.parentNode.insertBefore(this, this.previousSibling)
+    if (this.previousSibling) {
+      this.parentNode.insertBefore(this, this.previousSibling)
+    }
+    this.focus()
+  }
+
+  moveDown () {
+    if (this.nextSibling) {
+      this.parentNode.insertBefore(this, this.nextSibling.nextSibling)
+    } else {
+      this.parentNode.appendChild(this)
+    }
+    this.focus()
   }
 
   rebuildValue () {

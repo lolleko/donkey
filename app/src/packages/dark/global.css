@@ -2,7 +2,7 @@ body {
   background-color: var(--color-bg);
   color: var(--color);
 }
-input {
+input, select {
     background: none;
     color: inherit;
     outline: none;
@@ -10,10 +10,12 @@ input {
     font-size: 1em;
     padding: 3px;
     border: solid 1px transparent;
-		border-radius: 2px;
+	border-radius: 2px;
     text-align: start;
     outline-offset: 0;
-    -webkit-appearance: none;
+}
+option {
+    color: var(--color-card);
 }
 input:focus {
     border: 1px solid var(--color-accent);
@@ -81,7 +83,7 @@ key-value {
 }
 .new-data-dialog-input, .search-input {
   border: none;
-  border-bottom: 2px solid var(--color-card);
+  border-bottom: 2px solid var(--color-card-highlight);
 }
 .new-data-dialog-input:focus, .search-input:focus {
   border: none;

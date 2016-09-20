@@ -11,6 +11,11 @@ class LanguageManager {
 
   setActiveCategory (category) {
     this.activeCategory = category
+    donkey.nav.setFooterSelectOption(category)
+  }
+
+  getActiveCategory () {
+    return this.activeCategory
   }
 
   detectCategory (map) {
@@ -80,6 +85,7 @@ class LanguageManager {
       if (category.category) {
         this.categories[categoryName] = this.merge(category, lang.categories[category.category])
       }
+      donkey.nav.addFooterSelectOption(categoryName)
     }
   }
 
@@ -216,11 +222,10 @@ class LanguageManager {
       return
     }
     var menu = this.menus[menuID]
-    var template
+    var template = []
     if (menu.merge && menuID !== defaultMenu) {
-      var defaultFileMenuTemplate = this.menus[defaultMenu].template
-      defaultFileMenuTemplate.push({type: 'separator'})
-      template = defaultFileMenuTemplate.concat(menu.template)
+      var defaultMenuTemplate = this.menus[defaultMenu].template
+      template = template.concat(defaultMenuTemplate, {type: 'separator'}, menu.template)
     } else {
       template = menu.template
     }

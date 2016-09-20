@@ -52,7 +52,7 @@ class FileManager {
       var files = fs.readdirSync(dirPath)
       for (var index in files) {
         var file = files[index]
-        if (!this.isSystemFile(file)) {
+        if (!this.isSystemFile(file) && this.fileExists(path.join(dirPath, file))) {
           this.add(path.join(dirPath, file))
         }
       }
@@ -353,24 +353,23 @@ class FileManager {
    */
   fileExists (path) {
     try {
-      fs.statSync(path).isFile()
+      return fs.statSync(path).isFile()
     } catch (e) {
       return false
     }
-    return true
   }
 
   dirExists (path) {
     try {
-      fs.statSync(path).isDirectory()
+      return fs.statSync(path).isDirectory()
     } catch (e) {
       return false
     }
     return true
   }
 
-  isSystemFile (path) {
-    return path[0] === '.'
+  isSystemFile (filePath) {
+    return path.basename(filePath)[0] === '.'
   }
 }
 

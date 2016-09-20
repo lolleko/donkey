@@ -36,7 +36,8 @@
         "globals": [
             "HTMLElement",
             "donkey",
-            "Event"
+            "Event",
+            "Option"
         ]
     }
 }

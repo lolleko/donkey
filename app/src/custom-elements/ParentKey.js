@@ -90,6 +90,22 @@ class ParentKey extends HTMLElement {
     this.input.select()
   }
 
+  moveUp () {
+    if (this.previousSibling) {
+      this.parentNode.insertBefore(this, this.previousSibling)
+    }
+    this.focus()
+  }
+
+  moveDown () {
+    if (this.nextSibling) {
+      this.parentNode.insertBefore(this, this.nextSibling.nextSibling)
+    } else {
+      this.parentNode.appendChild(this)
+    }
+    this.focus()
+  }
+
   handleEvent (e) {
     switch (e.type) {
       case 'input':

@@ -1,6 +1,6 @@
 const UndoableCommand = require('./UndoableCommand')
 
-class MoveUpCommand extends UndoableCommand {
+class MoveDownCommand extends UndoableCommand {
   constructor (element) {
     super()
 
@@ -15,13 +15,13 @@ class MoveUpCommand extends UndoableCommand {
 
   execute () {
     if (this.element) {
-      this.element.moveUp()
+      this.element.moveDown()
     }
   }
 
   undo () {
-    this.element.moveDown()
+    this.element.moveUp()
   }
 }
 
-module.exports = donkey.commands.add('moveup', MoveUpCommand, false, true)
+module.exports = donkey.commands.add('movedown', MoveDownCommand, false, true)

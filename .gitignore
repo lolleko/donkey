@@ -101,3 +101,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# rimraf
+rimraf
+rimraf.cmd

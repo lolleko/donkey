@@ -4,6 +4,12 @@ const path = require('path')
 class NavigationManager {
   constructor () {
     this.nav = document.querySelector('.nav-inner')
+    this.footerPath = document.querySelector('.footer-current-path')
+    this.footerSelect = document.querySelector('.footer-select-lang')
+    this.footerSelect.addEventListener('input', function (e) {
+      donkey.lang.setActiveCategory(this.value)
+      donkey.editor.build()
+    }, false)
     this.tabBar = document.querySelector('.tab-bar')
     this.searchInput = document.querySelector('.search-input')
     this.searchInput.addEventListener('input', (e) => {
@@ -199,6 +205,7 @@ class NavigationManager {
         that.openTabs[kvPath] = tabItem
         that.openTabs[kvPath].show()
         that.activeTab = that.openTabs[kvPath]
+        that.setFooterPathText(kvPath)
       } else {
         that.selectTab(kvPath)
       }
@@ -216,6 +223,7 @@ class NavigationManager {
         this.openTabs[tabPath].hide()
       }
     }
+    this.setFooterPathText(path)
   }
 
   getActiveTab () {
@@ -224,9 +232,18 @@ class NavigationManager {
 
   closeTab (path) {
     var tab = path ? this.openTabs[path] : this.activeTab
+    var nextSelection
+    if (tab === this.activeTab) {
+      nextSelection = tab.previousSibling
+    }
     if (tab) {
       tab.close()
       this.removeTab(path)
+    }
+    if (nextSelection) {
+      this.selectTab(nextSelection.path)
+    } else if (!this.activeTab) {
+      this.setFooterPathText('')
     }
   }
 
@@ -235,6 +252,22 @@ class NavigationManager {
       this.activeTab = null
     }
     delete this.openTabs[path]
+  }
+
+  setFooterSelectOption (value) {
+    this.footerSelect.value = value
+  }
+
+  addFooterSelectOption (categoryName) {
+    var opt = new Option(categoryName, categoryName)
+    if (categoryName === donkey.lang.getActiveCategory()) {
+      opt.selected = true
+    }
+    this.footerSelect.options.add(opt)
+  }
+
+  setFooterPathText (text) {
+    this.footerPath.innerHTML = text
   }
 }
 

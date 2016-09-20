@@ -27,7 +27,7 @@ class AddKeyValueCommand extends UndoableCommand {
   }
 
   undo () {
-    this.element.removeChild(this.addedElement)
+    this.addedElement.parentNode.removeChild(this.addedElement)
   }
 }
 

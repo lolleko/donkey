@@ -21,7 +21,6 @@ class KVFile {
     }
 
     this.stats = fs.statSync(this.path)
-
     this.data = vdf.parse(fs.readFileSync(this.path, 'utf8'))
     this.category = donkey.lang.detectCategory(this.data)
   }

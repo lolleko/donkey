@@ -2,7 +2,7 @@ const abilitySpecialMenu = [{
   label: 'Add Variable',
   click (menuItem, currentWindow) {
     var parent = document.createElement('parent-key')
-    parent.key = '0' + menuItem.target.children.length
+    parent.key = '0' + (menuItem.target.inner.children.length + 1)
     var type = document.createElement('key-value')
     type.key = 'var_type'
     type.value = 'FIELD_FLOAT'
