@@ -352,20 +352,23 @@ class FileManager {
    *
    */
   fileExists (path) {
+    var isFile
     try {
-      return fs.statSync(path).isFile()
+      isFile = fs.statSync(path).isFile()
     } catch (e) {
-      return false
+      isFile = false
     }
+    return isFile
   }
 
   dirExists (path) {
+    var isDir
     try {
-      return fs.statSync(path).isDirectory()
+      isDir = fs.statSync(path).isDirectory()
     } catch (e) {
-      return false
+      isDir = false
     }
-    return true
+    return isDir
   }
 
   isSystemFile (filePath) {
