@@ -1,5 +1,5 @@
 # Donkey A Key Value Editor
-[![Build Status](https://travis-ci.org/lolleko/donkey.svg?branch=master)](https://travis-ci.org/lolleko/donkey) [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+[![Build Status](https://travis-ci.org/lolleko/donkey.svg?branch=master)](https://travis-ci.org/lolleko/donkey) [![Build status](https://ci.appveyor.com/api/projects/status/631hlq0en5qmpp7n?svg=true)](https://ci.appveyor.com/project/lolleko/donkey) [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
 A cross platform Editor for Valve's KeyValue Format (VDF).
 
@@ -22,7 +22,7 @@ Dota2 KV     | Autocompletion for Keys, Special Controls for Values. Templates f
 
 ### Contributing
 
-Requires node.js and npm
+Requires the latest node.js (6.6.0 or higher)
 
 1. [Fork](https://help.github.com/articles/fork-a-repo/) this repository to your own GitHub account and then [clone](https://help.github.com/articles/cloning-a-repository/) it to your local device
 3. Install the dependencies: `npm install`

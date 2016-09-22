@@ -238,7 +238,7 @@ class NavigationManager {
     }
     if (tab) {
       tab.close()
-      this.removeTab(path)
+      this.removeTab(tab.path)
     }
     if (nextSelection) {
       this.selectTab(nextSelection.path)

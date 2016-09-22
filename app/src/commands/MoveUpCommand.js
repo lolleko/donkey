@@ -24,4 +24,4 @@ class MoveUpCommand extends UndoableCommand {
   }
 }
 
-module.exports = donkey.commands.add('moveup', MoveUpCommand, false, true)
+module.exports = donkey.commands.add('moveup', MoveUpCommand, {accelerator: 'CmdOrCtrl+Up'})

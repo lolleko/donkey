@@ -3,7 +3,7 @@ body {
     color: var(--color);
 }
 .panes {
-    margin-right: 4px;
+    margin-right: 8px;
 }
 .editor {
     border-left: 1px solid var(--color-border-light);
@@ -17,9 +17,6 @@ key-value {
 }
 parent-key {
     padding-left: 20px;
-}
-.parent-key-input {
-    padding-bottom: 4px;
 }
 .editor>key-value, .editor>parent-key {
     padding-left: 0px;

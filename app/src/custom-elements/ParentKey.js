@@ -1,6 +1,7 @@
 class ParentKey extends HTMLElement {
 
   createdCallback () {
+    this.classList.add('kv-element')
     this.addEventListener('contextmenu', this, false)
 
     if (this.firstChild && (this.firstChild.tagName === 'AUTOCOMPLETE-INPUT' || this.firstChild.tagName === 'INPUT')) {
@@ -11,6 +12,21 @@ class ParentKey extends HTMLElement {
       // remove inner if exists (after ciopy paste)
       this.removeChild(this.firstChild)
     }
+
+    var header = document.createElement('div')
+    header.classList.add('parent-key-header')
+    header.classList.add('kv-data-container')
+    this.insertBefore(header, this.firstChild)
+
+    var expander = document.createElement('div')
+    expander.classList.add('parent-key-expander')
+    expander.classList.add('parent-key-icon-expanded')
+    expander.addEventListener('click', this, false)
+    this.expanded = true
+
+    header.appendChild(expander)
+    this.expander = expander
+
     var input
     if (donkey.lang.hasParentKeySuggestions()) {
       input = document.createElement('autocomplete-input')
@@ -24,7 +40,7 @@ class ParentKey extends HTMLElement {
     input.addEventListener('input', this, false)
     this.input = input
     this.keyElement = this
-    this.insertBefore(input, this.firstChild)
+    header.appendChild(input)
 
     var inner = document.createElement('div')
     inner.classList.add('parent-key-inner')
@@ -114,6 +130,9 @@ class ParentKey extends HTMLElement {
       case 'contextmenu':
         this.onContextMenu(e)
         break
+      case 'click':
+        this.onClick(e)
+        break
     }
   }
 
@@ -124,6 +143,33 @@ class ParentKey extends HTMLElement {
   onContextMenu (e) {
     donkey.lang.openEditorContextMenu(this)
     e.stopPropagation()
+  }
+
+  expand () {
+    if (this.expander) {
+      this.expander.classList.remove('parent-key-icon-collapsed')
+      this.expander.classList.add('parent-key-icon-expanded')
+      this.inner.style.display = ''
+      this.expanded = true
+    }
+  }
+
+  collapse () {
+    if (this.expander) {
+      this.inner.style.display = 'none'
+      this.expander.classList.remove('parent-key-icon-expanded')
+      this.expander.classList.add('parent-key-icon-collapsed')
+      this.inner.style.display = 'none'
+      this.expanded = false
+    }
+  }
+
+  onClick (e) {
+    if (this.expanded) {
+      this.collapse()
+    } else {
+      this.expand()
+    }
   }
 
   attributeChangedCallback (attrName, oldVal, newVal) {

@@ -48,8 +48,9 @@ body {
   padding-left: 8px;
 }
 .search-input {
+  margin-top: 0.1rem;
   width: 100%;
-  height: 3rem;
+  height: 2.9rem;
   font-size: 1.2rem;
 }
 .panes {
@@ -74,6 +75,8 @@ body {
 .footer-current-path {
     display: inline-block;
     width: 80%;
+    overflow: hidden;
+    vertical-align: middle;
 }
 .footer-select-lang {
     display: inline-block;
@@ -171,16 +174,17 @@ donkey-editor {
     min-width: 500px;
     overflow-x: scroll;
     height: 100%;
-    ;
 }
 key-value {
     display: block;
-    padding-top: 3px;
-    padding-bottom: 3px;
+    position: relative;
+    padding-top: 1px;
+    padding-bottom: 1px;
 }
 parent-key {
     display: block;
-    padding-top: 8px;
+    padding-top: 2px;
+    padding-bottom: 2px;
     width: 100%;
 }
 .parent-key-input {
@@ -189,10 +193,34 @@ parent-key {
     font: inherit;
     color: inherit;
     font-weight: 600;
-    font-size: 1.1em;
+    font-size: 1.15em;
     display: inline-block;
 }
-
+.parent-key-header {
+    position: relative;
+}
+.parent-key-expander {
+    display: inline-block;
+}
+.parent-key-expander::before {
+    font-family: "Octicon";
+    font: normal normal normal 16px/1 Octicons;
+    display: inline-block;
+    text-decoration: none;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    speak: none;
+}
+.parent-key-icon-expanded::before {
+    content: "\f0a3";
+}
+.parent-key-icon-collapsed::before {
+    content: "\f078";
+}
 /* TODO hacky because of bugging custom elements:
  * rework once AutocompleteInput can be reimplemented
  */
@@ -220,11 +248,12 @@ key-value, parent-key {
 }
 autocomplete-input {
     position: relative;
+    display: inline-block;
 }
 .autocomplete-input-fake {
     width: 100%;
     height: 100%;
-    font: inherit;
+    font-weight: inherit;
 }
 .autocomplete-list {
     list-style: none;
@@ -293,7 +322,6 @@ autocomplete-input {
     flex: 1;
     overflow: hidden;
     font-size: 0.9em;
-    line-height: 1.5rem;
     white-space: nowrap;
 }
 .checkbox-value-label {

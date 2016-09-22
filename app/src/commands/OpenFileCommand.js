@@ -4,13 +4,15 @@ class OpenFileCommand extends Command {
   constructor (files) {
     super()
 
-    this.filePath = files[0]
+    this.filePath = donkey.dialog.showOpenFile()
   }
 
   execute () {
-    donkey.files.add(this.filePath)
+    if (this.filePath) {
+      donkey.files.add(this.filePath)
+    }
   }
 
 }
 
-module.exports = donkey.commands.add('open-file', OpenFileCommand, false, true)
+module.exports = donkey.commands.add('open-file', OpenFileCommand, {accelerator: 'CmdOrCtrl+O', executeGlobal: true})

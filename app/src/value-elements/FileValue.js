@@ -7,7 +7,7 @@ class FileValue extends donkey.basevalue {
 
     var input = document.createElement('autocomplete-input')
     // TODO fix with webcomponents v1
-    input.input.classList.add('value-input')
+    input.classList.add('value-input')
     input.classList.add('file-value-input')
 
     input.addEventListener('input', this, false)

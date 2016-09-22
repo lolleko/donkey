@@ -11,4 +11,4 @@ class ZoomOutCommand extends Command {
 
 }
 
-module.exports = donkey.commands.add('zoomout', ZoomOutCommand, false, true)
+module.exports = donkey.commands.add('zoomout', ZoomOutCommand, {accelerator: 'CmdOrCtrl+-', executeGlobal: true})

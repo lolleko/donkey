@@ -11,4 +11,4 @@ class ZoomInCommand extends Command {
 
 }
 
-module.exports = donkey.commands.add('zoomin', ZoomInCommand, false, true)
+module.exports = donkey.commands.add('zoomin', ZoomInCommand, {accelerator: 'CmdOrCtrl+Plus', executeGlobal: true})

@@ -6,4 +6,5 @@
 	--color-card-bg: 	hsl(0, 0%, 80%);
 	--color-card: 		hsl(0, 0%, 12%);
 	--color-card-highlight: hsla(199, 17%, 96%, 0.95);
+	--color-transparent-border: hsla(0, 0%, 100%, 0.1);
 }

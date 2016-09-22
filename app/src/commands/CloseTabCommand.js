@@ -8,9 +8,9 @@ class CloseTabCommand extends Command {
   }
 
   execute () {
-    donkey.nav.closeTab()
+    donkey.nav.closeTab(this.tabPath)
   }
 
 }
 
-module.exports = donkey.commands.add('close-tab', CloseTabCommand)
+module.exports = donkey.commands.add('close-tab', CloseTabCommand, {accelerator: 'CmdOrCtrl+W'})

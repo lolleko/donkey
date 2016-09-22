@@ -4,13 +4,15 @@ class NewFileCommand extends Command {
   constructor (filePath) {
     super()
 
-    this.filePath = filePath
+    this.filePath = donkey.dialog.showSaveDialog()
   }
 
   execute () {
-    donkey.files.add(this.filePath)
+    if (this.filePath) {
+      donkey.files.add(this.filePath)
+    }
   }
 
 }
 
-module.exports = donkey.commands.add('new-file', NewFileCommand, false, true)
+module.exports = donkey.commands.add('new-file', NewFileCommand, {accelerator: 'CmdOrCtrl+N', executeGlobal: true})

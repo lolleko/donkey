@@ -30,4 +30,4 @@ class AddParentKeyCommand extends UndoableCommand {
   }
 }
 
-module.exports = donkey.commands.add('addparentkey', AddParentKeyCommand)
+module.exports = donkey.commands.add('addparentkey', AddParentKeyCommand, {accelerator: 'CmdOrCtrl+P'})

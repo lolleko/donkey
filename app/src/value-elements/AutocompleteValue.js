@@ -7,7 +7,7 @@ class AutocompleteValue extends window.donkey.basevalue {
   createdCallback () {
     var input = document.createElement('autocomplete-input')
     // TODO refactor once webcomponents v1
-    input.input.classList.add('value-input')
+    input.classList.add('value-input')
     input.addEventListener('input', this, false)
 
     this.appendChild(input)

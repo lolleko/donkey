@@ -31,4 +31,4 @@ class AddKeyValueCommand extends UndoableCommand {
   }
 }
 
-module.exports = donkey.commands.add('addkeyvalue', AddKeyValueCommand)
+module.exports = donkey.commands.add('addkeyvalue', AddKeyValueCommand, {accelerator: 'CmdOrCtrl+L'})

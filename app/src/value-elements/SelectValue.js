@@ -9,7 +9,7 @@ class SelectValue extends donkey.basevalue {
     // TODO fix once autocomplete-input is reimplemented
     input.input.addEventListener('blur', this, false)
     input.input.addEventListener('keydown', this, false)
-    input.input.classList.add('value-input')
+    input.classList.add('value-input')
     input.minChars = 0
 
     this.input = input

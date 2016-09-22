@@ -1,6 +1,8 @@
 class KeyValue extends HTMLElement {
 
   createdCallback () {
+    this.classList.add('kv-element')
+    this.classList.add('kv-data-container')
     this.innerHTML = ''
     this.addEventListener('contextmenu', this.onContextMenu)
 

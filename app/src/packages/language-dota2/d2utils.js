@@ -10,7 +10,11 @@ exports.getGameRoot = (filePath) => {
   while (filePathArr.length > 0) {
     var current = filePathArr.pop()
     if (current === 'content' || current === 'game') {
-      return path.join('/', ...filePathArr)
+      if (process.platform !== 'win32') {
+        return path.join('/', ...filePathArr)
+      } else {
+        return path.join(...filePathArr)
+      }
     }
   }
   return null

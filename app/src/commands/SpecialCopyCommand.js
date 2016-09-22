@@ -21,4 +21,4 @@ class SpecialCopyCommand extends Command {
   }
 }
 
-module.exports = donkey.commands.add('specialcopy', SpecialCopyCommand)
+module.exports = donkey.commands.add('specialcopy', SpecialCopyCommand, {accelerator: 'CmdOrCtrl+Shift+C'})

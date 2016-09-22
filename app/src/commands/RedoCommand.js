@@ -8,4 +8,4 @@ class RedoCommand extends Command {
   }
 }
 
-module.exports = donkey.commands.add('redo', RedoCommand)
+module.exports = donkey.commands.add('redo', RedoCommand, {accelerator: 'CmdOrCtrl+Y'})

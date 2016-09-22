@@ -1,6 +1,5 @@
 const electron = require('electron')
 
-const dialog = electron.dialog
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 
@@ -22,32 +21,19 @@ const template = [{
     label: 'New File...',
     accelerator: 'CmdOrCtrl+N',
     click: (menuItem, currentWindow) => {
-      dialog.showSaveDialog(currentWindow, {
-        title: 'New File',
-        buttonLabel: 'Create'
-      }, function (fileName) {
-        if (fileName) currentWindow.webContents.send('command:new-file', fileName)
-      })
+      currentWindow.webContents.send('command:new-file')
     }
   }, {
     label: 'Open File...',
     accelerator: 'CmdOrCtrl+O',
     click: (menuItem, currentWindow) => {
-      dialog.showOpenDialog(currentWindow, {
-        properties: ['openFile']
-      }, function (files) {
-        if (files) currentWindow.webContents.send('command:open-file', files)
-      })
+      currentWindow.webContents.send('command:open-file')
     }
   }, {
     label: 'Open Directory...',
     accelerator: 'CmdOrCtrl+Shift+O',
     click: (menuItem, currentWindow) => {
-      dialog.showOpenDialog(currentWindow, {
-        properties: ['openDirectory']
-      }, function (files) {
-        if (files) currentWindow.webContents.send('command:open-directory', files)
-      })
+      currentWindow.webContents.send('command:open-directory')
     }
   }, {
     type: 'separator'
@@ -124,25 +110,25 @@ const template = [{
     }
   }, {
     label: 'Cut KV Element',
-    accelerator: 'CmdOrCtrl+Alt+X',
+    accelerator: 'CmdOrCtrl+Shift+X',
     click: (menuItem, currentWindow) => {
       currentWindow.webContents.send('command:specialcut')
     }
   }, {
     label: 'Copy KV Element',
-    accelerator: 'CmdOrCtrl+Alt+C',
+    accelerator: 'CmdOrCtrl+Shift+C',
     click: (menuItem, currentWindow) => {
       currentWindow.webContents.send('command:specialcopy')
     }
   }, {
     label: 'Paste KV Element',
-    accelerator: 'CmdOrCtrl+Alt+V',
+    accelerator: 'CmdOrCtrl+Shift+V',
     click: (menuItem, currentWindow) => {
       currentWindow.webContents.send('command:specialpaste')
     }
   }, {
     label: 'Delete KV Element',
-    accelerator: 'CmdOrCtrl+Alt+D',
+    accelerator: 'CmdOrCtrl+Shift+D',
     click: (menuItem, currentWindow) => {
       currentWindow.webContents.send('command:specialdelete')
     }

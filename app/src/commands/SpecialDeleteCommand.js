@@ -30,4 +30,4 @@ class SpecialDeleteCommand extends UndoableCommand {
   }
 }
 
-module.exports = donkey.commands.add('specialdelete', SpecialDeleteCommand)
+module.exports = donkey.commands.add('specialdelete', SpecialDeleteCommand, {accelerator: 'CmdOrCtrl+D'})

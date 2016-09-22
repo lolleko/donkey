@@ -9,4 +9,4 @@ class CopyCommand extends Command {
   }
 }
 
-module.exports = donkey.commands.add('copy', CopyCommand)
+module.exports = donkey.commands.add('copy', CopyCommand, {accelerator: 'CmdOrCtrl+V'})

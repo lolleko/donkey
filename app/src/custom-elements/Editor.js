@@ -103,7 +103,9 @@ class Editor extends HTMLElement {
   }
 
   undo () {
+    console.log(this.undoStack)
     var lastCmd = this.undoStack.pop()
+    console.log(this.undoStack)
     if (lastCmd) {
       lastCmd.undo()
       this.redoStack.push(lastCmd)

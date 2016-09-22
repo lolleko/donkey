@@ -6,6 +6,8 @@ class KeymapManager {
 
     this.commands = {}
     this.pressed = []
+    this.translate = {}
+    this.translate['plus'] = '+'
   }
 
   get metaPressed () {
@@ -80,6 +82,12 @@ class KeymapManager {
       }
 
       var requiredKeys = keyString.toLowerCase().split('+')
+      for (var identifer in this.translate) {
+        var index = requiredKeys.indexOf(identifer)
+        if (index >= 0) {
+          requiredKeys[index] = this.translate[identifer]
+        }
+      }
       var requiredKeysPressed = true
 
       for (var i = 0; i < requiredKeys.length; i++) {

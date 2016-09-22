@@ -1,11 +1,6 @@
 const Command = require('./Command')
 
 class SaveFileCommand extends Command {
-  constructor (filePath) {
-    super()
-
-    this.filePath = filePath
-  }
 
   execute () {
     donkey.editor.save()
@@ -13,4 +8,4 @@ class SaveFileCommand extends Command {
 
 }
 
-module.exports = donkey.commands.add('save-file', SaveFileCommand)
+module.exports = donkey.commands.add('save-file', SaveFileCommand, {accelerator: 'CmdOrCtrl+S'})

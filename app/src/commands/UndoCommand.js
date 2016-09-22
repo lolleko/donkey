@@ -8,4 +8,4 @@ class UndoCommand extends Command {
   }
 }
 
-module.exports = donkey.commands.add('undo', UndoCommand)
+module.exports = donkey.commands.add('undo', UndoCommand, {accelerator: 'CmdOrCtrl+Z'})

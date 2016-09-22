@@ -5,6 +5,8 @@ const BrowserWindow = electron.BrowserWindow
 const Menu = electron.Menu
 const MenuTemplate = require('./MenuTemplate')
 
+if (require('electron-squirrel-startup')) app.quit()
+
 function createWindow () {
   var win = new BrowserWindow({
     width: 1260,

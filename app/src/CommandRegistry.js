@@ -5,21 +5,21 @@ class CommandRegistry {
     this.commands = {}
   }
 
-  add (name, proto, accelerator, executeGlobal) {
-    executeGlobal = executeGlobal || false
+  add (name, proto, options) {
+    options = options || {}
+    var executeGlobal = options.executeGlobal || false
     this.commands[name] = {proto: proto, executeGlobal: executeGlobal}
 
-    if (accelerator) {
-      donkey.keys.register(accelerator, name)
-    } else {
-      ipc.on('command:' + name, function (e) {
-        var args = []
-        for (var i = 1; i < arguments.length; i++) {
-          args.push(arguments[i])
-        }
-        donkey.commands.exec(name, ...args)
-      })
+    if (options.accelerator) {
+      donkey.keys.register(options.accelerator, name)
     }
+    ipc.on('command:' + name, function (e) {
+      var args = []
+      for (var i = 1; i < arguments.length; i++) {
+        args.push(arguments[i])
+      }
+      donkey.commands.exec(name, ...args)
+    })
 
     return proto
   }

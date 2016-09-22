@@ -83,6 +83,28 @@ class Dialog {
       return null
     }
   }
+
+  showOpenDirectory (defaultPath, filters) {
+    var files = dialog.showOpenDialog(remote.getCurrentWindow(), {
+      defaultPath: defaultPath,
+      filters: filters,
+      properties: ['openDirectory']
+    })
+    if (files) {
+      return files[0]
+    } else {
+      return null
+    }
+  }
+
+  showSaveDialog () {
+    var fileName = dialog.showSaveDialog(remote.getCurrentWindow())
+    if (fileName) {
+      return fileName
+    } else {
+      return null
+    }
+  }
 }
 
 module.exports = Dialog

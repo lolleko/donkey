@@ -27,4 +27,4 @@ class SpecialPasteCommand extends UndoableCommand {
   }
 }
 
-module.exports = donkey.commands.add('specialpaste', SpecialPasteCommand)
+module.exports = donkey.commands.add('specialpaste', SpecialPasteCommand, {accelerator: 'CmdOrCtrl+Shift+V'})

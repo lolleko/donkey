@@ -32,4 +32,4 @@ class SpecialCutCommand extends UndoableCommand {
   }
 }
 
-module.exports = donkey.commands.add('specialcut', SpecialCutCommand)
+module.exports = donkey.commands.add('specialcut', SpecialCutCommand, {accelerator: 'CmdOrCtrl+Shift+X'})
