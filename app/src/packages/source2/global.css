@@ -53,29 +53,40 @@ input {
 input:focus {
     border: 1px solid var(--color-highlight);
 }
+input[type="checkbox"]:focus {
+    border: solid 1px transparent;
+}
 input[type="checkbox"] {
-    border: 1px solid var(--color-border-light);
-    border-radius: 1px;
-    -webkit-appearance: none;
     position: relative;
-    margin: 3px 0.5ex;
-    margin-left: 0px;
-    height: 1.4em;
-    width: 1.4em;
-    vertical-align: middle;
+    margin: 4px 0 0;
+    padding: 0;
+    -webkit-appearance: none;
+    vertical-align: text-bottom;
+    margin-right: 8px;
+}
+input[type="checkbox"]::after {
+    border: 0.1em solid;
+    border-radius: 2px;
+    content: '';
+    display: block;
+    height: 1.1em;
+    transition: 240ms;
+    width: 1.1em;
+    border-color: var(--color-border-light);
 }
 input[type="checkbox"]:checked::before {
-    font-family: "Octicons";
-    font-size: 1.1em;
-    font-weight: lighter;
-    text-align: center;
-    vertical-align: middle;
-    margin-left: 0.05em;
-    line-height: 100%;
-    display: block;
-    content: "\f081";
-    height: 100%;
-    width: 100%;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    position: absolute;
+    left: 0.4em;
+    top: 0.05em;
+    display: table;
+    width: 0.35em;
+    height: 0.85em;
+    border: 0.2em solid var(--color-border-light);
+    border-top: 0;
+    border-left: 0;
+    content: '';
 }
 .dropdown-select {
     background-color: var(--color-bg);

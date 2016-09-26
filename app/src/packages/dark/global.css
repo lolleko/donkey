@@ -10,7 +10,7 @@ input, select {
     font-size: 1em;
     padding: 6px;
     border: solid 1px transparent;
-	border-radius: 2px;
+    border-radius: 2px;
     text-align: start;
     outline-offset: 0;
 }
@@ -20,37 +20,50 @@ option {
 input:focus {
     border: 1px solid var(--color-accent);
 }
+input[type="checkbox"]:focus {
+    border: solid 1px transparent;
+}
 input[type="checkbox"] {
-    border: 1px solid var(--color);
-		border-radius: 1px;
+    position: relative;
+    margin: 4px 0 0;
+    padding: 0;
     -webkit-appearance: none;
-    margin: 0;
-		position: relative;
-    margin: 3px 0.5ex;
-    height: 1.2em;
-    width: 1.2em;
-    vertical-align: middle;
+    vertical-align: text-bottom;
+    margin-right: 8px;
+}
+input[type="checkbox"]::after {
+    border: 0.1em solid;
+    border-radius: 2px;
+    content: '';
+    display: block;
+    height: 0.9em;
+    transition: 240ms;
+    width: 0.9em;
 }
 input[type="checkbox"]:checked::before {
-		font-family: "Octicons";
-		font-size: 1.1em;
-		font-weight: lighter;
-    text-align: center;
-    vertical-align: middle;
-    margin-top: -0.15em;
-    line-height: 100%;
-    display: block;
-    content: "\f03a";
-		height: 100%;
-    width: 100%;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    position: absolute;
+    left: 0.35em;
+    top: 0.05em;
+    display: table;
+    width: 0.3em;
+    height: 0.7em;
+    border: 0.2em solid var(--color-bg);
+    border-top: 0;
+    border-left: 0;
+    content: '';
 }
-input[type="checkbox"]:checked:focus {
+input[type="checkbox"]:checked::after {
     background-color: var(--color-accent);
     border-color: var(--color-accent);
-    color: var(--color);
 }
-input[type="checkbox"]:focus {
-    border-color: var(--color-accent) !important;
+input[type="checkbox"]:disabled:checked::after {
+    background-color:
+    border-color: transparent;
+}
+checkbox-value {
+    padding-left: 4px;
 }
 .tab-bar {
   background-color: var(--color-accent);
@@ -71,8 +84,8 @@ input[type="checkbox"]:focus {
   background-color: var(--color-accent);
   color: var(--color-card-highlight);
 }
-.flag-selector-value-item-checkbox {
-  border-color: var(--color-card) !important;
+.flag-selector-value-item-checkbox::before {
+  border-color: var(--color-card-bg) !important;
 }
 key-value {
   padding-right: 8px;
