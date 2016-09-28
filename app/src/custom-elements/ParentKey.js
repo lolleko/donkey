@@ -87,9 +87,9 @@ class ParentKey extends HTMLElement {
     var inserted
     if (element.nodeName === '#document-fragment') {
       inserted = [].slice.call(element.children)
-      this.insertBefore(element, this.firstChild.nextSibling)
+      this.inner.insertBefore(element, this.inner.firstChild)
     } else {
-      inserted = this.insertBefore(element, this.firstChild.nextSibling)
+      inserted = this.inner.insertBefore(element, this.inner.firstChild)
     }
     return inserted
   }

@@ -131,6 +131,7 @@ class NavigationManager {
   removeDataDialog (kvPath) {
     if (donkey.dialog.showSimpleWarning('Are you sure you want to delete the selected item?', 'You are deleting:\n ' + kvPath)) {
       donkey.files.unlinkData(kvPath)
+      donkey.files.write(kvPath)
     }
   }
 

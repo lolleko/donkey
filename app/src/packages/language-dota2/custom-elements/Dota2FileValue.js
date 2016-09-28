@@ -33,6 +33,8 @@ class Dota2FileValue extends donkey.valueElements.file {
   modfifyResultPath (filePath) {
     // make path relative to defaultPath
     filePath = filePath.replace(this.defaultPath, '')
+    var filePathArr = filePath.split(path.sep)
+    filePath = path.posix.join(...filePathArr)
     // apply possible BaseClass modifications
     return super.modfifyResultPath(filePath)
   }

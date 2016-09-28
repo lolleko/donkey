@@ -125,9 +125,9 @@ class Editor extends HTMLElement {
   }
 
   save () {
-    this.modified = false
     donkey.files.writeData(this.path, donkey.files.nodeToData(this))
     donkey.files.write()
+    this.modified = false
   }
 
   close () {

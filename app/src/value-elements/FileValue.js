@@ -42,7 +42,6 @@ class FileValue extends donkey.basevalue {
   onClick (e) {
     var file = donkey.dialog.showOpenFile(this.defaultPath || this.options.defaultPath, this.options.filters)
     if (file) {
-      this.absolutePath = file
       this.value = this.modfifyResultPath(file)
     }
   }
