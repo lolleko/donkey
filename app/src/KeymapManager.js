@@ -8,6 +8,9 @@ class KeymapManager {
     this.pressed = []
     this.translate = {}
     this.translate['plus'] = '+'
+    this.translate['up'] = 'arrowup'
+    this.translate['down'] = 'arrowdown'
+    this.translate['return'] = 'enter'
   }
 
   get metaPressed () {
