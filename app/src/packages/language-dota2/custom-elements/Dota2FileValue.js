@@ -27,7 +27,10 @@ class Dota2FileValue extends donkey.valueElements.file {
 
   get absolutePath () {
     // only avaliable after attach
-    return path.join(this.defaultPath, this.value)
+    if (this.defaultPath) {
+      return path.join(this.defaultPath, this.value)
+    }
+    return this.value
   }
 
   modfifyResultPath (filePath) {

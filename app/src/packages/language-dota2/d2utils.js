@@ -49,9 +49,19 @@ exports.getAddonName = (filePath) => {
 }
 
 exports.getAddonContentDir = (filePath) => {
-  return path.join(exports.getGameRoot(filePath), 'content', 'dota_addons', exports.getAddonName(filePath))
+  var gameRoot = exports.getGameRoot(filePath)
+  var addonName = exports.getAddonName(filePath)
+  if (!gameRoot || addonName) {
+    return null
+  }
+  return path.join(gameRoot, 'content', 'dota_addons', addonName)
 }
 
 exports.getAddonGameDir = (filePath) => {
-  return path.join(exports.getGameRoot(filePath), 'game', 'dota_addons', exports.getAddonName(filePath))
+  var gameRoot = exports.getGameRoot(filePath)
+  var addonName = exports.getAddonName(filePath)
+  if (!gameRoot || addonName) {
+    return null
+  }
+  return path.join(gameRoot, 'game', 'dota_addons', addonName)
 }
