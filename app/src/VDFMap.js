@@ -1,5 +1,10 @@
 const kvpath = require('./kvpath')
 
+/**
+ * Class that is used to store KVData.
+ * Implements all methods of the js-builtin Map Implementation.
+ * In addtion it features operation to insert via a kvpath.
+ */
 class VDFMap {
   constructor (iterable = []) {
     this._entries = {}
@@ -9,10 +14,19 @@ class VDFMap {
     }
   }
 
+  /**
+   * Get the amount of entries stored in the current instance.
+   * @return {number} the amount of entries.
+   */
   get size () {
     return this._order.length
   }
 
+  /**
+   * Set value at key.
+   * @param  {string} key Unique string identifier.
+   * @param  {any} value The value stored at the key.
+   */
   set (key, value) {
     if (!this.has(key)) {
       this._order.push(key)
@@ -20,6 +34,11 @@ class VDFMap {
     this._entries[key] = value
   }
 
+  /**
+   * Set value at key.
+   * @param  {string} key A path pointing to the value.
+   * @param  {any} value The value stored at the path.
+   */
   setPath (kvPath, value) {
     this._setPath(kvpath.toArray(kvPath), value, this)
   }
@@ -38,10 +57,20 @@ class VDFMap {
     }
   }
 
+  /**
+   * Retrieve value from the key.
+   * @param {string} path The key to retrieve data from.
+   * @return {any} the data stored at the key.
+   */
   get (key) {
     return this._entries[key]
   }
 
+  /**
+   * Retrieve value at path.
+   * @param {string} path The path to retrieve data from.
+   * @return {any} the data stored at the path.
+   */
   getPath (kvPath) {
     return this._getPath(kvpath.toArray(kvPath), this)
   }
@@ -63,10 +92,20 @@ class VDFMap {
     }
   }
 
+  /**
+   * Returns wether the key exists.
+   * @param {string} key The key to check.
+   * @return {boolean} wether the key exists.
+   */
   has (key) {
     return this._entries.hasOwnProperty(key)
   }
 
+  /**
+   * Returns wether the path exists.
+   * @param {string} path The kvpath to check.
+   * @return {boolean} wether the path exists.
+   */
   hasPath (kvPath) {
     if (this.getPath(kvPath)) {
       return true
@@ -75,6 +114,11 @@ class VDFMap {
     }
   }
 
+  /**
+   * Delete the key-value pair from the map.
+   * @param {string} key The key to delete.
+   * @return {any} the deleted value.
+   */
   delete (key) {
     if (this.has(key)) {
       var previous = this._entries[key]
@@ -86,6 +130,11 @@ class VDFMap {
     }
   }
 
+  /**
+   * Delete the key-value pair from the map.
+   * @param {string} path The kvpath to delete.
+   * @return {any} the deleted value.
+   */
   deletePath (kvPath) {
     var pathArr = kvpath.toArray(kvPath)
     var basename = pathArr.pop()
