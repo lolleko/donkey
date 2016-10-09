@@ -1,8 +1,0 @@
-:root {
-    --color: hsla(0, 0%, 82%, 1);
-    --color-bg: hsla(0, 0%, 16%, 1);
-    --color-tab-bg: hsla(0, 0%, 12%, 1);
-    --color-highlight: hsla(45, 85%, 51%, 1);
-    --color-border-light: hsla(0, 0%, 45%, 1);
-    --color-border-dark: hsl(0, 0%, 3%);
-}

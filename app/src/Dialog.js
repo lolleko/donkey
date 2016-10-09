@@ -22,6 +22,20 @@ class Dialog {
     return result === (cancelByDefault ? 1 : 0)
   }
 
+  showSimpleQuestion (message, detail, noByDefault) {
+    var result = dialog.showMessageBox(remote.getCurrentWindow(), {
+      type: 'question',
+      buttons: noByDefault ? ['No', 'Yes'] : ['Yes', 'No'],
+      defaultId: 0,
+      cancelId: noByDefault ? 0 : 1,
+      title: '???',
+      message: message,
+      detail: detail
+    })
+
+    return result === (noByDefault ? 1 : 0)
+  }
+
   showSimpleError (message, detail) {
     var result = dialog.showMessageBox(remote.getCurrentWindow(), {
       type: 'error',

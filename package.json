@@ -37,7 +37,8 @@
             "HTMLElement",
             "donkey",
             "Event",
-            "Option"
+            "Option",
+            "VDFMap"
         ]
     }
 }

@@ -14,6 +14,7 @@ class DonkeyEnviroment {
     // REMINDER: if the donkey global is used in setup
     // not all modules are loaded.
     window.donkey = this
+    window.VDFMap = require('./VDFMap')
 
     // utils
     this.kvpath = require('./kvpath')

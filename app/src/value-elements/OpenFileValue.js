@@ -49,12 +49,24 @@ class OpenFileValue extends donkey.basevalue {
   onClick (e) {
     var fileToOpen = this.getFileToOpen()
 
-    // makesure the main config file exists
+    // Make sure file exists
     try {
       fs.statSync(fileToOpen).isFile()
     } catch (e) {
-      donkey.dialog.showSimpleMessage('The file you are trying to open does not exist', 'You are trying to open \'' + fileToOpen + '\'.')
-      return
+      // File doesn't exist shoudl we create it?
+      var create = donkey.dialog.showSimpleQuestion('The file you are trying to open does not exist. Do you want to create it?', 'You are trying to open \'' + fileToOpen + '\'.')
+      if (!create) {
+      // don' t create file
+        return
+      }
+      try {
+        // try to create file
+        fs.writeFileSync(fileToOpen, '', 'utf8')
+      } catch (e) {
+        // error while creating (invalid path)
+        donkey.dialog.showSimpleError('Failed to create File!', 'Unable to create \'' + fileToOpen + '\'.')
+        return
+      }
     }
 
     var openCmd

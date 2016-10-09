@@ -114,64 +114,27 @@ class FileManager {
   writeData (kvPath, data) {
     var pathArr = kvpath.toArray(kvPath)
     var kvFile = this.openFiles[pathArr[0]]
+
+    // File doesnt exist
     if (!kvFile) {
       kvFile = this.add(pathArr[0])
     }
-    var pointer = kvFile.data
 
+    // Whole File is overwritten
     if (pathArr.length === 1) {
       kvFile.data = data
     } else {
-      for (var i = 1; i < pathArr.length - 1; i++) {
-        if (!pointer.has(pathArr[i])) {
-          pointer.set(pathArr[i], new Map())
-        }
-        pointer = pointer.get(pathArr[i])
-      }
-
-      var basename = pathArr[pathArr.length - 1]
-
-      if (!pointer.has(basename)) {
-        var tempMap = new Map(pointer)
-        pointer.clear()
-        for (var [key, value] of tempMap) {
-          if (basename < key) {
-            pointer.set(basename, data)
-          }
-          pointer.set(key, value)
-        }
-        if (!pointer.has(basename)) {
-          pointer.set(basename, data)
-        }
-      } else {
-        pointer.set(basename, data)
-      }
+    // save data to path
+      kvFile.data.setPath(kvpath.stripfile(kvPath), data)
     }
     kvFile.write()
     donkey.nav.rebuildTreeView()
   }
 
   readData (kvPath) {
-    var pathArr = kvpath.toArray(kvPath)
-    var kvFile = this.openFiles[pathArr.shift()]
-    var pointer = kvFile.data
+    var kvFile = this.openFiles[kvpath.filepath(kvPath)]
 
-    if (pathArr.length === 0) {
-      return pointer
-    }
-
-    for (var i = 0; i < pathArr.length - 1; i++) {
-      if (!pointer.has(pathArr[i])) {
-        return
-      }
-      pointer = pointer.get(pathArr[i])
-    }
-
-    var basename = pathArr[pathArr.length - 1]
-
-    if (pointer.has(basename)) {
-      return pointer.get(basename)
-    }
+    return kvFile.data.getPath(kvpath.stripfile(kvPath))
   }
 
   duplicateData (kvPath) {
@@ -192,35 +155,19 @@ class FileManager {
     var kvFile = this.openFiles[pathArr[0]]
     if (pathArr.length === 1) {
       this.unlink(pathArr[0])
+    } else {
+      kvFile.data.deletePath(kvpath.stripfile(kvPath))
       donkey.nav.rebuildTreeView()
     }
-    var pointer = kvFile.data
-
-    for (var i = 1; i < pathArr.length - 1; i++) {
-      if (!pointer.has(pathArr[i])) {
-        return false
-      }
-      pointer = pointer.get(pathArr[i])
-    }
-
-    var basename = pathArr[pathArr.length - 1]
-
-    if (pointer.has(basename)) {
-      pointer.delete(basename)
-      donkey.nav.rebuildTreeView()
-      return true
-    }
-
-    return false
   }
 
   nodeToData (node) {
-    var result = new Map()
+    var result = new VDFMap()
     if (node.localName === 'parent-key') {
       return result.set(node.key, this._nodeToData(node, result.get(node.key)))
     } else {
       if (node.localName === 'key-value') {
-        return new Map([[node.key, node.value]])
+        return new VDFMap([[node.key, node.value]])
       } else {
         return this._nodeToData(node)
       }
@@ -228,7 +175,7 @@ class FileManager {
   }
 
   _nodeToData (element) {
-    var map = new Map()
+    var map = new VDFMap()
     var children = element.subKVElements
     for (var i = 0; i < children.length; i++) {
       var node = children[i]
@@ -286,16 +233,7 @@ class FileManager {
     } else if (!kvFile) {
       return false
     }
-    var pointer = kvFile.data
-
-    for (var i = 1; i < pathArr.length; i++) {
-      if (!pointer.has(pathArr[i])) {
-        return false
-      }
-      pointer = pointer.get(pathArr[i])
-    }
-
-    return true
+    return kvFile.data.hasPath(kvpath.stripfile(kvPath))
   }
 
   /**

@@ -1,6 +1,6 @@
 /**
  * Base Value this element is used to represent a value of a KeyValue pair.
- * Custom Value Elements should drive from this class.
+ * Custom Value Elements should derive from this class.
  */
 class BaseValue extends HTMLElement {
 

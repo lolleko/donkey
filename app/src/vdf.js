@@ -53,7 +53,7 @@ function _unquotedtostr (line, i) {
 function _parse (stream, ptr) {
   // if stream is invalid bail
   if (!stream) {
-    return [new Map()]
+    return [new VDFMap()]
   }
 
   ptr = ptr || 0
@@ -63,7 +63,7 @@ function _parse (stream, ptr) {
   var lastbrk
   var i = ptr
   var nextIsValue = false
-  var deserialized = new Map()
+  var deserialized = new VDFMap()
 
   while (i < stream.length) {
     var c = stream.substring(i, i + 1)
@@ -169,7 +169,7 @@ function _dump (obj, indent, mult) {
  * @return {Map} sorted map
  */
 function _sortMap (map) {
-  var result = new Map()
+  var result = new VDFMap()
 
   var keys = []
   var parentkeys = []

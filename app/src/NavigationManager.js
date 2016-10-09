@@ -94,7 +94,7 @@ class NavigationManager {
     var filepath = kvpath.filepath(kvPath)
     var kvOnly = kvpath.stripfile(kvPath)
     if (!data) {
-      data = new Map()
+      data = new VDFMap()
     }
     if (typeof data === 'string') {
       data = donkey.lang.getTemplateData(data)
