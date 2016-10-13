@@ -7,6 +7,40 @@ const MenuTemplate = require('./MenuTemplate')
 
 if (require('electron-squirrel-startup')) app.quit()
 
+// Auto Updater
+if (!require('electron-is-dev')) {
+  const autoUpdater = electron.autoUpdater
+  const feedURL = 'http://donkey-download.herokuapp.com/update/' + process.platform + '/' + app.getVersion()
+  const dialog = electron.dialog
+
+  autoUpdater.on('update-available', function () {
+    // console.log('update-available')
+  })
+
+  autoUpdater.on('error', function (err) {
+    dialog.showErrorBox('Auto Updater Error', err)
+  })
+
+  autoUpdater.on('update-downloaded', function (e, releaseNotes, releaseName, releaseDate, updateUrl, quitAndUpdate) {
+    var index = dialog.showMessageBox(BrowserWindow.getFocusedWindow(), {
+      type: 'info',
+      buttons: ['Restart', 'Later'],
+      title: 'Donkey',
+      message: 'A new version has been downloaded. Please restart the application to apply the updates.',
+      detail: releaseName
+    })
+
+    if (index === 1) {
+      return
+    }
+
+    autoUpdater.quitAndInstall()
+  })
+
+  autoUpdater.setFeedURL(feedURL)
+  autoUpdater.checkForUpdates()
+}
+
 function createWindow () {
   var win = new BrowserWindow({
     width: 1260,
