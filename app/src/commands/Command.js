@@ -8,4 +8,5 @@ class Command {
   execute () {}
 }
 
+donkey.commands.commandBase = Command
 module.exports = Command

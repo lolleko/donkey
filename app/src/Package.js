@@ -21,6 +21,12 @@ class Package {
     if (this.isLanguage) {
       this.loadLanguage()
     }
+
+    this.loadCommands()
+
+    this.loadCustomElements()
+
+    this.loadMenus()
   }
 
   get isTheme () {
@@ -35,23 +41,7 @@ class Package {
     var data = JSON.parse(fs.readFileSync(path.join(this.packagePath, this.packageMetaData.langMain)), 'utf8')
     donkey.lang.add(this.packageMetaData.name, data)
 
-    this.loadLanguageMenus()
-
     this.loadLanguageTemplates()
-
-    this.loadLanguageElements()
-  }
-
-  loadLanguageMenus () {
-    var menus = []
-    try {
-      menus = fs.readdirSync(path.join(this.packagePath, '/menus'))
-    } catch (e) {
-      console.log('No menus found in ' + this.packagePath + '.')
-    }
-    for (var j = 0; j < menus.length; j++) {
-      require(path.join(this.packagePath, '/menus', menus[j]))
-    }
   }
 
   loadLanguageTemplates () {
@@ -66,7 +56,19 @@ class Package {
     }
   }
 
-  loadLanguageElements () {
+  loadMenus () {
+    var menus = []
+    try {
+      menus = fs.readdirSync(path.join(this.packagePath, '/menus'))
+    } catch (e) {
+      console.log('No menus found in ' + this.packagePath + '.')
+    }
+    for (var j = 0; j < menus.length; j++) {
+      require(path.join(this.packagePath, '/menus', menus[j]))
+    }
+  }
+
+  loadCustomElements () {
     var elements = []
     try {
       elements = fs.readdirSync(path.join(this.packagePath, '/custom-elements'))
@@ -75,6 +77,18 @@ class Package {
     }
     for (var j = 0; j < elements.length; j++) {
       require(path.join(this.packagePath, '/custom-elements', elements[j]))
+    }
+  }
+
+  loadCommands () {
+    var elements = []
+    try {
+      elements = fs.readdirSync(path.join(this.packagePath, '/commands'))
+    } catch (e) {
+      console.log('No commands found in ' + this.packagePath + '.')
+    }
+    for (var j = 0; j < elements.length; j++) {
+      require(path.join(this.packagePath, '/commands', elements[j]))
     }
   }
 

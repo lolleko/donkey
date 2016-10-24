@@ -15,10 +15,7 @@ class SpecialDeleteCommand extends UndoableCommand {
 
   execute () {
     if (this.element) {
-      this.parentElement = this.element.previousSibling
-      if (!this.parentElement || (this.parentElement.tagName !== 'PARENT-KEY' && this.parentElement.tagName !== 'KEY-VALUE')) {
-        this.parentElement = this.element.parentNode
-      }
+      this.parentElement = this.element.parentKVElement
       this.element = this.element.remove()
     }
   }

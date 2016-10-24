@@ -20,4 +20,5 @@ class UndoableCommand extends Command {
   merge (prevCmd) {}
 }
 
+donkey.commands.undoCommandBase = UndoableCommand
 module.exports = UndoableCommand

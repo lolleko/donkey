@@ -1,7 +1,7 @@
 const UndoableCommand = require('./UndoableCommand')
 
 class AddParentKeyCommand extends UndoableCommand {
-  constructor (element) {
+  constructor (element, name) {
     super()
 
     if (!element) {
@@ -12,13 +12,14 @@ class AddParentKeyCommand extends UndoableCommand {
       }
     } else {
       this.element = element
+      this.name = name || 'NEWKEY'
     }
   }
 
   execute () {
     if (this.element) {
       var pk = document.createElement('parent-key')
-      pk.key = 'NEWKEY'
+      pk.key = this.name
       this.addedElement = this.element.insert(pk)
       pk.focus()
       pk.select()

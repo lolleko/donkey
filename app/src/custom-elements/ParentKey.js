@@ -83,6 +83,22 @@ class ParentKey extends HTMLElement {
     return this.inner.children
   }
 
+  get size () {
+    return this.inner.children.length
+  }
+
+  get parentKVElement () {
+    if (this.parentElement === donkey.editor) {
+      return this.parentElement
+    } else {
+      if (this.previousElementSibling.tagName === 'KEY-VALUE') {
+        return this.previousElementSibling
+      } else {
+        return this.parentElement.parentElement
+      }
+    }
+  }
+
   insert (element) {
     var inserted
     if (element.nodeName === '#document-fragment') {
@@ -90,6 +106,28 @@ class ParentKey extends HTMLElement {
       this.inner.insertBefore(element, this.inner.firstChild)
     } else {
       inserted = this.inner.insertBefore(element, this.inner.firstChild)
+    }
+    return inserted
+  }
+
+  insertAtEnd (element) {
+    var inserted
+    if (element.nodeName === '#document-fragment') {
+      inserted = [].slice.call(element.children)
+      this.inner.insertBefore(element, this.inner.lastChild.nextSibling)
+    } else {
+      inserted = this.inner.insertBefore(element, this.inner.lastChild.nextSibling)
+    }
+    return inserted
+  }
+
+  insertAfter (element, referenceElemenet) {
+    var inserted
+    if (element.nodeName === '#document-fragment') {
+      inserted = [].slice.call(element.children)
+      this.inner.insertBefore(element, referenceElemenet.nextSibling)
+    } else {
+      inserted = this.inner.insertBefore(element, referenceElemenet.nextSibling)
     }
     return inserted
   }

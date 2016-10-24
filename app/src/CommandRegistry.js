@@ -34,15 +34,17 @@ class CommandRegistry {
       }
       var CmdProto = command.proto
       if (command.executeGlobal) {
-        new CmdProto(...args).execute()
+        var cmd = new CmdProto(...args)
+        cmd.execute()
+        return command
       } else if (donkey.editor) {
-        donkey.editor.execCommand(new CmdProto(...args))
+        return donkey.editor.execCommand(new CmdProto(...args))
       }
     }
   }
 
   get (name) {
-    return this.commands[name]
+    return this.commands[name].proto
   }
 }
 

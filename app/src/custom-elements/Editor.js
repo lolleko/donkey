@@ -100,6 +100,8 @@ class Editor extends HTMLElement {
       this.modified = true
       this.redoStack = []
     }
+
+    return cmd
   }
 
   undo () {

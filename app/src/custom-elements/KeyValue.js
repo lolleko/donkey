@@ -56,6 +56,18 @@ class KeyValue extends HTMLElement {
     return this.valueElement.dataset.value
   }
 
+  get parentKVElement () {
+    if (this.parentElement === donkey.editor) {
+      return this.parentElement
+    } else {
+      if (this.previousElementSibling.tagName === 'KEY-VALUE') {
+        return this.previousElementSibling
+      } else {
+        return this.parentElement.parentElement
+      }
+    }
+  }
+
   insert (element) {
     var inserted
     if (element.nodeName === '#document-fragment') {
