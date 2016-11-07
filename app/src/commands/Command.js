@@ -1,3 +1,21 @@
+/**
+ * Abstract command class.
+ *
+ * Built-In Implementations:
+ * - [CloseTabCommand](#closetab)
+ * - [CopyCommand](#copycommand)
+ * - [CutCommand](#cutcommand)
+ * - [NewFileCommand](#newfilecommand)
+ * - [OpenDirectoryCommand](#opendirectorycommand)
+ * - [PasteCommand](#pastecommand)
+ * - [RedoCommand](#redocommand)
+ * - [SaveFileCommand](#savefilecommand)
+ * - [SpecialCopyCommand](#specialcopycommand)
+ * - [UndoableCommand](#undoablecommand)
+ * - [UndoCommand](#undocommand)
+ * - [ZoomInCommand](#zoomincommand)
+ * - [ZoomOutCommand](#zoomoutcommand)
+ */
 class Command {
 
   constructor () {
@@ -5,8 +23,10 @@ class Command {
     this.isManipulator = false
   }
 
+  /**
+   * Execute the command.
+   */
   execute () {}
 }
 
-donkey.commands.commandBase = Command
 module.exports = Command

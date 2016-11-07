@@ -1,5 +1,4 @@
 const clipboard = require('electron').clipboard
-const Command = require('./Command')
 
 class SpecialCopyCommand extends Command {
   constructor (element) {

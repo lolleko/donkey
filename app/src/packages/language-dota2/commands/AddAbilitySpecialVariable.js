@@ -1,4 +1,4 @@
-class Dota2AddAbilitySpecialVariable extends donkey.commands.undoCommandBase {
+class Dota2AddAbilitySpecialVariable extends Command {
   constructor (element, name) {
     super()
 

@@ -1,6 +1,7 @@
-class SelectValue extends donkey.basevalue {
+class SelectValue extends BaseValue {
 
   createdCallback () {
+    this.classList.add('value')
     this.classList.add('dropdown-container')
 
     var input = document.createElement('autocomplete-input')

@@ -1,5 +1,3 @@
-const Command = require('./Command')
-
 class ZoomInCommand extends Command {
 
   execute () {

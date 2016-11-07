@@ -1,6 +1,7 @@
-class FlagSelectorValue extends donkey.basevalue {
+class FlagSelectorValue extends BaseValue {
 
   createdCallback () {
+    this.classList.add('value')
     this.classList.add('dropdown-container')
 
     var input = document.createElement('input')

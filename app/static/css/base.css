@@ -231,6 +231,21 @@ key-value, parent-key {
 .editor>key-value, .editor>parent-key {
     padding-left: 0px;
 }
+donkey-comment {
+    display: block;
+    padding-left: 24px;
+    height: 4em;
+}
+.comment-header {
+  display: inline-block;
+  vertical-align: top;
+  width: 20px;
+  font-size: 2em;
+  font-weight: 400;
+}
+.comment-textarea {
+  width: calc(100% - 24px);
+}
 
 /* Content */
 
@@ -289,7 +304,7 @@ autocomplete-input {
 }
 .input-button {
     position: absolute;
-    top: 0.2em;
+    top: 0.4em;
     right: 0em;
     display: inline-block;
     cursor: pointer;

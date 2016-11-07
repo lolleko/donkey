@@ -1,5 +1,3 @@
-const Command = require('./Command')
-
 class UndoableCommand extends Command {
   constructor () {
     super()
@@ -20,5 +18,4 @@ class UndoableCommand extends Command {
   merge (prevCmd) {}
 }
 
-donkey.commands.undoCommandBase = UndoableCommand
 module.exports = UndoableCommand

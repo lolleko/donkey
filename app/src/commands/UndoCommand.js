@@ -1,5 +1,3 @@
-const Command = require('./Command')
-
 class UndoCommand extends Command {
   execute () {
     if (donkey.editor) {

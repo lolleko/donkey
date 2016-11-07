@@ -1,13 +1,13 @@
-/**
- * Proxy for managing and modifing files.
- */
-
 const KVFile = require('./KVFile')
 const kvpath = require('./kvpath')
 const fs = require('fs')
 const path = require('path')
-const vdf = require('./vdf')
+const uuid = require('node-uuid')
 
+/**
+ * Proxy for managing and modifing files.
+ * An instance of this class is always available at `donkey.files` .
+ */
 class FileManager {
   constructor () {
     /**
@@ -18,10 +18,43 @@ class FileManager {
     this.openFiles = {}
 
     /**
+     * An object containing all available parser.
+     * @type {Object}
+     */
+    this.parser = {}
+
+    /**
      * A string storing the filepath of the file that is currently being edited.
      * @type {string}
      */
-    this.activeFile = ''
+    this.activeFilePath
+
+    this.KVMACRO_COMMENT = 'KVMACRO_COMMENT'
+  }
+
+  /**
+   * Stores the active file
+   * @type {KVFile} file
+   */
+  get activeFile () {
+    return this.openFiles[this.activeFilePath]
+  }
+
+  set activeFile (path) {
+    this.activeFilePath = kvpath.filepath(path)
+    donkey.lang.setActiveCategory(this.activeFile.category)
+  }
+
+  /**
+   * Returns the active file's filename.
+   * @return {string} filename
+   */
+  get activeName () {
+    return kvpath.filename(this.activeFilePath)
+  }
+
+  get activeFormat () {
+    return this.activeFile.format
   }
 
   /**
@@ -101,7 +134,7 @@ class FileManager {
    * @param {string} path the path/name of the file.
    */
   write (path) {
-    path = path || this.activeFile
+    path = path || this.activeFilePath
     path = kvpath.filepath(path)
     this.openFiles[path].write()
   }
@@ -166,7 +199,9 @@ class FileManager {
     if (node.localName === 'parent-key') {
       return result.set(node.key, this._nodeToData(node, result.get(node.key)))
     } else {
-      if (node.localName === 'key-value') {
+      if (node.localName === 'donkey-comment') {
+        return new VDFMap([[this.KVMACRO_COMMENT + '<' + uuid.v4() + '>', node.value]])
+      } else if (node.localName === 'key-value') {
         return new VDFMap([[node.key, node.value]])
       } else {
         return this._nodeToData(node)
@@ -179,7 +214,9 @@ class FileManager {
     var children = element.subKVElements
     for (var i = 0; i < children.length; i++) {
       var node = children[i]
-      if (node.localName === 'key-value') {
+      if (node.localName === 'donkey-comment') {
+        map.set(this.KVMACRO_COMMENT + '<' + uuid.v4() + '>', node.value)
+      } else if (node.localName === 'key-value') {
         map.set(node.key, node.value)
       } else if (node.localName === 'parent-key') {
         map.set(node.key, this._nodeToData(node))
@@ -192,7 +229,11 @@ class FileManager {
     var fragment = document.createDocumentFragment()
 
     for (var [key, value] of data) {
-      if (typeof value === 'string') {
+      if (key.includes(this.KVMACRO_COMMENT)) {
+        var comment = document.createElement('donkey-comment')
+        comment.value = value
+        fragment.appendChild(comment)
+      } else if (typeof value === 'string') {
         var keyValue = document.createElement('key-value')
         keyValue.key = key
         keyValue.value = value
@@ -208,11 +249,11 @@ class FileManager {
   }
 
   KVstringToNode (string) {
-    return this.dataToNode(vdf.parse(string))
+    return this.dataToNode(this.parse(string))
   }
 
   nodeToKVString (node) {
-    return vdf.dump(this.nodeToData(node))
+    return this.stringify(this.nodeToData(node))
   }
 
   renameData (kvPathOld, newPath) {
@@ -253,41 +294,43 @@ class FileManager {
     return this.openFiles[path]
   }
 
-  /**
-   * Sets the currently edited file
-   * @param {string} path the kvpath or filepath
-   */
-  setActive (path) {
-    this.activeFile = kvpath.filepath(path)
-    donkey.lang.setActiveCategory(this.getActive().category)
+  registerParser (identifier, Prototype) {
+    this.parser[identifier] = new Prototype()
+    return Prototype
+  }
+
+  getParser (identifier) {
+    return this.parser[identifier]
+  }
+
+  detectFormat (path) {
+    var possibleFormats = []
+    for (var parserIdentifier in this.parser) {
+      if (this.parser[parserIdentifier].detect(path)) {
+        try {
+          this.parser[parserIdentifier].parse(fs.readFileSync(path, 'utf8'))
+          possibleFormats.push(parserIdentifier)
+        } catch (e) {}
+      }
+    }
+    // TODO dialog if more than one possible
+    return possibleFormats[0]
+  }
+
+  parse (text, identifier) {
+    identifier = identifier || this.activeFormat
+    return this.parser[identifier].parse(text)
+  }
+
+  stringify (data, identifier) {
+    identifier = identifier || this.activeFormat
+    return this.parser[identifier].stringify(data)
   }
 
   /**
-   * Returns the active file.
-   * @return {KVFile} file
-   */
-  getActive () {
-    return this.openFiles[this.activeFile]
-  }
-
-  /**
-   * Returns the active file's filepath.
-   * @return {string} filepath
-   */
-  getActivePath () {
-    return this.activeFile
-  }
-
-  /**
-   * Returns the active file's filename.
-   * @return {string} filename
-   */
-  getActiveName () {
-    return kvpath.filename(this.activeFile)
-  }
-
-  /**
-   *
+   * Check if the file at the path exists.
+   * @param  {String} path Path to check.
+   * @return {Boolean} True if the file exists, false if not.
    */
   fileExists (path) {
     var isFile

@@ -1,5 +1,3 @@
-const Command = require('./Command')
-
 class NewFileCommand extends Command {
   constructor (filePath) {
     super()

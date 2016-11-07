@@ -24,8 +24,8 @@ class VDFMap {
 
   /**
    * Set value at key.
-   * @param  {string} key Unique string identifier.
-   * @param  {any} value The value stored at the key.
+   * @param {String} key Unique string identifier.
+   * @param {any} value The value stored at the key.
    */
   set (key, value) {
     if (!this.has(key)) {
@@ -36,8 +36,8 @@ class VDFMap {
 
   /**
    * Set value at key.
-   * @param  {string} key A path pointing to the value.
-   * @param  {any} value The value stored at the path.
+   * @param {String} key A path pointing to the value.
+   * @param {any} value the value stored at the path.
    */
   setPath (kvPath, value) {
     this._setPath(kvpath.toArray(kvPath), value, this)
@@ -59,7 +59,7 @@ class VDFMap {
 
   /**
    * Retrieve value from the key.
-   * @param {string} path The key to retrieve data from.
+   * @param  {String} path The key to retrieve data from.
    * @return {any} the data stored at the key.
    */
   get (key) {
@@ -68,7 +68,7 @@ class VDFMap {
 
   /**
    * Retrieve value at path.
-   * @param {string} path The path to retrieve data from.
+   * @param  {String} path The path to retrieve data from.
    * @return {any} the data stored at the path.
    */
   getPath (kvPath) {
@@ -94,7 +94,7 @@ class VDFMap {
 
   /**
    * Returns wether the key exists.
-   * @param {string} key The key to check.
+   * @param  {String} key The key to check.
    * @return {boolean} wether the key exists.
    */
   has (key) {
@@ -103,7 +103,7 @@ class VDFMap {
 
   /**
    * Returns wether the path exists.
-   * @param {string} path The kvpath to check.
+   * @param  {String} path The kvpath to check.
    * @return {boolean} wether the path exists.
    */
   hasPath (kvPath) {
@@ -116,7 +116,7 @@ class VDFMap {
 
   /**
    * Delete the key-value pair from the map.
-   * @param {string} key The key to delete.
+   * @param {String} key The key to delete.
    * @return {any} the deleted value.
    */
   delete (key) {
@@ -132,7 +132,7 @@ class VDFMap {
 
   /**
    * Delete the key-value pair from the map.
-   * @param {string} path The kvpath to delete.
+   * @param {String} path The kvpath to delete.
    * @return {any} the deleted value.
    */
   deletePath (kvPath) {
@@ -210,17 +210,31 @@ class VDFMap {
     }
   }
 
+  /**
+   * Returns a new Iterator object that contains **an array of [key, value]**
+   * for each element in the Map object in insertion order.
+   */
   * entries () {
     for (var i = 0; i < this._order.length; i++) {
       var key = this._order[i]
       yield [key, this._entries[key]]
     }
   }
+
+  /**
+   * Returns a new Iterator object that contains the **keys**
+   * for each element in the Map object in insertion order.
+   */
   * keys () {
     for (var i = 0; i < this._order.length; i++) {
       yield this._order[i]
     }
   }
+
+  /**
+   * Returns a new Iterator object that contains the **values**
+   * for each element in the Map object in insertion order.
+   */
   * values () {
     for (var i = 0; i < this._order.length; i++) {
       yield this._entries[this._order[i]]

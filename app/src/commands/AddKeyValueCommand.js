@@ -1,5 +1,3 @@
-const UndoableCommand = require('./UndoableCommand')
-
 class AddKeyValueCommand extends UndoableCommand {
   constructor (element) {
     super()

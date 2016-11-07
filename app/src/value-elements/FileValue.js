@@ -1,7 +1,8 @@
 const path = require('path')
 
-class FileValue extends donkey.basevalue {
+class FileValue extends BaseValue {
   createdCallback () {
+    this.classList.add('value')
     this.classList.add('file-value')
     this.classList.add('value-with-button')
 

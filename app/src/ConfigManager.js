@@ -2,6 +2,11 @@ const fs = require('fs')
 const path = require('path')
 const PathWatcher = require('pathwatcher')
 
+/**
+ * Manages the users configuration in `AppData`/donkey. <br>
+ * Uses dot notation to read and modify the config.json file.
+ * An instance of this object is stored at `donkey.config`
+ */
 class ConfigManager {
   constructor () {
     this.appData = require('electron').remote.app.getPath('userData')
@@ -25,6 +30,9 @@ class ConfigManager {
     this.read()
   }
 
+  /**
+   * Write the current config Object to the JSON file.
+   */
   write () {
     this.writing = true
     fs.writeFile(this.configPath, JSON.stringify(this.configObj), () => {
@@ -32,10 +40,16 @@ class ConfigManager {
     })
   }
 
+  /**
+   * Parse the contents of the config JSON file to an Object.
+   */
   read () {
     this.configObj = JSON.parse(fs.readFileSync(this.configPath, 'utf8'))
   }
 
+  /**
+   * Reload the config. This will read the json file and fire events for changed values.
+   */
   reload () {
     if (this.writing) {
       return
@@ -54,6 +68,11 @@ class ConfigManager {
     }
   }
 
+  /**
+   * Set a value
+   * @param {String} objPath The path to the value.
+   * @param {any} value The value that should be set at the path.
+   */
   set (objPath, value) {
     var oldVal = this.get(objPath)
     this._set(objPath.split('.'), value, this.configObj)
@@ -77,6 +96,11 @@ class ConfigManager {
     }
   }
 
+  /**
+   * Retrieve the value at the provided path.
+   * @param  {String} objPath The path to retrieve the value from.
+   * @return {any} The value at the path.
+   */
   get (objPath) {
     return this._get(objPath.split('.'), this.configObj)
   }
@@ -95,6 +119,11 @@ class ConfigManager {
     }
   }
 
+  /**
+   * Check if a value is set at the provided path.
+   * @param  {String} objPath The path to check.
+   * @return {boolean} Wether the value is set or not.
+   */
   has (objPath) {
     if (this._get(objPath.split('.'), this.configObj)) {
       return true
@@ -103,6 +132,15 @@ class ConfigManager {
     }
   }
 
+  /**
+   * Listen to config changes.
+   * @example
+   * donkey.config.onChange('donkey.theme', (oldVal, newVal) => {
+   *   // Change theme
+   * })
+   * @param {String} objPath The path to listen for.
+   * @param {Function} callback The callback that will be fired on changes.
+   */
   onChange (objPath, callback) {
     if (!this.listeners[objPath]) {
       this.listeners[objPath] = []
@@ -110,6 +148,12 @@ class ConfigManager {
     this.listeners[objPath].push(callback)
   }
 
+  /**
+   * Called internally when an value changes.
+   * @param {String} objPath The path that changed.
+   * @param {any} oldVal The old value.
+   * @param {any} newVal The new value.
+   */
   emitChange (objPath, oldVal, newVal) {
     var listenerCallbacks = this.listeners[objPath]
     if (listenerCallbacks) {

@@ -1,10 +1,10 @@
 /**
  * Abstract parser class
  */
-class KVThreeParser {
+class JSONParser extends Parser {
 
   get langIdentifier () {
-    return 'kv3'
+    return 'json'
   }
 
   parse (text) {
@@ -16,4 +16,4 @@ class KVThreeParser {
   }
 }
 
-module.exports = KVThreeParser
+module.exports = JSONParser

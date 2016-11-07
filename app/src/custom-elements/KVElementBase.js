@@ -1,8 +1,8 @@
-class KVElementBase {
+class KVElementBase extends HTMLElement {
   constructor () {
-
+    super()
+    this.notUseless = true
   }
-
 
   insertBeforeKVE () {
 
@@ -24,3 +24,5 @@ class KVElementBase {
 
   }
 }
+
+module.exports = KVElementBase

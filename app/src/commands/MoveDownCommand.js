@@ -1,5 +1,6 @@
-const UndoableCommand = require('./UndoableCommand')
-
+/**
+ * Moves the active KV ELement down.
+ */
 class MoveDownCommand extends UndoableCommand {
   constructor (element) {
     super()

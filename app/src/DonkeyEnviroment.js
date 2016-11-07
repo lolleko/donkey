@@ -15,13 +15,12 @@ class DonkeyEnviroment {
     // not all modules are loaded.
     window.donkey = this
     window.VDFMap = require('./VDFMap')
+    window.Parser = require('./Parser')
+    window.Command = require('./commands/Command')
+    window.UndoableCommand = require('./commands/UndoableCommand')
+    window.BaseValue = require('./custom-elements/BaseValue')
 
-    // utils
-    this.kvpath = require('./kvpath')
-    this.vdf = require('./vdf')
     this.valueElements = {}
-    this.valueElements.base = require('./value-elements/BaseValue')
-    this.basevalue = this.valueElements.base
     this.valueElements.autocomplete = require('./value-elements/AutocompleteValue')
     this.valueElements.checkbox = require('./value-elements/CheckBoxValue')
     this.valueElements.file = require('./value-elements/FileValue')

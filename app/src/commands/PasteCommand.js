@@ -1,7 +1,5 @@
-const Command = require('./Command')
-
 /**
- * Binding for the builtin paste command.
+ * Binding for the chrome-builtin paste command.
  */
 class PasteCommand extends Command {
   execute () {

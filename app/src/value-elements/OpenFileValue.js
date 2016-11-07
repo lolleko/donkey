@@ -1,7 +1,8 @@
 const fs = require('fs')
 
-class OpenFileValue extends donkey.basevalue {
+class OpenFileValue extends BaseValue {
   createdCallback () {
+    this.classList.add('value')
     this.classList.add('open-file-value')
     this.classList.add('value-with-button')
 

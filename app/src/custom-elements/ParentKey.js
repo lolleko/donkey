@@ -51,7 +51,11 @@ class ParentKey extends HTMLElement {
   attachedCallback () {
     if (this.data) {
       for (var [key, value] of this.data) {
-        if (typeof value === 'string') {
+        if (key.includes(donkey.files.KVMACRO_COMMENT)) {
+          var comment = document.createElement('donkey-comment')
+          comment.value = value
+          this.inner.appendChild(comment)
+        } else if (typeof value === 'string') {
           var keyValue = document.createElement('key-value')
           keyValue.key = key
           keyValue.value = value
@@ -91,11 +95,7 @@ class ParentKey extends HTMLElement {
     if (this.parentElement === donkey.editor) {
       return this.parentElement
     } else {
-      if (this.previousElementSibling.tagName === 'KEY-VALUE') {
-        return this.previousElementSibling
-      } else {
-        return this.parentElement.parentElement
-      }
+      return this.previousElementSibling || this.parentElement.parentElement
     }
   }
 

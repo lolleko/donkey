@@ -1,5 +1,3 @@
-const Command = require('./Command')
-
 class OpenFileCommand extends Command {
   constructor (files) {
     super()

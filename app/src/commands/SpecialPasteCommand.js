@@ -1,5 +1,4 @@
 const clipboard = require('electron').clipboard
-const UndoableCommand = require('./UndoableCommand')
 
 class SpecialPasteCommand extends UndoableCommand {
   constructor (element) {

@@ -1,5 +1,4 @@
 const Menu = require('electron').remote.Menu
-const vdf = require('./vdf')
 
 class LanguageManager {
   constructor () {
@@ -244,9 +243,9 @@ class LanguageManager {
     }
   }
 
-  registerTemplate (templateID, templateString) {
+  registerTemplate (templateID, templateString, langIdentifier) {
     this.templates[templateID] = {
-      data: vdf.parse(templateString),
+      data: donkey.files.parse(templateString, langIdentifier),
       string: templateString
     }
   }

@@ -2,9 +2,11 @@
  * Simple autocomplete value,
  * that can be used to show suggestion while inputing a value
  */
-class AutocompleteValue extends window.donkey.basevalue {
+class AutocompleteValue extends BaseValue {
 
   createdCallback () {
+    this.classList.add('value')
+
     var input = document.createElement('autocomplete-input')
     // TODO refactor once webcomponents v1
     input.classList.add('value-input')

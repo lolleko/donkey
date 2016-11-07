@@ -1,5 +1,6 @@
-class CheckBoxValue extends donkey.basevalue {
+class CheckBoxValue extends BaseValue {
   createdCallback () {
+    this.classList.add('value')
     this.classList.add('checkbox-value')
 
     var checkbox = document.createElement('input')

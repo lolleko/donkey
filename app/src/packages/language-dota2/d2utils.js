@@ -1,6 +1,6 @@
-/*
-  Module that provides utility functions.
-  To retrieve dota addon related paths from an absolute path.
+/**
+ * Module that provides utility functions.
+ * To retrieve dota addon related paths from an absolute path.
  */
 
 const path = require('path')

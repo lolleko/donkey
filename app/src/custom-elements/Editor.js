@@ -7,7 +7,6 @@ class Editor extends HTMLElement {
     this.selection = []
     this.undoStack = []
     this.redoStack = []
-    donkey.editor = this
   }
 
   get isEditor () {
@@ -47,7 +46,7 @@ class Editor extends HTMLElement {
       donkey.nav.closeTab(this.path)
     } else {
       var data = donkey.files.readData(this.path)
-      this.data = data
+      this.kvData = data
       this.innerHTML = ''
       this.appendChild(donkey.files.dataToNode(data))
     }

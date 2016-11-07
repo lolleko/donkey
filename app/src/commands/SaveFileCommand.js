@@ -1,5 +1,3 @@
-const Command = require('./Command')
-
 class SaveFileCommand extends Command {
 
   execute () {

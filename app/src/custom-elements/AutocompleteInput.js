@@ -1,23 +1,13 @@
 /**
- * This class uses awesomplete.js's code as base.
- * See url for original code and license:
- * @author Lea Verou http://leaverou.github.io/awesomplete
- * MIT license
- *
- * MODIFIED by https://github.com/lolleko
- *
  * This class creates an input that features a autocomplete list.
  * The possible suggestions can be set via the values property.
  * It is possible to use an array aswell as an function that returns an array.
  *
- * NOTE: TL;DR Can be used as a normal input element.
- *       It's hacked to behave like an input element,
- *       it acutally isn't since extending,
- *       HTMLInputElement directly is not possible right now (Chrome53).
- *       It only supports the setting of the value attribute.
- *       All input related events will be fired.
- *       TODO: Should be reimplemented once
- *             electron upgrades to chrome 54
+ * This class uses awesomplete.js's code as base, but is heavily modified. <br>
+ * Original code and license: <br>
+ * Lea Verou http://leaverou.github.io/awesomplete (MIT license)
+ *
+ * TODO: Upgrade with chrome 54
  */
 
 class AutocompleteInput extends HTMLElement {

@@ -1,5 +1,3 @@
-const UndoableCommand = require('./UndoableCommand')
-
 class SpecialDeleteCommand extends UndoableCommand {
   constructor (element) {
     super()

@@ -8,6 +8,7 @@ class BaseValue extends HTMLElement {
     var input = document.createElement('input')
     input.addEventListener('input', this, false)
     input.classList.add('value-input')
+    this.classList.add('value')
     this.appendChild(input)
     this.input = input
   }

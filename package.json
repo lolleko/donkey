@@ -38,7 +38,11 @@
             "donkey",
             "Event",
             "Option",
-            "VDFMap"
+            "VDFMap",
+            "Parser",
+            "BaseValue",
+            "Command",
+            "UndoableCommand"
         ]
     }
 }

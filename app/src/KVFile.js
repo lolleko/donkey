@@ -1,6 +1,5 @@
 const path = require('path')
 const fs = require('fs')
-const vdf = require('./vdf')
 
 /**
  * Class that represents a file on the system.
@@ -20,8 +19,12 @@ class KVFile {
       fs.writeFileSync(this.path, '', 'utf8')
     }
 
+    this.textContent = fs.readFileSync(this.path, 'utf8')
+
+    this.format = donkey.files.detectFormat(this.path)
+
     this.stats = fs.statSync(this.path)
-    this.data = vdf.parse(fs.readFileSync(this.path, 'utf8'))
+    this.data = donkey.files.parse(this.textContent, this.format)
     this.category = donkey.lang.detectCategory(this.data)
   }
 
@@ -29,7 +32,7 @@ class KVFile {
    * Write the current data to the file.
    */
   write () {
-    var vdfDump = vdf.dump(this.data)
+    var vdfDump = donkey.files.stringify(this.data, this.format)
 
     fs.writeFile(this.path, vdfDump, (err) => {
       if (err) throw err

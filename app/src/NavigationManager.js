@@ -194,7 +194,7 @@ class NavigationManager {
     var that = this
     setTimeout(function () {
       if (!that.openTabs[kvPath]) {
-        donkey.files.setActive(kvPath)
+        donkey.files.activeFile = kvPath
         var tabItem = document.createElement('tab-item')
 
         tabItem.path = kvPath
@@ -206,6 +206,7 @@ class NavigationManager {
         that.openTabs[kvPath] = tabItem
         that.openTabs[kvPath].show()
         that.activeTab = that.openTabs[kvPath]
+        donkey.editor = that.activeTab.editor
         that.setFooterPathText(kvPath)
       } else {
         that.selectTab(kvPath)
@@ -216,7 +217,7 @@ class NavigationManager {
   selectTab (path) {
     for (var tabPath in this.openTabs) {
       if (path === tabPath) {
-        donkey.files.setActive(tabPath)
+        donkey.files.activeFile = tabPath
         this.openTabs[tabPath].show()
         this.activeTab = this.openTabs[tabPath]
         donkey.editor = this.activeTab.editor

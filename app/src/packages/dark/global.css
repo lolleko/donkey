@@ -2,7 +2,7 @@ body {
   background-color: var(--color-bg);
   color: var(--color);
 }
-input, select {
+input, select, textarea {
     background: none;
     color: inherit;
     outline: none;
@@ -17,7 +17,7 @@ input, select {
 option {
     color: var(--color-card);
 }
-input:focus {
+input:focus, textarea:focus {
     border: 1px solid var(--color-accent);
 }
 input[type="checkbox"]:focus {
@@ -65,6 +65,9 @@ input[type="checkbox"]:disabled:checked::after {
 checkbox-value {
     padding-left: 4px;
 }
+.search-input {
+  border-radius: 0;
+}
 .tab-bar {
   background-color: var(--color-accent);
   color: var(--color-card-highlight);
@@ -87,8 +90,12 @@ checkbox-value {
 .flag-selector-value-item-checkbox::before {
   border-color: var(--color-card-bg) !important;
 }
-key-value {
+key-value, donkey-comment {
   padding-right: 8px;
+}
+.comment-textarea {
+    font-style: italic;
+    font-weight: 600;
 }
 .kv-data-container::before {
     content: ' ';
@@ -97,7 +104,6 @@ key-value {
     width: 300%;
     left: -50%;
     top: 0;
-    height: 100%;
     border-bottom: 1px solid var(--color-transparent-border);
 }
 .new-data-dialog {

@@ -1,5 +1,7 @@
-const UndoableCommand = require('./UndoableCommand')
-
+/**
+ * This command is called everytime a key input element changes it's value.
+ * It should not be executed manually unless you are sure what you are doing.
+ */
 class SaveKeyChangeCommand extends UndoableCommand {
   constructor (element, oldKey) {
     super()

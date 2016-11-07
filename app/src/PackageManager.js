@@ -27,6 +27,12 @@ class PackageManager {
       require(commandPath)
     }
 
+    var parserDir = fs.readdirSync(path.join(__dirname, 'parser'))
+    for (i = 0; i < parserDir.length; i++) {
+      var parserPath = './' + path.join('parser', parserDir[i])
+      require(parserPath)
+    }
+
     this.load()
   }
 

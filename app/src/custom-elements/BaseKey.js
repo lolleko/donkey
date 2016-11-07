@@ -14,6 +14,7 @@ class BaseKey extends HTMLElement {
     }
     input.addEventListener('input', this, false)
     input.classList.add('key-input')
+    this.classList.add('key')
     this.appendChild(input)
     this.input = input
   }

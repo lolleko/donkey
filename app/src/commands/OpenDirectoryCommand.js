@@ -1,5 +1,3 @@
-const Command = require('./Command')
-
 class OpenDirectoryCommand extends Command {
   constructor (files) {
     super()

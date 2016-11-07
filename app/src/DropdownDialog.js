@@ -1,5 +1,5 @@
-class InputDialog {
-  constructor (title, detail, placeholder, callback) {
+class DropdownDialog {
+  constructor (title, options, placeholder, callback) {
     this.callback = callback
 
     var container = document.createElement('div')
@@ -11,28 +11,27 @@ class InputDialog {
 
     container.appendChild(header)
 
-    var detailText = document.createElement('div')
-    detailText.classList.add('new-data-dialog-detail')
-    detailText.innerHTML = detail
+    var select = document.createElement('select')
+    select.classList.add('new-data-dialog-input')
+    select.value = placeholder
 
-    container.appendChild(detailText)
+    for (var i = 0; i < options.length; i++) {
+      var opt = new Option(options[i], options[i])
+      select.options.add(opt)
+    }
 
-    var input = document.createElement('input')
-    input.classList.add('new-data-dialog-input')
-    input.value = placeholder
+    this.select = select
+
+    container.appendChild(select)
+
     document.addEventListener('keydown', this, false)
-
-    this.input = input
-
-    container.appendChild(input)
-
     document.addEventListener('click', this)
 
     document.body.appendChild(container)
 
     this.element = container
 
-    input.focus()
+    select.focus()
   }
 
   remove () {
@@ -61,7 +60,7 @@ class InputDialog {
   onKeyDown (e) {
     var c = e.keyCode
     if (c === 13) {
-      this.callback(this.input.value)
+      this.callback(this.select.value)
       this.remove()
     } else if (c === 27) {
       this.callback(false)
@@ -76,4 +75,4 @@ class InputDialog {
   }
 }
 
-module.exports = InputDialog
+module.exports = DropdownDialog

@@ -16,7 +16,6 @@ class KeyValue extends HTMLElement {
       var key
       key = document.createElement('base-key')
       key.key = this.keyElement.key
-      key.classList.add('key')
 
       this.appendChild(key)
       this.keyElement = key
@@ -31,7 +30,6 @@ class KeyValue extends HTMLElement {
       } else {
         value = document.createElement('base-value')
       }
-      value.classList.add('value')
       value.value = this.valueElement.value
 
       this.appendChild(value)
@@ -60,11 +58,7 @@ class KeyValue extends HTMLElement {
     if (this.parentElement === donkey.editor) {
       return this.parentElement
     } else {
-      if (this.previousElementSibling.tagName === 'KEY-VALUE') {
-        return this.previousElementSibling
-      } else {
-        return this.parentElement.parentElement
-      }
+      return this.previousElementSibling || this.parentElement.parentElement
     }
   }
 

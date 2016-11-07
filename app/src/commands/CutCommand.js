@@ -1,7 +1,5 @@
-const Command = require('./Command')
-
 /**
- * Binding for the builtin cut command.
+ * Binding for the chrome-builtin cut command.
  */
 class CutCommand extends Command {
   execute () {

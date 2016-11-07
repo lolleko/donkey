@@ -1,5 +1,4 @@
 const clipboard = require('electron').clipboard
-const UndoableCommand = require('./UndoableCommand')
 
 class SpecialCutCommand extends UndoableCommand {
   constructor (element) {

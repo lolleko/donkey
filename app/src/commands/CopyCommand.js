@@ -1,7 +1,5 @@
-const Command = require('./Command')
-
 /**
- * Binding for the builtin copy command.
+ * Binding for the chrome-builtin copy command.
  */
 class CopyCommand extends Command {
   execute () {

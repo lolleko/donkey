@@ -1,5 +1,3 @@
-const Command = require('./Command')
-
 class RedoCommand extends Command {
   execute () {
     if (donkey.editor) {
