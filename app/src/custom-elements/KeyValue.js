@@ -1,10 +1,11 @@
-class KeyValue extends HTMLElement {
+const KVElementBase = require('./KVElementBase')
+
+class KeyValue extends KVElementBase {
 
   createdCallback () {
     this.classList.add('kv-element')
     this.classList.add('kv-data-container')
     this.innerHTML = ''
-    this.addEventListener('contextmenu', this.onContextMenu)
 
     // proxys for element creation
     this.keyElement = {}
@@ -54,14 +55,6 @@ class KeyValue extends HTMLElement {
     return this.valueElement.dataset.value
   }
 
-  get parentKVElement () {
-    if (this.parentElement === donkey.editor) {
-      return this.parentElement
-    } else {
-      return this.previousElementSibling || this.parentElement.parentElement
-    }
-  }
-
   insert (element) {
     var inserted
     if (element.nodeName === '#document-fragment') {
@@ -73,32 +66,12 @@ class KeyValue extends HTMLElement {
     return inserted
   }
 
-  remove () {
-    return this.parentNode.removeChild(this)
-  }
-
   focus () {
     this.keyElement.focus()
   }
 
   select () {
     this.keyElement.select()
-  }
-
-  moveUp () {
-    if (this.previousSibling) {
-      this.parentNode.insertBefore(this, this.previousSibling)
-    }
-    this.focus()
-  }
-
-  moveDown () {
-    if (this.nextSibling) {
-      this.parentNode.insertBefore(this, this.nextSibling.nextSibling)
-    } else {
-      this.parentNode.appendChild(this)
-    }
-    this.focus()
   }
 
   rebuildValue () {
@@ -119,11 +92,6 @@ class KeyValue extends HTMLElement {
       this.appendChild(value)
       this.valueElement = value
     }
-  }
-
-  onContextMenu (e) {
-    donkey.lang.openEditorContextMenu(this)
-    e.stopPropagation()
   }
 
 }

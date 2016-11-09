@@ -1,9 +1,10 @@
-class Comment extends HTMLElement {
+const KVElementBase = require('./KVElementBase')
+
+class Comment extends KVElementBase {
   createdCallback () {
     this.classList.add('kv-element')
     this.classList.add('kv-data-container')
     this.innerHTML = ''
-    this.addEventListener('contextmenu', this.onContextMenu)
     this.addEventListener('input', this.onInput)
   }
 
@@ -20,6 +21,8 @@ class Comment extends HTMLElement {
     this.appendChild(textarea)
     this.textarea = textarea
     this.textarea.value = this.value
+
+    this.textarea.style.height = this.textarea.scrollHeight + 'px'
   }
 
   set value (value) {
@@ -33,14 +36,6 @@ class Comment extends HTMLElement {
     return this.dataset.value
   }
 
-  get parentKVElement () {
-    if (this.parentElement === donkey.editor) {
-      return this.parentElement
-    } else {
-      return this.previousElementSibling || this.parentElement.parentElement
-    }
-  }
-
   insert (element) {
     var inserted
     if (element.nodeName === '#document-fragment') {
@@ -52,10 +47,6 @@ class Comment extends HTMLElement {
     return inserted
   }
 
-  remove () {
-    return this.parentNode.removeChild(this)
-  }
-
   focus () {
     this.textarea.focus()
   }
@@ -64,29 +55,10 @@ class Comment extends HTMLElement {
     this.textarea.select()
   }
 
-  moveUp () {
-    if (this.previousSibling) {
-      this.parentNode.insertBefore(this, this.previousSibling)
-    }
-    this.focus()
-  }
-
-  moveDown () {
-    if (this.nextSibling) {
-      this.parentNode.insertBefore(this, this.nextSibling.nextSibling)
-    } else {
-      this.parentNode.appendChild(this)
-    }
-    this.focus()
-  }
-
   onInput (e) {
     this.value = this.textarea.value
-  }
-
-  onContextMenu (e) {
-    donkey.lang.openEditorContextMenu(this)
-    e.stopPropagation()
+    this.textarea.style.height = 'auto'
+    this.textarea.style.height = this.textarea.scrollHeight + 'px'
   }
 
   attributeChangedCallback (attrName, oldVal, newVal) {

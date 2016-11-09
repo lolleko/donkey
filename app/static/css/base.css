@@ -183,8 +183,6 @@ key-value {
 }
 parent-key {
     display: block;
-    padding-top: 2px;
-    padding-bottom: 2px;
     width: 100%;
 }
 .parent-key-input {
@@ -233,8 +231,8 @@ key-value, parent-key {
 }
 donkey-comment {
     display: block;
+    position: relative;
     padding-left: 24px;
-    height: 4em;
 }
 .comment-header {
   display: inline-block;
@@ -244,6 +242,7 @@ donkey-comment {
   font-weight: 400;
 }
 .comment-textarea {
+  display: inline-block;
   width: calc(100% - 24px);
 }
 

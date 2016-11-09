@@ -54,7 +54,7 @@ class Editor extends HTMLElement {
 
   findHighlightable (element) {
     var pointer = element
-    while (pointer.tagName !== 'PARENT-KEY' && pointer.tagName !== 'KEY-VALUE') {
+    while (pointer.tagName !== 'PARENT-KEY' && pointer.tagName !== 'KEY-VALUE' && pointer.tagName !== 'DONKEY-COMMENT') {
       if (pointer === document) {
         return null
       }

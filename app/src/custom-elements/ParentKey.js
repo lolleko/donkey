@@ -1,8 +1,9 @@
-class ParentKey extends HTMLElement {
+const KVElementBase = require('./KVElementBase')
+
+class ParentKey extends KVElementBase {
 
   createdCallback () {
     this.classList.add('kv-element')
-    this.addEventListener('contextmenu', this, false)
 
     if (this.firstChild && (this.firstChild.tagName === 'AUTOCOMPLETE-INPUT' || this.firstChild.tagName === 'INPUT')) {
       // remove input if exists (after ciopy paste)
@@ -91,14 +92,6 @@ class ParentKey extends HTMLElement {
     return this.inner.children.length
   }
 
-  get parentKVElement () {
-    if (this.parentElement === donkey.editor) {
-      return this.parentElement
-    } else {
-      return this.previousElementSibling || this.parentElement.parentElement
-    }
-  }
-
   insert (element) {
     var inserted
     if (element.nodeName === '#document-fragment') {
@@ -132,10 +125,6 @@ class ParentKey extends HTMLElement {
     return inserted
   }
 
-  remove () {
-    return this.parentNode.removeChild(this)
-  }
-
   focus () {
     this.input.focus()
   }
@@ -144,29 +133,10 @@ class ParentKey extends HTMLElement {
     this.input.select()
   }
 
-  moveUp () {
-    if (this.previousSibling) {
-      this.parentNode.insertBefore(this, this.previousSibling)
-    }
-    this.focus()
-  }
-
-  moveDown () {
-    if (this.nextSibling) {
-      this.parentNode.insertBefore(this, this.nextSibling.nextSibling)
-    } else {
-      this.parentNode.appendChild(this)
-    }
-    this.focus()
-  }
-
   handleEvent (e) {
     switch (e.type) {
       case 'input':
         this.onInput(e)
-        break
-      case 'contextmenu':
-        this.onContextMenu(e)
         break
       case 'click':
         this.onClick(e)
@@ -176,11 +146,6 @@ class ParentKey extends HTMLElement {
 
   onInput (e) {
     this.key = e.target.value
-  }
-
-  onContextMenu (e) {
-    donkey.lang.openEditorContextMenu(this)
-    e.stopPropagation()
   }
 
   expand () {

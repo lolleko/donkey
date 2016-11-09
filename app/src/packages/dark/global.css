@@ -93,10 +93,6 @@ checkbox-value {
 key-value, donkey-comment {
   padding-right: 8px;
 }
-.comment-textarea {
-    font-style: italic;
-    font-weight: 600;
-}
 .kv-data-container::before {
     content: ' ';
     pointer-events: none;
