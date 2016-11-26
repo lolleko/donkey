@@ -1,7 +1,9 @@
 const KVElementBase = require('./KVElementBase')
 
 class Comment extends KVElementBase {
+
   createdCallback () {
+    super.createdCallback()
     this.classList.add('kv-element')
     this.classList.add('kv-data-container')
     this.innerHTML = ''

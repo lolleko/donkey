@@ -1,5 +1,5 @@
 class DropdownDialog {
-  constructor (title, options, placeholder, callback) {
+  constructor (options, callback) {
     this.callback = callback
 
     var container = document.createElement('div')
@@ -7,16 +7,16 @@ class DropdownDialog {
 
     var header = document.createElement('div')
     header.classList.add('new-data-dialog-header')
-    header.innerHTML = title
+    header.innerHTML = options.title || ''
 
     container.appendChild(header)
 
     var select = document.createElement('select')
     select.classList.add('new-data-dialog-input')
-    select.value = placeholder
+    select.value = options.placeholder || ''
 
-    for (var i = 0; i < options.length; i++) {
-      var opt = new Option(options[i], options[i])
+    for (var i = 0; i < options.choices.length; i++) {
+      var opt = new Option(options.choices[i], options.choices[i])
       select.options.add(opt)
     }
 

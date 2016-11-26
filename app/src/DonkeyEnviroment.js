@@ -15,6 +15,7 @@ class DonkeyEnviroment {
     // not all modules are loaded.
     window.donkey = this
     window.VDFMap = require('./VDFMap')
+    window.KVFile = require('./KVFile')
     window.Parser = require('./Parser')
     window.Command = require('./commands/Command')
     window.UndoableCommand = require('./commands/UndoableCommand')
@@ -39,6 +40,8 @@ class DonkeyEnviroment {
 
     // load packages
     this.packages = new PackageManager()
+
+    donkey.themes.updateMenu()
   }
 }
 

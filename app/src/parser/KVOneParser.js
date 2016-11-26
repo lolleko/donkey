@@ -1,5 +1,3 @@
-const uuid = require('node-uuid')
-
 /**
  * Custom Parser for valves KV1 format.
  * In addition to data, comments will also be parsed fort editing.
@@ -58,7 +56,7 @@ class KVOneParser extends Parser {
       } else {
         // add comment
         if (this.currentComment) {
-          result.set(donkey.files.KVMACRO_COMMENT + '<' + uuid.v4() + '>', this.currentComment)
+          result.set(donkey.files.getCommentMacro(), this.currentComment)
           this.currentComment = ''
         }
 
@@ -174,7 +172,7 @@ class KVOneParser extends Parser {
     this.indent = 0
     this.keyValuePairIndent = 0
     this.lastTabAmount = 0
-    return this._stringify(map, result)
+    return this._stringify(map, result).trim()
   }
 
   _stringify (map, result) {
@@ -206,7 +204,7 @@ class KVOneParser extends Parser {
   }
 
   _stringifyParentKey (k) {
-    return '\n' + this._tabs() + '"' + k + '" {'
+    return '\n' + this._tabs() + '"' + k + '"\n' + this._tabs() + '{'
   }
 
   _stringifyArray (arr) {

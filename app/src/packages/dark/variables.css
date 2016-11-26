@@ -1,10 +1,11 @@
 /* Custom Properties */
+
 :root {
-	--color:		  		hsla(199, 17%, 94%, 0.9);
-	--color-bg:				hsl(200, 19%, 19%);
-	--color-accent:		hsla(174, 100%, 29%, 1);
-	--color-card-bg: 	hsl(0, 0%, 80%);
-	--color-card: 		hsl(0, 0%, 12%);
-	--color-card-highlight: hsla(199, 17%, 96%, 0.95);
-	--color-transparent-border: hsla(0, 0%, 100%, 0.1);
+    --color: hsla(199, 17%, 94%, 0.9);
+    --color-bg: hsl(200, 19%, 19%);
+    --color-accent: hsla(174, 100%, 29%, 1);
+    --color-card-bg: hsl(0, 0%, 80%);
+    --color-card: hsl(0, 0%, 12%);
+    --color-card-highlight: hsla(199, 17%, 96%, 0.95);
+    --color-transparent-border: hsla(0, 0%, 100%, 0.1);
 }

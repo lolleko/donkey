@@ -1,4 +1,3 @@
-const KVFile = require('./KVFile')
 const kvpath = require('./kvpath')
 const fs = require('fs')
 const path = require('path')
@@ -54,7 +53,7 @@ class FileManager {
   }
 
   get activeFormat () {
-    return this.activeFile.format
+    return this.activeFile ? this.activeFile.format : 'kv1'
   }
 
   /**
@@ -63,17 +62,17 @@ class FileManager {
    * @return {KVFile} the created file.
    */
   add (path) {
-    if (this.fileExists(path)) {
-      path = kvpath.filepath(path)
-      if (this.openFiles[path]) {
-        return this.openFiles[path]
-      }
-      var kvFile = new KVFile(path)
+    var kvFile = new KVFile(path)
+    path = kvpath.filepath(path)
+    if (this.openFiles[path]) {
+      return this.openFiles[path]
+    }
+
+    if (kvFile.hasValidFormat) {
       this.openFiles[path] = kvFile
       donkey.nav.addFile(kvFile)
-      return kvFile
     }
-    return null
+    return kvFile
   }
   /**
    * Add all files from a directory to the this.openFiles.
@@ -197,10 +196,11 @@ class FileManager {
   nodeToData (node) {
     var result = new VDFMap()
     if (node.localName === 'parent-key') {
-      return result.set(node.key, this._nodeToData(node, result.get(node.key)))
+      result.set(node.key, this._nodeToData(node, result.get(node.key)))
+      return result
     } else {
       if (node.localName === 'donkey-comment') {
-        return new VDFMap([[this.KVMACRO_COMMENT + '<' + uuid.v4() + '>', node.value]])
+        return new VDFMap([[this.getCommentMacro(), node.value]])
       } else if (node.localName === 'key-value') {
         return new VDFMap([[node.key, node.value]])
       } else {
@@ -215,7 +215,7 @@ class FileManager {
     for (var i = 0; i < children.length; i++) {
       var node = children[i]
       if (node.localName === 'donkey-comment') {
-        map.set(this.KVMACRO_COMMENT + '<' + uuid.v4() + '>', node.value)
+        map.set(this.getCommentMacro(), node.value)
       } else if (node.localName === 'key-value') {
         map.set(node.key, node.value)
       } else if (node.localName === 'parent-key') {
@@ -325,6 +325,10 @@ class FileManager {
   stringify (data, identifier) {
     identifier = identifier || this.activeFormat
     return this.parser[identifier].stringify(data)
+  }
+
+  getCommentMacro () {
+    return donkey.files.KVMACRO_COMMENT + '<' + uuid.v4() + '>'
   }
 
   /**

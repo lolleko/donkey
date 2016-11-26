@@ -3,6 +3,7 @@ const KVElementBase = require('./KVElementBase')
 class ParentKey extends KVElementBase {
 
   createdCallback () {
+    super.createdCallback()
     this.classList.add('kv-element')
 
     if (this.firstChild && (this.firstChild.tagName === 'AUTOCOMPLETE-INPUT' || this.firstChild.tagName === 'INPUT')) {

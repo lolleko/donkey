@@ -1,7 +1,6 @@
 const remote = require('electron').remote
 const dialog = remote.dialog
 const InputDialog = require('./InputDialog')
-const DropdownDialog = require('./DropdownDialog')
 
 /**
  * Proxy for electron dialogs.
@@ -14,26 +13,31 @@ class Dialog {
    * Show a Input dialog at the top of the window.
    * Allowing the user to isnert a value.
    * @example
-   * donkey.dialog.showInputDialog("Enter Path", "Absolute filepath", "/home/", (value) => {
+   * var options = {
+   *   title: 'Enter Path',
+   *   detail: 'Absoulte Filepath',
+   *   placeholder: '/home/'
+   * }
+   * donkey.dialog.showInputDialog(options, (value) => {
    *   if (value) {
    *     console.log("CreatingFile: " + value)
    *     // Create File
    *   }
    * }
-   * @param  {String} title The heading of the input dialog.
-   * @param  {String} detail Detail text below the heading.
-   * @param  {String} placeholder The placeholder to show in the input element.
+   * @param  {Object=} options
+   * @param  {String} [options.title] The heading of the input dialog.
+   * @param  {String} [options.detail] Detail text below the heading.
+   * @param  {Boolean} [options.type=input] Either input, kveditor or dropdown.
+   * @param  {String} [options.placeholder] Only used if type = input. The placeholder to show in the input element.
+   * @param  {Array} [options.choices] Only used if type = dropdown. A list of drop down options.
+   * @param  {VDFMap} [options.data] Only used if type = kveditor. A VDFMap containing the initial data.
    * @param  {Function} callback Called when the user presses Enter or Escape
    *                             with the entered (value) as argument,
    *                             or (false) if escape was pressed.
    * @return {InputDialog} The created InputDialog instance.
    */
-  showInputDialog (title, detail, placeholder, callback) {
-    return new InputDialog(title, detail, placeholder, callback)
-  }
-
-  showDropdownDialog (title, options, defaultValue, callback) {
-    return new DropdownDialog(title, options, defaultValue, callback)
+  showInputDialog (options, callback) {
+    return new InputDialog(options, callback)
   }
 
   showSimpleWarning (message, detail, cancelByDefault) {

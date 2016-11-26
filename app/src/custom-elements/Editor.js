@@ -18,11 +18,17 @@ class Editor extends HTMLElement {
   }
 
   set modified (value) {
-    this.tabItem.modified = value
+    if (this.tabItem) {
+      this.tabItem.modified = value
+    }
   }
 
   get subKVElements () {
     return this.children
+  }
+
+  get value () {
+    return donkey.files.nodeToData(this)
   }
 
   insert (element) {
@@ -40,12 +46,14 @@ class Editor extends HTMLElement {
     this.innerHTML = ''
   }
 
-  build () {
+  build (data) {
     // if path no longer exists we have been deleted
-    if (!donkey.files.pathExists(this.path) && !this.modified) {
+    if (this.path && !donkey.files.pathExists(this.path) && !this.modified) {
       donkey.nav.closeTab(this.path)
     } else {
-      var data = donkey.files.readData(this.path)
+      if (!data) {
+        data = donkey.files.readData(this.path)
+      }
       this.kvData = data
       this.innerHTML = ''
       this.appendChild(donkey.files.dataToNode(data))
@@ -104,9 +112,7 @@ class Editor extends HTMLElement {
   }
 
   undo () {
-    console.log(this.undoStack)
     var lastCmd = this.undoStack.pop()
-    console.log(this.undoStack)
     if (lastCmd) {
       lastCmd.undo()
       this.redoStack.push(lastCmd)

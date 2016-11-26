@@ -4,9 +4,9 @@ const Dota2FileValue = require('./Dota2FileValue')
 class Dota2AbilityTextureValue extends Dota2FileValue {
 
   attachedCallback () {
-    super.attachedCallback()
-    this.options.context = 'game'
     this.options.defaultPath = 'resource/flash3/images'
+    this.options.context = 'game'
+    super.attachedCallback()
   }
 
   modfifyResultPath (filePath) {

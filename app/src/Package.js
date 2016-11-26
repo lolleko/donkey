@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const ipc = require('electron').ipcRenderer
 
 class Package {
   constructor (packagePath) {
@@ -10,7 +11,8 @@ class Package {
     var mainModule = this.packageMetaData.main || 'index'
     try {
       mainModule = path.join(packagePath, mainModule)
-      this.mainModule = require(mainModule)
+      var Proto = require(mainModule)
+      this.mainModule = new Proto()
       this.mainModule.package = this
       if (this.mainModule.activate) {
         this.mainModule.activate()
@@ -43,6 +45,10 @@ class Package {
 
   loadTheme () {
     donkey.themes.add(this.packageMetaData.name, path.join(this.packagePath, this.packageMetaData.themeMain))
+  }
+
+  addMenu (packageName, menuTemplate) {
+    ipc.send('donkey-add-package-menu', packageName, menuTemplate)
   }
 }
 

@@ -3,7 +3,7 @@ const electron = require('electron')
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 
-const template = [{
+var template = [{
   label: 'File',
   submenu: [{
     label: 'New Window',
@@ -109,6 +109,12 @@ const template = [{
       currentWindow.webContents.send('command:addparentkey')
     }
   }, {
+    label: 'Add Comment',
+    accelerator: 'CmdOrCtrl+,',
+    click: (menuItem, currentWindow) => {
+      currentWindow.webContents.send('command:addcomment')
+    }
+  }, {
     label: 'Cut KV Element',
     accelerator: 'CmdOrCtrl+Shift+X',
     click: (menuItem, currentWindow) => {
@@ -187,6 +193,9 @@ const template = [{
     }
   }]
 }, {
+  label: 'Packages',
+  submenu: []
+}, {
   role: 'window',
   submenu: [{
     label: 'Minimize',
@@ -238,10 +247,42 @@ if (process.platform === 'darwin') {
   })
 }
 
-function getTemplate () {
+exports.getTemplate = () => {
   return template
 }
 
-module.exports = {
-  getTemplate: getTemplate
+exports.addPackageMenu = (packageName, menuTemplate) => {
+  for (var i = 0; i < template.length; i++) {
+    if (template[i].label === 'Packages') {
+      var submenu = template[i].submenu
+      var exists = false
+      for (var j = 0; j < submenu.length; j++) {
+        if (submenu[j].label === packageName) {
+          exists = true
+          submenu[j] = {label: packageName, submenu: convertTemplate(menuTemplate)}
+        }
+      }
+      if (!exists) {
+        template[i].submenu.push({label: packageName, submenu: convertTemplate(menuTemplate)})
+      }
+    }
+  }
+}
+
+function convertTemplate (menuTemplate) {
+  var submenu = []
+  for (var i = 0; i < menuTemplate.length; i++) {
+    var current = Object.assign({}, menuTemplate[i])
+    var commandArgs = current.commandArgs ? current.commandArgs.slice() : []
+    var item = {
+      label: current.label + '',
+      command: current.command,
+      commandArgs: commandArgs,
+      click: function (menuItem, currentWindow) {
+        currentWindow.webContents.send('command:' + menuItem.command, ...menuItem.commandArgs)
+      }
+    }
+    submenu.push(item)
+  }
+  return submenu
 }

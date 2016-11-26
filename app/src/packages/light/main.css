@@ -1,5 +1,7 @@
 @import url("variables.css");
+
 /*
  * We can only do this because this is a defaut theme this way of inheriting styles is not recommended.
  */
-@import url("../dark/global.css")
+
+@import url("../dark/global.css");

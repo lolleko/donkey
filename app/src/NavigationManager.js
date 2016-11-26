@@ -91,6 +91,7 @@ class NavigationManager {
   }
 
   newDataDialog (kvPath, data, title, detail, placeholder) {
+    var options = {}
     var filepath = kvpath.filepath(kvPath)
     var kvOnly = kvpath.stripfile(kvPath)
     if (!data) {
@@ -111,7 +112,10 @@ class NavigationManager {
       }
       placeholder = kvOnly + kvpath.sep
     }
-    donkey.dialog.showInputDialog(title, detail, placeholder, (value) => {
+    options.title = title
+    options.detail = detail
+    options.placeholder = placeholder
+    donkey.dialog.showInputDialog(options, (value) => {
       if (value) {
         var result = kvpath.join(filepath, value)
         if (donkey.files.pathExists(result)) {
@@ -138,12 +142,12 @@ class NavigationManager {
   renameDataDialog (kvPath) {
     var filepath = kvpath.filepath(kvPath)
     var kvOnly = kvpath.stripfile(kvPath)
-    var title, detail
+    var options = {}
     if (kvOnly) {
-      kvOnly = kvpath.sep + kvOnly
-      title = 'Enter new path for data, use "//" as seperator.'
-      detail = filepath
-      donkey.dialog.showInputDialog(title, detail, kvOnly, (value) => {
+      options.placeholder = kvpath.sep + kvOnly
+      options.title = 'Enter new path for data, use "//" as seperator.'
+      options.detail = filepath
+      donkey.dialog.showInputDialog(options, (value) => {
         if (value) {
           var result = kvpath.join(filepath, value)
           if (donkey.files.pathExists(result)) {
@@ -159,12 +163,12 @@ class NavigationManager {
         }
       })
     } else {
-      title = 'Enter new name for file'
-      detail = path.join(filepath, '..') + path.sep
-      kvOnly = path.basename(filepath)
-      donkey.dialog.showInputDialog(title, detail, kvOnly, (value) => {
+      options.title = 'Enter new name for file'
+      options.detail = path.join(filepath, '..') + path.sep
+      options.placeholder = path.basename(filepath)
+      donkey.dialog.showInputDialog(options, (value) => {
         if (value) {
-          var result = path.join(detail, value)
+          var result = path.join(options.detail, value)
           if (donkey.files.fileExists(result)) {
             if (!donkey.dialog.showSimpleWarning('Path already exists. Do you want to overwrite the existing data?', 'You are overwriting:\n ' + result)) {
               return
@@ -206,7 +210,6 @@ class NavigationManager {
         that.openTabs[kvPath] = tabItem
         that.openTabs[kvPath].show()
         that.activeTab = that.openTabs[kvPath]
-        donkey.editor = that.activeTab.editor
         that.setFooterPathText(kvPath)
       } else {
         that.selectTab(kvPath)

@@ -1,4 +1,4 @@
-class Dota2AddAbilitySpecialVariable extends Command {
+class Dota2AddAbilitySpecialVariableCommand extends UndoableCommand {
   constructor (element, name) {
     super()
 
@@ -32,4 +32,4 @@ class Dota2AddAbilitySpecialVariable extends Command {
   }
 }
 
-module.exports = donkey.commands.add('dota:addabilityspecialvar', Dota2AddAbilitySpecialVariable)
+module.exports = donkey.commands.add('dota2:addabilityspecialvar', Dota2AddAbilitySpecialVariableCommand)

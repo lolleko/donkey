@@ -1,7 +1,8 @@
 body {
-  background-color: var(--color-bg);
-  color: var(--color);
+    background-color: var(--color-bg);
+    color: var(--color);
 }
+
 input, select, textarea {
     background: none;
     color: inherit;
@@ -14,15 +15,19 @@ input, select, textarea {
     text-align: start;
     outline-offset: 0;
 }
+
 option {
     color: var(--color-card);
 }
+
 input:focus, textarea:focus {
     border: 1px solid var(--color-accent);
 }
+
 input[type="checkbox"]:focus {
     border: solid 1px transparent;
 }
+
 input[type="checkbox"] {
     position: relative;
     margin: 4px 0 0;
@@ -31,6 +36,7 @@ input[type="checkbox"] {
     vertical-align: text-bottom;
     margin-right: 8px;
 }
+
 input[type="checkbox"]::after {
     border: 0.1em solid;
     border-radius: 2px;
@@ -40,6 +46,7 @@ input[type="checkbox"]::after {
     transition: 240ms;
     width: 0.9em;
 }
+
 input[type="checkbox"]:checked::before {
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
@@ -54,63 +61,77 @@ input[type="checkbox"]:checked::before {
     border-left: 0;
     content: '';
 }
+
 input[type="checkbox"]:checked::after {
     background-color: var(--color-accent);
     border-color: var(--color-accent);
 }
+
 input[type="checkbox"]:disabled:checked::after {
-    background-color:
-    border-color: transparent;
+    background-color: border-color: transparent;
 }
+
 checkbox-value {
     padding-left: 4px;
 }
+
 .search-input {
-  border-radius: 0;
+    border-radius: 0;
 }
+
 .tab-bar {
-  background-color: var(--color-accent);
-  color: var(--color-card-highlight);
+    background-color: var(--color-accent);
+    color: var(--color-card-highlight);
 }
+
 .tab-item-active {
-	border-bottom: 2px solid var(--color-card-highlight);
+    border-bottom: 2px solid var(--color-card-highlight);
 }
+
 .tab-item-title {
-  -webkit-mask-image: linear-gradient(to right, #ffffff 70%, rgba(255, 255, 255, 0) 90%);
+    -webkit-mask-image: linear-gradient(to right, #ffffff 70%, rgba(255, 255, 255, 0) 90%);
 }
+
 .dropdown-select {
-  background-color: var(--color-card-bg);
-  color: var(--color-card);
-  border-radius: 0.25em;
+    background-color: var(--color-card-bg);
+    color: var(--color-card);
+    border-radius: 0.25em;
 }
-.autocomplete-list > li[data-selected=true], .autocomplete-list > li:hover {
-  background-color: var(--color-accent);
-  color: var(--color-card-highlight);
+
+.autocomplete-list>li[data-selected=true], .autocomplete-list>li:hover {
+    background-color: var(--color-accent);
+    color: var(--color-card-highlight);
 }
+
 .flag-selector-value-item-checkbox::before {
-  border-color: var(--color-card-bg) !important;
+    border-color: var(--color-card-bg) !important;
 }
+
 key-value, donkey-comment {
-  padding-right: 8px;
+    padding-right: 8px;
 }
+
 .kv-data-container::before {
     content: ' ';
     pointer-events: none;
     position: absolute;
-    width: 300%;
+    width: 150%;
     left: -50%;
     top: 0;
     border-bottom: 1px solid var(--color-transparent-border);
 }
+
 .new-data-dialog {
-  background-color: var(--color-card-bg);
-  color: var(--color-card);
+    background-color: var(--color-card-bg);
+    color: var(--color-card);
 }
-.new-data-dialog-input, .search-input {
-  border: none;
-  border-bottom: 2px solid var(--color-card-highlight);
+
+input.new-data-dialog-input, .search-input {
+    border: none;
+    border-bottom: 2px solid var(--color-card-highlight);
 }
-.new-data-dialog-input:focus, .search-input:focus {
-  border: none;
-  border-bottom: 2px solid var(--color-accent);
+
+input.new-data-dialog-input:focus, .search-input:focus {
+    border: none;
+    border-bottom: 2px solid var(--color-accent);
 }

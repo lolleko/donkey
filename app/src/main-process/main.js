@@ -2,43 +2,14 @@ const electron = require('electron')
 
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
-const Menu = electron.Menu
-const MenuTemplate = require('./MenuTemplate')
+const MenuManager = require('./MenuManager')
 
 if (require('electron-squirrel-startup')) app.quit()
 
 // Auto Updater
 if (!require('electron-is-dev')) {
-  const autoUpdater = electron.autoUpdater
-  const feedURL = 'http://donkey-download.herokuapp.com/update/' + process.platform + '/' + app.getVersion()
-  const dialog = electron.dialog
-
-  autoUpdater.on('update-available', function () {
-    // console.log('update-available')
-  })
-
-  autoUpdater.on('error', function (err) {
-    dialog.showErrorBox('Auto Updater Error', err)
-  })
-
-  autoUpdater.on('update-downloaded', function (e, releaseNotes, releaseName, releaseDate, updateUrl, quitAndUpdate) {
-    var index = dialog.showMessageBox(BrowserWindow.getFocusedWindow(), {
-      type: 'info',
-      buttons: ['Restart', 'Later'],
-      title: 'Donkey',
-      message: 'A new version has been downloaded. Please restart the application to apply the updates.',
-      detail: releaseName
-    })
-
-    if (index === 1) {
-      return
-    }
-
-    autoUpdater.quitAndInstall()
-  })
-
-  autoUpdater.setFeedURL(feedURL)
-  autoUpdater.checkForUpdates()
+  const AutoUpdater = require('./AutoUpdater')
+  AutoUpdater.checkForUpdates()
 }
 
 function createWindow () {
@@ -52,8 +23,7 @@ function createWindow () {
 }
 
 function onReady () {
-  const menu = Menu.buildFromTemplate(MenuTemplate.getTemplate())
-  Menu.setApplicationMenu(menu)
+  MenuManager.initApplicationMenu()
   createWindow()
 }
 

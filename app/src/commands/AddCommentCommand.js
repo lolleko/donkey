@@ -1,4 +1,4 @@
-class AddKeyValueCommand extends UndoableCommand {
+class AddCommentCommand extends UndoableCommand {
   constructor (element) {
     super()
     if (!element) {
@@ -14,9 +14,8 @@ class AddKeyValueCommand extends UndoableCommand {
 
   execute () {
     if (this.element) {
-      var kv = document.createElement('key-value')
-      kv.key = 'NEWKEY'
-      kv.value = 'NEWVALUE'
+      var kv = document.createElement('donkey-comment')
+      kv.value = ''
       this.addedElement = this.element.insert(kv)
       kv.focus()
       kv.select()
@@ -28,4 +27,4 @@ class AddKeyValueCommand extends UndoableCommand {
   }
 }
 
-module.exports = donkey.commands.add('addkeyvalue', AddKeyValueCommand, {accelerator: 'CmdOrCtrl+L'})
+module.exports = donkey.commands.add('addcomment', AddCommentCommand, {accelerator: 'CmdOrCtrl+,'})

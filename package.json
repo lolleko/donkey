@@ -42,7 +42,8 @@
             "Parser",
             "BaseValue",
             "Command",
-            "UndoableCommand"
+            "UndoableCommand",
+            "KVFile"
         ]
     }
 }

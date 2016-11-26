@@ -36,6 +36,14 @@ class ThemeManager {
       this.load(name)
     }
   }
+
+  updateMenu () {
+    var template = []
+    for (var theme in this.themes) {
+      template.push({label: theme, command: 'change-theme', commandArgs: [theme]})
+    }
+    donkey.packages.addMenu('Themes', template)
+  }
 }
 
 module.exports = ThemeManager

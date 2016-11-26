@@ -12,6 +12,12 @@ const defaultEditorMenu = [
     }
   },
   {
+    label: 'Add Comment',
+    click: (menuItem, currentWindow) => {
+      donkey.commands.exec('addcomment', menuItem.target)
+    }
+  },
+  {
     type: 'separator'
   },
   {

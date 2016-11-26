@@ -1,6 +1,6 @@
 class KVElementBase extends HTMLElement {
-  constructor () {
-    super()
+
+  createdCallback () {
     this.addEventListener('contextmenu', this.onContextMenu)
   }
 

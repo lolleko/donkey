@@ -1,6 +1,7 @@
 const path = require('path')
 const fs = require('fs')
 const Package = require('./Package')
+const ipc = require('electron').ipcRenderer
 
 class PackageManager {
   constructor () {
@@ -67,6 +68,9 @@ class PackageManager {
     }
   }
 
+  addMenu (packageName, menuTemplate) {
+    ipc.send('donkey-add-package-menu', packageName, menuTemplate)
+  }
 }
 
 module.exports = PackageManager

@@ -3,6 +3,7 @@ const KVElementBase = require('./KVElementBase')
 class KeyValue extends KVElementBase {
 
   createdCallback () {
+    super.createdCallback()
     this.classList.add('kv-element')
     this.classList.add('kv-data-container')
     this.innerHTML = ''
@@ -61,7 +62,7 @@ class KeyValue extends KVElementBase {
       inserted = [].slice.call(element.children)
       this.parentNode.insertBefore(element, this.nextSibling)
     } else {
-      inserted = this.parentNode.insertBefore(element, this.nextSibling)
+      inserted = this.parentNode.insertBefore(element, this.nextElementSibling)
     }
     return inserted
   }

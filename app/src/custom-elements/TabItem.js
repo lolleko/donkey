@@ -6,7 +6,8 @@ class TabItem extends HTMLElement {
     this.addEventListener('click', this.onClick)
     this.classList.add('tab-item')
     this.data = new VDFMap()
-    this.editor = document.createElement('donkey-editor')
+    donkey.editor = document.createElement('donkey-editor')
+    this.editor = donkey.editor
     this.editor.tabItem = this
   }
 

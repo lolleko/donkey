@@ -23,9 +23,15 @@ class KVFile {
 
     this.format = donkey.files.detectFormat(this.path)
 
-    this.stats = fs.statSync(this.path)
-    this.data = donkey.files.parse(this.textContent, this.format)
-    this.category = donkey.lang.detectCategory(this.data)
+    if (this.format) {
+      this.stats = fs.statSync(this.path)
+      this.data = donkey.files.parse(this.textContent, this.format)
+      this.category = donkey.lang.detectCategory(this.data)
+    }
+  }
+
+  get hasValidFormat () {
+    return !!this.format
   }
 
   /**

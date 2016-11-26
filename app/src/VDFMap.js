@@ -22,6 +22,17 @@ class VDFMap {
     return this._order.length
   }
 
+  get deepSize () {
+    var size = 0
+    for (var i = 0; i < this.size; i++) {
+      size++
+      if (typeof this._entries[this._order[i]] !== 'string') {
+        size = size + this._entries[this._order[i]].deepSize
+      }
+    }
+    return size
+  }
+
   /**
    * Set value at key.
    * @param {String} key Unique string identifier.
@@ -90,6 +101,32 @@ class VDFMap {
     } else {
       return this._getPath(pathArr, subMap.get(current))
     }
+  }
+
+  getBefore (key) {
+    var index = this._order.indexOf(key) - 1
+    if (index >= 0) {
+      return [this._order[index], this._entries[this._order[index]]]
+    }
+    return undefined
+  }
+
+  getBeforePath (existingPath) {
+    if (!this.hasPath(existingPath)) {
+      throw new TypeError('existingPath is not contained in this map!')
+    }
+
+    var pathArr = kvpath.toArray(existingPath)
+    var basename = pathArr.pop()
+    var subMap = this._getPath(pathArr, this)
+
+    if (subMap) {
+      return subMap.getBefore(basename)
+    }
+  }
+
+  peek () {
+    return this._order[0]
   }
 
   /**

@@ -1,31 +1,57 @@
 class InputDialog {
-  constructor (title, detail, placeholder, callback) {
+  constructor (options, callback) {
     this.callback = callback
+    this.options = options
 
     var container = document.createElement('div')
     container.classList.add('new-data-dialog')
 
     var header = document.createElement('div')
     header.classList.add('new-data-dialog-header')
-    header.innerHTML = title
+    header.innerHTML = options.title || ''
 
     container.appendChild(header)
 
     var detailText = document.createElement('div')
     detailText.classList.add('new-data-dialog-detail')
-    detailText.innerHTML = detail
+    detailText.innerHTML = options.detail || ''
 
     container.appendChild(detailText)
 
-    var input = document.createElement('input')
-    input.classList.add('new-data-dialog-input')
-    input.value = placeholder
-    document.addEventListener('keydown', this, false)
+    var input
+    if (options.type === 'kveditor') {
+      input = document.createElement('donkey-editor')
+      input.build(options.data || new VDFMap())
+      input.classList.add('new-data-dialog-input')
+      input.classList.add('new-data-dialog-kveditor')
+      this.prevEditor = donkey.editor
+      donkey.editor = input
+    } else if (options.type === 'dropdown') {
+      input = document.createElement('select')
+      input.classList.add('new-data-dialog-input')
+      input.classList.add('new-data-dialog-dropdown')
+      input.value = options.placeholder || ''
+
+      for (var i = 0; i < options.choices.length; i++) {
+        var opt = new Option(options.choices[i], options.choices[i])
+        input.options.add(opt)
+      }
+    } else if (options.type === 'textarea') {
+      input = document.createElement('textarea')
+      input.classList.add('new-data-dialog-input')
+      input.classList.add('new-data-dialog-textarea')
+      input.value = options.placeholder || ''
+    } else {
+      input = document.createElement('input')
+      input.classList.add('new-data-dialog-input')
+      input.value = options.placeholder || ''
+    }
 
     this.input = input
 
     container.appendChild(input)
 
+    document.addEventListener('keydown', this, false)
     document.addEventListener('click', this)
 
     document.body.appendChild(container)
@@ -36,6 +62,9 @@ class InputDialog {
   }
 
   remove () {
+    if (this.prevEditor) {
+      donkey.editor = this.prevEditor
+    }
     this.element.parentNode.removeChild(this.element)
     document.removeEventListener('click', this)
     document.removeEventListener('contextmenu', this)
@@ -70,7 +99,16 @@ class InputDialog {
   }
 
   onClick (e) {
-    if (e.target && e.target !== this.element && e.target.parentNode !== this.element) {
+    var found = false
+    var node = e.target
+    while (node != null) {
+      if (node === this.element) {
+        return true
+      }
+      node = node.parentNode
+    }
+
+    if (!found) {
       this.remove()
     }
   }

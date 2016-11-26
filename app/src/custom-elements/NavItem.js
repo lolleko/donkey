@@ -74,6 +74,10 @@ class NavItem extends HTMLElement {
     return size
   }
 
+  get deepSize () {
+    return this.data.deepSize
+  }
+
   search (searchString) {
     var oneFound = false
     if (this.name.includes(searchString)) {
@@ -117,7 +121,8 @@ class NavItem extends HTMLElement {
 
   open () {
     var warning = -1
-    if (this.size > 500) {
+    const LIMIT = 1250
+    if (this.deepSize > LIMIT) {
       warning = dialog.showMessageBox(remote.getCurrentWindow(), {
         type: 'warning',
         buttons: ['Cancel', 'Open'],
@@ -125,7 +130,7 @@ class NavItem extends HTMLElement {
         cancelId: 0,
         title: 'Warning!',
         message: 'Warning opening large parent!',
-        detail: 'This parent key has more than 500 subkeys, opening it may cause lags.\nDo you wish to continue?'
+        detail: 'This parent key has more (' + this.deepSize + ') than ' + LIMIT + ' subkeys, opening it may cause lags.\nDo you wish to continue?'
       })
     }
     // warning ignored or no warning fired
