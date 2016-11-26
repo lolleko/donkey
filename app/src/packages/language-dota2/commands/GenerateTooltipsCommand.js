@@ -76,7 +76,10 @@ class Dota2GenerateTooltipsCommand extends Command {
         var namePartTwo = nameArr[nameArr.length - 1]
         var name = this.capitalizeFirst(namePartOne) + ' ' + this.capitalizeFirst(namePartTwo)
 
-        var description = '', lore = '', note0 = '', note1 = ''
+        var description = ''
+        var lore = ''
+        var note0 = ''
+        var note1 = ''
 
         if (meta && meta[0].includes(donkey.files.KVMACRO_COMMENT)) {
           var metaData = donkey.files.getParser('kv1').parse(meta[1])

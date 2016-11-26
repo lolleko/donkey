@@ -6,7 +6,6 @@ class ChangeThemeCommand extends Command {
   }
 
   execute () {
-    console.log(this.theme);
     donkey.themes.load(this.theme)
   }
 

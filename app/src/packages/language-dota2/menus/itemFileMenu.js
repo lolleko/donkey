@@ -1,3 +1,5 @@
+const d2utils = require('./../d2utils')
+
 const itemFileMenu = [{
   label: 'Add Item',
   click (menuItem, currentWindow) {
