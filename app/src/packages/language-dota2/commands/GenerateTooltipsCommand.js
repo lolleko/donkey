@@ -68,7 +68,8 @@ class Dota2GenerateTooltipsCommand extends Command {
   generateAbilityTooltips (data, result) {
     for (var [key, value] of data) {
       if (typeof value !== 'string') {
-        var prefix = 'DOTA_Tooltip_ability_' + key + '_'
+        var id = 'DOTA_Tooltip_ability_' + key
+        var prefix = id + '_'
         var meta = data.getBefore(key)
 
         var nameArr = key.split('_')
@@ -100,7 +101,7 @@ class Dota2GenerateTooltipsCommand extends Command {
           }
         }
 
-        result.set(prefix, name)
+        result.set(id, name)
 
         if (description) {
           result.set(prefix + 'Description', description)
