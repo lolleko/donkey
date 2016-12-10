@@ -121,7 +121,7 @@ class Dialog {
     var files = dialog.showOpenDialog(remote.getCurrentWindow(), {
       defaultPath: defaultPath,
       filters: filters,
-      properties: ['openFile']
+      properties: ['openFile', 'createDirectory']
     })
     if (files) {
       return files[0]
@@ -134,7 +134,7 @@ class Dialog {
     var files = dialog.showOpenDialog(remote.getCurrentWindow(), {
       defaultPath: defaultPath,
       filters: filters,
-      properties: ['openDirectory']
+      properties: ['openDirectory', 'createDirectory']
     })
     if (files) {
       return files[0]

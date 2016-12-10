@@ -11,6 +11,11 @@ const abilityMenu = [{
     donkey.nav.newDataDialog(menuItem.target.dataset.path, 'Dota2PassiveAbility', 'Enter the name of the new ability.', null, '//DOTAAbilities//')
   }
 }, {
+  label: 'Add Lua Ability',
+  click (menuItem, currentWindow) {
+    donkey.nav.newDataDialog(menuItem.target.dataset.path, 'Dota2LuaAbility', 'Enter the name of the new ability.', null, '//DOTAAbilities//')
+  }
+}, {
   label: 'Edit Tooltip Data',
   click (menuItem, currentWindow) {
     d2utils.editMetaData(menuItem.target.name, menuItem.target.dataset.path, [['Name', ''], ['Description', ''], ['Lore', ''], ['Note0', ''], ['Note1', '']])

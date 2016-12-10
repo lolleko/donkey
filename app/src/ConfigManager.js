@@ -48,7 +48,7 @@ class ConfigManager {
   }
 
   /**
-   * Reload the config. This will read the json file and fire events for changed values.
+   * Reload the config. This will read the JSON file and fire events for changed values.
    */
   reload () {
     if (this.writing) {
