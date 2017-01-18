@@ -3,7 +3,7 @@ let { installNodeHeaders, rebuildNativeModules, shouldRebuildNativeModules } = r
 let childProcess = require('child_process')
 let pathToElectron = require('electron')
 
-console.log('Rebuilding natvie modules.')
+console.log('Rebuilding native modules.')
 
 shouldRebuildNativeModules(pathToElectron)
   .then((shouldBuild) => {
