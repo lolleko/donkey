@@ -33,6 +33,10 @@ class KeymapManager {
     return process.platform === 'darwin' ? this.metaPressed : this.ctrlPressed
   }
 
+  get OnlyCmdOrCtrlPressed () {
+    return this.cmdOrCtrlPressed && donkey.keys.pressedTotal <= 1
+  }
+
   get pressedTotal () {
     return this.pressed.length
   }

@@ -79,7 +79,7 @@ class Editor extends HTMLElement {
     this.selection.push(element)
   }
 
-  clear () {
+  clearSelection () {
     for (var i = 0; i < this.selection.length; i++) {
       this.selection[i].classList.remove('donkey-selected')
     }
@@ -157,10 +157,14 @@ class Editor extends HTMLElement {
   }
 
   onFocusIn (e) {
+    if (!donkey.keys.OnlyCmdOrCtrlPressed) {
+      this.clearSelection()
+    }
+
     if (donkey.keys.cmdOrCtrlPressed && donkey.keys.pressedTotal <= 1) {
       this.select(this.findHighlightable(e.target))
     } else {
-      this.clear()
+
     }
   }
 }
