@@ -12,6 +12,22 @@ class KVElementBase extends HTMLElement {
     }
   }
 
+  get value () {
+
+  }
+
+  set value (value) {
+
+  }
+
+  get key () {
+
+  }
+
+  set key (key) {
+
+  }
+
   insert () {
 
   }
@@ -51,6 +67,21 @@ class KVElementBase extends HTMLElement {
   onContextMenu (e) {
     donkey.lang.openEditorContextMenu(this)
     e.stopPropagation()
+  }
+
+  attributeChangedCallback (attrName, oldVal, newVal) {
+    if (this.preventChangeCallback) {
+      this.preventChangeCallback = false
+      return
+    }
+    if (oldVal && oldVal !== newVal) {
+      if (attrName === 'data-value') {
+        donkey.commands.exec('valuechange', this, oldVal)
+      }
+      if (attrName === 'data-key') {
+        donkey.commands.exec('keychange', this, oldVal)
+      }
+    }
   }
 
 }

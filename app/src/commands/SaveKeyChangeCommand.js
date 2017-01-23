@@ -23,16 +23,16 @@ class SaveKeyChangeCommand extends UndoableCommand {
   }
 
   redo () {
-    this.element.keyElement.preventCallback = true
-    this.element.keyElement.key = this.redoValue
-    this.element.keyElement.focus()
+    this.element.preventChangeCallback = true
+    this.element.key = this.redoValue
+    this.element.focus()
   }
 
   undo () {
-    this.redoValue = this.element.keyElement.key
-    this.element.keyElement.preventCallback = true
-    this.element.keyElement.key = this.oldKey
-    this.element.keyElement.focus()
+    this.redoValue = this.element.key
+    this.element.preventChangeCallback = true
+    this.element.key = this.oldKey
+    this.element.focus()
   }
 
   merge (newCmd) {

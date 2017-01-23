@@ -15,8 +15,8 @@ class AddCommentCommand extends UndoableCommand {
   execute () {
     if (this.element) {
       var kv = document.createElement('donkey-comment')
-      kv.value = ''
-      this.addedElement = this.element.insert(kv)
+      kv.value = 'COMMENT'
+      this.addedElement = this.element.parentElement.insertBefore(kv, this.element)
       kv.focus()
       kv.select()
     }

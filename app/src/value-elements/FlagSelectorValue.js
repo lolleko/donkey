@@ -50,11 +50,11 @@ class FlagSelectorValue extends BaseValue {
         this.rebuildFlags()
       }
     }
-    this.dataset.value = value
+    this.emitValueChange(value)
   }
 
   get value () {
-    return this.dataset.value
+    return this.input.value
   }
 
   rebuildFlags () {

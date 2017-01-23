@@ -191,7 +191,12 @@ class NavigationManager {
   }
 
   getNavItemByPath (kvPath) {
-    return document.querySelector('nav-item[data-path="' + kvPath + '"]')
+    var navItems = document.querySelectorAll('nav-item')
+    for (var i = 0; i < navItems.length; i++) {
+      if (navItems[i].dataset.path === kvPath) {
+        return navItems[i]
+      }
+    }
   }
 
   addTab (kvPath) {

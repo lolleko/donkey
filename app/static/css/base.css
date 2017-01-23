@@ -193,7 +193,7 @@ tab-item {
     font-size: 0.8rem;
 }
 
-tab-item:hover>.tab-item-close {
+tab-item:hover .tab-item-close {
     display: inline-block;
 }
 
@@ -204,9 +204,12 @@ tab-item:hover>.tab-item-close {
 
 donkey-editor {
     display: block;
-    min-width: 500px;
     overflow-x: scroll;
     height: 100%;
+}
+
+.content donkey-editor {
+    min-width: 500px;
 }
 
 key-value {
@@ -261,13 +264,13 @@ parent-key {
     content: "\f078";
 }
 
- donkey-comment {
+donkey-comment {
      display: block;
      position: relative;
      padding-left: 30px;
  }
 
- .comment-header {
+.comment-header {
      display: inline-block;
      vertical-align: top;
      width: 20px;
@@ -277,6 +280,7 @@ parent-key {
 
  .comment-textarea {
      display: inline-block;
+     resize:vertical;
      width: calc(100% - 24px);
  }
 

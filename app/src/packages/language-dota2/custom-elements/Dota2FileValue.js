@@ -18,11 +18,11 @@ class Dota2FileValue extends donkey.valueElements.file {
     if (value !== this.input.value) {
       this.input.value = value
     }
-    this.dataset.value = value
+    this.emitValueChange(value)
   }
 
   get value () {
-    return this.dataset.value
+    return this.input.value
   }
 
   get absolutePath () {

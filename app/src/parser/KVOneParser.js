@@ -1,6 +1,6 @@
 /**
  * Custom Parser for valves KV1 format.
- * In addition to data, comments will also be parsed fort editing.
+ * In addition to data, comments will also be parsed for editing.
  * Inline comments are ignored.
  */
 class KVOneParser extends Parser {
@@ -16,7 +16,7 @@ class KVOneParser extends Parser {
     this.closingToken = '}'
 
     // The string token is a bit differen we dont actually search for 'str'.
-    // 'str' is  a placeholder for any string that doesn't match teh above tokens
+    // 'str' is  a placeholder for any string that doesn't match the above tokens
     this.stringToken = 'str'
   }
 

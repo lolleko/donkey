@@ -18,7 +18,6 @@ class Comment extends KVElementBase {
     this.appendChild(commentHeader)
 
     var textarea = document.createElement('textarea')
-    this.valueElement = this
     textarea.classList.add('comment-textarea')
     this.appendChild(textarea)
     this.textarea = textarea
@@ -61,16 +60,6 @@ class Comment extends KVElementBase {
     this.value = this.textarea.value
     this.textarea.style.height = 'auto'
     this.textarea.style.height = this.textarea.scrollHeight + 'px'
-  }
-
-  attributeChangedCallback (attrName, oldVal, newVal) {
-    if (this.preventCallback) {
-      this.preventCallback = false
-    } else {
-      if (oldVal && attrName === 'data-value') {
-        donkey.commands.exec('valuechange', this, oldVal)
-      }
-    }
   }
 }
 

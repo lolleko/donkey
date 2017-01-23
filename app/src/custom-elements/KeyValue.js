@@ -15,12 +15,10 @@ class KeyValue extends KVElementBase {
 
   attachedCallback () {
     if (!this.keyElement.tagName) {
-      var key
-      key = document.createElement('base-key')
-      key.key = this.keyElement.key
-
-      this.appendChild(key)
-      this.keyElement = key
+      var keyElement = document.createElement('base-key')
+      this.appendChild(keyElement)
+      keyElement.key = this.key
+      this.keyElement = keyElement
     }
 
     if (!this.valueElement.tagName) {
@@ -32,10 +30,9 @@ class KeyValue extends KVElementBase {
       } else {
         value = document.createElement('base-value')
       }
-      value.value = this.valueElement.value
 
       this.appendChild(value)
-
+      value.value = this.valueElement.value
       this.valueElement = value
     }
   }
@@ -45,7 +42,7 @@ class KeyValue extends KVElementBase {
   }
 
   get key () {
-    return this.keyElement.dataset.key
+    return this.keyElement.key
   }
 
   set value (value) {
@@ -53,7 +50,7 @@ class KeyValue extends KVElementBase {
   }
 
   get value () {
-    return this.valueElement.dataset.value
+    return this.valueElement.value
   }
 
   insert (element) {
@@ -92,6 +89,13 @@ class KeyValue extends KVElementBase {
       value.classList.add('value')
       this.appendChild(value)
       this.valueElement = value
+    }
+  }
+
+  attributeChangedCallback (attrName, oldVal, newVal) {
+    super.attributeChangedCallback(attrName, oldVal, newVal)
+    if (attrName === 'data-key') {
+      this.rebuildValue()
     }
   }
 

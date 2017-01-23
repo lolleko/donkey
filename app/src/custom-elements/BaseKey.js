@@ -1,6 +1,6 @@
 /**
  * Base Key this element is used to represent a key of a KeyValue pair.
- * It features autocompletion if avalaible for the current language adn file.
+ * It features autocompletion if avalaible for the current language and file.
  */
 class BaseKey extends HTMLElement {
 
@@ -20,14 +20,15 @@ class BaseKey extends HTMLElement {
   }
 
   set key (key) {
+    // prevent event loop
     if (key !== this.input.value) {
       this.input.value = key
     }
-    this.dataset.key = key
+    this.emitKeyChange(key)
   }
 
   get key () {
-    return this.dataset.key
+    return this.input.value
   }
 
   focus () {
@@ -36,6 +37,10 @@ class BaseKey extends HTMLElement {
 
   select () {
     this.input.select()
+  }
+
+  emitKeyChange (key) {
+    this.parentElement.dataset.key = key
   }
 
   handleEvent (e) {
@@ -49,21 +54,6 @@ class BaseKey extends HTMLElement {
   onInput (e) {
     this.key = e.target.value
   }
-
-  attributeChangedCallback (attrName, oldVal, newVal) {
-    if (this.preventCallback) {
-      this.preventCallback = false
-    } else {
-      if (oldVal && attrName === 'data-key') {
-        donkey.commands.exec('keychange', this.parentNode, oldVal)
-      }
-    }
-
-    if (oldVal) {
-      this.parentNode.rebuildValue()
-    }
-  }
-
 }
 
 module.exports = document.registerElement('base-key', BaseKey)

@@ -7,11 +7,11 @@ class ParentKey extends KVElementBase {
     this.classList.add('kv-element')
 
     if (this.firstChild && (this.firstChild.tagName === 'AUTOCOMPLETE-INPUT' || this.firstChild.tagName === 'INPUT')) {
-      // remove input if exists (after ciopy paste)
+      // remove input if exists (after copy paste)
       this.removeChild(this.firstChild)
     }
     if (this.firstChild && (this.firstChild.tagName === 'DIV')) {
-      // remove inner if exists (after ciopy paste)
+      // remove inner if exists (after copy paste)
       this.removeChild(this.firstChild)
     }
 
@@ -41,7 +41,6 @@ class ParentKey extends KVElementBase {
 
     input.addEventListener('input', this, false)
     this.input = input
-    this.keyElement = this
     header.appendChild(input)
 
     var inner = document.createElement('div')
@@ -173,16 +172,6 @@ class ParentKey extends KVElementBase {
       this.collapse()
     } else {
       this.expand()
-    }
-  }
-
-  attributeChangedCallback (attrName, oldVal, newVal) {
-    if (this.preventCallback) {
-      this.preventCallback = false
-    } else {
-      if (oldVal && attrName === 'data-key') {
-        donkey.commands.exec('keychange', this, oldVal)
-      }
     }
   }
 }

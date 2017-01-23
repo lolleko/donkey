@@ -133,7 +133,6 @@ class Editor extends HTMLElement {
 
   save () {
     donkey.files.writeData(this.path, donkey.files.nodeToData(this))
-    donkey.files.write()
     this.modified = false
   }
 

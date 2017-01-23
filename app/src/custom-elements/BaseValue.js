@@ -14,20 +14,25 @@ class BaseValue extends HTMLElement {
   }
 
   set value (value) {
+    // prevent event loop
     if (value !== this.input.value) {
       this.input.value = value
     }
-    this.dataset.value = value
+    this.emitValueChange(value)
   }
 
   get value () {
-    return this.dataset.value
+    return this.input.value
   }
 
   focus () {
     if (this.input) {
       this.input.focus()
     }
+  }
+
+  emitValueChange (value) {
+    this.parentElement.dataset.value = value
   }
 
   handleEvent (e) {
@@ -41,17 +46,6 @@ class BaseValue extends HTMLElement {
   onInput (e) {
     this.value = e.target.value
   }
-
-  attributeChangedCallback (attrName, oldVal, newVal) {
-    if (this.preventCallback) {
-      this.preventCallback = false
-    } else {
-      if (oldVal && attrName === 'data-value') {
-        donkey.commands.exec('valuechange', this.parentNode, oldVal)
-      }
-    }
-  }
-
 }
 
 module.exports = document.registerElement('base-value', BaseValue)

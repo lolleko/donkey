@@ -23,16 +23,16 @@ class SaveValueChangeCommand extends UndoableCommand {
   }
 
   redo () {
-    this.element.valueElement.preventCallback = true
-    this.element.valueElement.value = this.redoValue
-    this.element.valueElement.focus()
+    this.element.preventChangeCallback = true
+    this.element.value = this.redoValue
+    this.element.focus()
   }
 
   undo () {
-    this.redoValue = this.element.valueElement.value
-    this.element.valueElement.preventCallback = true
-    this.element.valueElement.value = this.oldValue
-    this.element.valueElement.focus()
+    this.redoValue = this.element.value
+    this.element.preventChangeCallback = true
+    this.element.value = this.oldValue
+    this.element.focus()
   }
 
   merge (newCmd) {

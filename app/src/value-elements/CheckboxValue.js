@@ -33,18 +33,17 @@ class CheckBoxValue extends BaseValue {
     if (value === this.options.off) {
       this.input.checked = false
       this.labelText.innerHTML = value
-      this.dataset.value = value
     } else {
       this.input.checked = true
       this.labelText.innerHTML = this.options.on
-      this.dataset.value = this.options.on
     }
+    this.emitValueChange(this.value)
   }
 
   // same as in super but required because not inherited correctly?
   // or setter and getter can only be inherited as pair?
   get value () {
-    return this.dataset.value
+    return this.labelText.innerHTML
   }
 
   handleEvent (e) {
