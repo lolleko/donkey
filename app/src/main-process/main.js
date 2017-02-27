@@ -2,6 +2,7 @@ const electron = require('electron')
 
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
+const crashReporter = electron.crashReporter
 const MenuManager = require('./MenuManager')
 
 if (require('electron-squirrel-startup')) app.quit()
@@ -11,6 +12,13 @@ if (!require('electron-is-dev')) {
   const AutoUpdater = require('./AutoUpdater')
   AutoUpdater.checkForUpdates()
 }
+
+// Crash Reporter
+crashReporter.start({
+  productName: 'donkey',
+  companyName: 'Dota Shelter',
+  submitUrl: '<insert url>'
+})
 
 function createWindow () {
   var win = new BrowserWindow({
