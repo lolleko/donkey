@@ -17,7 +17,7 @@ if (!require('electron-is-dev')) {
 crashReporter.start({
   productName: 'donkey',
   companyName: 'Dota Shelter',
-  submitUrl: '<insert url>'
+  submitUrl: 'https://calm-meadow-53392.herokuapp.com/post'
 })
 
 function createWindow () {
