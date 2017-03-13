@@ -15,7 +15,7 @@ shouldRebuildNativeModules(pathToElectron)
     electronVersion = electronVersion.match(/v(\d+\.\d+\.\d+)/)[1]
 
     return installNodeHeaders(electronVersion)
-      .then(() => rebuildNativeModules(electronVersion, process.env.PWD + '/app/node_modules'))
+      .then(() => rebuildNativeModules(electronVersion, process.cwd() + '/app/node_modules'))
   })
   .catch((e) => {
     console.error("Building modules didn't work!")
